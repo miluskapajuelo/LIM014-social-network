@@ -14,7 +14,7 @@ export default () => {
     <div class="label">
       <span class="material-icons">person</span>
       <label class="flex" for="email"><h4>Email</h4>
-        <input class="" type="text">
+        <input id="email" type="text">
       </label>
     </div>
     <div class="label">
@@ -22,11 +22,11 @@ export default () => {
         vpn_key
         </span>
       <label class="flex" for="email"><h4>Password</h4>
-        <input class="" type="password">
+        <input id="password" type="password">
       </label>
     </div>
     <a href="#/Register">Are you new? sing me</a>
-    <button type="button"><a href="#/Home">Log In</a></button>
+    <button type="submit" id="btnLogIn"><a href="#/Home">Log In</a></button>
   </div>
   <div class="typeLog">
     <p>or enter with</p>
@@ -39,5 +39,13 @@ export default () => {
   const element = document.createElement('main');
   element.className = 'main-login';
   element.innerHTML = viewLogin;
+  const singupForm = element.querySelector('#col-form');
+
+  singupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const singupEmail = document.querySelector('#email').value;
+    const singupPassword = document.querySelector('#password').value;
+    console.log(singupEmail, singupPassword);
+  });
   return element;
 };
