@@ -1,3 +1,6 @@
+import { createUser } from '../model/firebase-login-model.js';
+import { signIn, createUserBD } from '../controller/login-controller.js';
+
 export default () => {
   const viewRegister = `<section class="container-change">
   <figure class="figure-login">
@@ -46,7 +49,7 @@ export default () => {
           </label>
         </div>
         <a href="#/login">Log in</a>
-        <button type="button"><a href="#/main">Register</a></button>
+        <button type="submit">Register</button>
       </div>
       <div class="typeLog">
         <p>or enter with</p>
@@ -58,5 +61,32 @@ export default () => {
   const reg = document.getElementById('main-login');
   reg.innerHTML = '';
   reg.innerHTML = viewRegister;
+
+  const singInForm = document.querySelector('#col-form');
+  singInForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const username = document.querySelector('#name').value;
+    const email = document.querySelector('#email').value;
+    const pass = document.querySelector('#password').value;
+    const passCheck = document.querySelector('#c-password').value;
+    const info = document.querySelector('#info').value;
+    if (username === '') {
+      console.log('usuario vacio');
+    } else if (email === '') {
+      console.log('email vacio');
+    } else if (pass === '') {
+      console.log('pass vacio');
+    } else if (info === '') {
+      console.log('info vacio');
+    } else if (pass !== passCheck) {
+      console.log('pass no coincide');
+    } else {
+      createUserBD(email, pass)
+        .then((result) => { createUser(result.user.uid, username, email, info); })
+        .then(() => signIn(email, pass))
+        .then(() => { window.location.hash = '#/Home'; })
+        .catch((err) => console.error(err));
+    }
+  });
   return reg;
 };
