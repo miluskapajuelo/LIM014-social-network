@@ -1,15 +1,14 @@
 import { components } from '../components.js';
 
 const changeView = (route) => {
-  const container = document.getElementById('container');
-
   switch (route) {
+    case '':
     case '#/login':
-      container.innerHTML = '';
-      console.log(route);
-      return container.appendChild(components.login());
+      return components.login();
+    case '#/Register':
+      return components.register();
     default:
-      break;
+      return components.fail();
   }
 };
 
