@@ -1,3 +1,5 @@
+import { signIn, signInWithFacebook, signInWithGoogle } from '../controller/login-controller.js';
+
 export default () => {
   const viewLogin = `<section class="container-change">
   <figure class="figure-login">
@@ -42,6 +44,7 @@ export default () => {
 
   const label = document.querySelectorAll('.flex input');
   const form = document.querySelector('.form');
+  const singInForm = document.querySelector('#col-form');
 
   label.forEach((elm) => {
     elm.addEventListener('focus', () => {
@@ -49,10 +52,47 @@ export default () => {
     });
   });
 
-  log.addEventListener('submit', (e) => {
+  singInForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(document.querySelector('#email').value);
-    console.log(document.querySelector('#password').value);
+    const singupEmail = document.querySelector('#email').value;
+    const singupPassword = document.querySelector('#password').value;
+    // console.log(singupEmail, singupPassword);
+
+    signIn(singupEmail, singupPassword)
+      // eslint-disable-next-line no-unused-vars
+      .then((userCredential) => {
+        window.location.hash = '#/Home';
+      })
+      // eslint-disable-next-line no-unused-vars
+      .catch((err) => {
+        console.log('Usuario no registrado');
+      });
+  });
+  // FACEBOOK
+  const btnFacebook = document.querySelector('#btn-facebook');
+  btnFacebook.addEventListener('click', (e) => {
+    e.preventDefault();
+    signInWithFacebook()
+      .then(() => {
+        console.log('Usuario creado fb');
+        window.location.hash = '#/Home';
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+  // GOOGLE
+  const btnGmail = document.querySelector('#btn-gmail');
+  btnGmail.addEventListener('click', (e) => {
+    e.preventDefault();
+    signInWithGoogle()
+      .then(() => {
+        console.log('Usuario creado google');
+        window.location.hash = '#/Home';
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   });
   return log;
 };

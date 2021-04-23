@@ -7,6 +7,8 @@ const changeView = (route) => {
       return components.login();
     case '#/Register':
       return components.register();
+    case '#/Home':
+      return components.home();
     default:
       return components.fail();
   }
