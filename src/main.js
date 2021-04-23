@@ -1,5 +1,4 @@
 // Este es el punto de entrada de tu aplicacion
-
 import { changeView } from './views/view-controller/index.js';
 
 const init = () => {

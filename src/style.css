@@ -12,15 +12,22 @@
     font-family: 'Pacifico', cursive; */
 }
 .main-login{
+    width: 100%;
+    height: 100vh;
+}
+.container-change{
     display: grid;
     grid-template-columns: 0px 1fr;
     width: 100%;
     height: 100vh;
 }
-.main-login .figure-login > img{
+.container-change.hidden{
     display: none;
 }
-.main-login .figure-login{
+.container-change .figure-login > img{
+    display: none;
+}
+.container-change .figure-login{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,7 +36,7 @@
     width: 100px;
     height: 100px;
 }
-.main-login >.col{
+.container-change >.col{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,46 +50,111 @@
 }
 form .form{
     font-family: 'Montserrat Alternates', sans-serif;
-    color: #0091ad;
+    color: #5C4D7D;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-form .form .label{
-    width: 100%;
+form .form >.label{
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 15% 85%;
+    align-items: center;
+    border-bottom: 1px solid #5C4D7D;
+    position: relative;
+    margin-bottom: 25px;
+    padding: 4px 0px;
+}
+.form > .label::after, .form > .label::before{
+    content: '';
+    position: absolute;
+    background-color: #0091AD;
+    height: 1px;
+    width: 0;
+    bottom: -1px;
+    transition: .5s;
+}
+.form > .label::before{
+    left: 0px;
+}
+.form > .label::after{
+    right: 0px;
+}
+.form.focus > .label::after, 
+.form.focus > .label::before{
+    width: 50%;
+}
+.form.form .label >.flex >h4{
+    top: -15px;
+    font-size: 13px;
+    color: #0091AD;
+}
+.form >.label span{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
 }
 form .form .label >.flex{
     position: relative;
 }
-form .typeLog > figure >img{
+.label >.flex >h4{
+    position: absolute;
+    top: 15%;
+    left: 5px;
+    cursor: text;
+    font-size: 15px;
+    font-weight: bolder;
+}
+.label .flex >input{
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 18px;
+    padding: 1px 6px;
+    border: none;
+    outline: none;
+    height: 100%;
+    background: transparent;
+}
+form .typeLog > button >img{
     width: 30px;
     height: 30px;
 }
-.main-login .logo{
+.container-change .logo{
     font-family: 'Pacifico', cursive;
     font-size: 25px;
     color: #212529;
     font-weight: bold;
     text-align: center;
 }
-.main-login .text-logo{
+.container-change .text-logo{
     color: #0091ad;
     font-size: 20px;
     font-weight: bold;
     font-family: 'Montserrat Alternates', sans-serif;
     text-align: center;
 }
-
-
+.container-fail{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+.container-fail>img{
+    width: 250px;
+    height: 250px;
+}
 @media screen and (min-width: 1024px){
-    .main-login{
+    .container-change{
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 20px;
     }
-    .main-login .figure-login > img{
+    .container-change .figure-login > img{
         display: block;
     }
 }
