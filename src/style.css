@@ -7,9 +7,12 @@
 :root{
     width: 100%;
     height: 100vh;
-    background: linear-gradient(to top, #eeeeee, #ffffff);
+    background: linear-gradient(to top, #eeeeee, hsl(0, 0%, 100%));
     /* font-family: 'Montserrat Alternates', sans-serif;
     font-family: 'Pacifico', cursive; */
+}
+a{
+    text-decoration: none;
 }
 .main-login{
     width: 100%;
@@ -69,7 +72,7 @@ form .form >.label{
     content: '';
     position: absolute;
     background-color: #0091AD;
-    height: 1px;
+    height: 2px;
     width: 0;
     bottom: -1px;
     transition: .5s;
@@ -80,13 +83,40 @@ form .form >.label{
 .form > .label::after{
     right: 0px;
 }
-.form.focus > .label::after, 
-.form.focus > .label::before{
+.form > .label.focus::after, 
+.form > .label.focus::before{
     width: 50%;
 }
-.form.form .label >.flex >h4{
+form .form > a{
+    font-weight: normal;
+    margin-bottom: 30px;
+    position: relative;
+}
+form .form > a:hover{
+    color: #0091AD;
+}
+form .form > .log::after,
+form .form > .log::before{
+    content: '';
+    width: 70%;
+    position: absolute;
+    background-color: rgb(198, 198, 202);
+    height: 1px;
+    top: 50%;
+}
+form .form > .log::after{
+    left: -50px;
+}
+form .form > .log::before{
+    right: -50px;
+}
+.form .label.focus >.flex >h4{
     top: -15px;
     font-size: 13px;
+    transition: .5s;
+    color: #0091AD;
+}
+.form >.label.focus span{
     color: #0091AD;
 }
 .form >.label span{
@@ -94,6 +124,20 @@ form .form >.label{
     height: 100%;
     justify-content: center;
     align-items: center;
+}
+form .form >button{
+    width: 100%;
+    padding: 9px;
+    border-radius: 50px;
+    border: oldlace;
+    background-color: hsla(194, 75%, 36%, 0.8);
+    color: #ffffff;
+    font-family: 'Montserrat Alternates', sans-serif;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px #c2e2e9;
+}
+form .form >button:hover{
+    background-color: hsl(194, 75%, 36%);
 }
 form .form .label >.flex{
     position: relative;
@@ -103,21 +147,44 @@ form .form .label >.flex{
     top: 15%;
     left: 5px;
     cursor: text;
-    font-size: 15px;
-    font-weight: bolder;
+    font-size: 14px;
+    font-weight: 500;
+    transition: .5s;
 }
 .label .flex >input{
     font-family: 'Montserrat Alternates', sans-serif;
-    font-size: 18px;
+    font-size: 15px;
     padding: 1px 6px;
     border: none;
     outline: none;
     height: 100%;
     background: transparent;
 }
-form .typeLog > button >img{
-    width: 30px;
-    height: 30px;
+form .typeLog{
+    padding: 0px 20px;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 15px;
+    color: #5C4D7D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+form .typeLog > div >button{
+    padding: 10px 12px;
+    margin: 10px 10px 0px 10px;
+    border-radius: 80%;
+    border: none;
+    background-color: rgb(247, 238, 246);
+    cursor: pointer;
+    box-shadow: 5px 5px 5px rgba(216, 191, 216, 0.541);
+}
+form .typeLog > div >button:hover{
+    background-color: white;
+}
+form .typeLog > div >button >img{
+    width: 25px;
+    height: 25px;
 }
 .container-change .logo{
     font-family: 'Pacifico', cursive;
@@ -152,8 +219,8 @@ form .typeLog > button >img{
 @media screen and (min-width: 1024px){
     .container-change{
         grid-template-columns: repeat(2, 1fr);
-        grid-gap: 20px;
     }
+    
     .container-change .figure-login > img{
         display: block;
     }
