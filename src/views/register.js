@@ -48,13 +48,15 @@ export default () => {
             <input class="" type="password" id="c-password">
           </label>
         </div>
-        <a href="#/login">Log in</a>
+        <a class="log" href="#/login">Log in</a>
         <button type="submit">Register</button>
       </div>
       <div class="typeLog">
         <p>or enter with</p>
-        <button type="button" id="btn-gmail"><img src='./img/google-plus.svg'></button>
-        <button type="button" id="btn-facebook"><img src='./img/facebook.svg'></button>
+        <div>
+          <button type="button" id="btn-gmail"><img src='./img/google-plus.svg'></button>
+          <button type="button" id="btn-facebook"><img src='./img/facebook.svg'></button>
+        </div>
       </div>
       </form> 
 </section>`;
@@ -63,6 +65,24 @@ export default () => {
   reg.innerHTML = viewRegister;
 
   const singInForm = document.querySelector('#col-form');
+
+  const eventInput = (() => {
+    const label = document.querySelectorAll('.flex input');
+    const form = document.querySelectorAll('.form .label');
+
+    for (let i = 0; i < label.length; i += 1) {
+      label[i].addEventListener('focus', () => {
+        form[i].classList.add('focus');
+      });
+      label[i].addEventListener('blur', () => {
+        if (label[i].value === '') {
+          form[i].classList.remove('focus');
+        }
+      });
+    }
+  });
+  eventInput();
+
   singInForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const username = document.querySelector('#name').value;
