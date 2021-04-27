@@ -1,4 +1,4 @@
-import addPost from '../controller/post-controller.js'
+import addPost, { removePost , updatePost } from '../model/firebase-post-model.js'
 
 export default () => {
   const viewRegister = `<header id="main-header" class ="header">
@@ -30,10 +30,10 @@ export default () => {
   const reg = document.getElementById('main-login');
   reg.innerHTML = '';
   reg.innerHTML = viewRegister;
-  
+  const notePost = document.getElementById('btn-add-note')
+
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-  const notePost = document.getElementById('btn-add-note')
   notePost.addEventListener('click', ()=>{
     const post = document.getElementById('input-new-note').value
     addPost(post).then((docRef) => {
@@ -47,6 +47,7 @@ export default () => {
   fs.collection("post")
   .orderBy("datePost", "desc")
   .onSnapshot((querySnapshot) => {
+    const commentPublish = document.getElementById('commentPublish')
     commentPublish.innerHTML = "";
     let i = 0;
     querySnapshot.forEach((doc) => {
@@ -60,48 +61,16 @@ export default () => {
       }">edit</span></div> `;
     })
     querySnapshot.forEach((doc) => {
-      const remove = document.querySelectorAll(`.removeBtn-${doc.id}`);
-      remove.forEach((elemento) => {
-        elemento.addEventListener("click", (e) => {
-          e.preventDefault();
-          fs.collection("post")
-            .doc(doc.id)
-            .delete()
-            .then(() => {
-              console.log("Document successfully deleted!");
-            })
-            .catch((error) => {
-              console.error("Error removing document: ", error);
-            });
-        });
-      });
-  
-  
-        const updates = document.querySelectorAll(`.editBtn-${doc.id}`);
-        updates.forEach((elemento) => {
-          elemento.addEventListener("click", (e) => {
-            console.log("holi Katty");
-            e.preventDefault();
-            fs.collection("post").doc(doc.id).update({
-              commet: "holi eunice",
-            });
-  
-  
-  })})})});
-
-
-
-
-
-
+    if(doc.data().uid === firebase.auth().currentUser.uid){
+      removePost(doc.id)
+      updatePost(doc.id)
+      }
+    })
+  });
 }
   else{
   alert('necesitas loguearte para hacer esta operación')
   window.location.hash="#/login"
   }})
-
-  
-
- 
   return reg;
 };
