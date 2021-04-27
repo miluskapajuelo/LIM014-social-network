@@ -75,7 +75,7 @@ export default () => {
       })
       // eslint-disable-next-line no-unused-vars
       .catch((err) => {
-        console.log('Usuario no registrado');
+        alert('Usuario no registrado');
       });
   });
   // FACEBOOK
