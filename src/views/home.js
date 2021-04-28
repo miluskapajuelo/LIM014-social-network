@@ -97,6 +97,7 @@ export default () => {
 
   const burger = document.querySelector('.burger');
   const list = document.querySelector('.nav-list ul');
+  const commentPublish = document.getElementById('commentPublish');
 
   burger.addEventListener('click', () => {
     burger.classList.toggle('open');
@@ -117,7 +118,6 @@ export default () => {
       firebase.firestore().collection('post')
         .orderBy('datePost', 'desc')
         .onSnapshot((querySnapshot) => {
-          const commentPublish = document.getElementById('commentPublish');
           commentPublish.innerHTML = '';
           querySnapshot.forEach((doc) => {
             commentPublish.innerHTML += `<div class="posting show">
