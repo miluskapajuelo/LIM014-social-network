@@ -578,6 +578,56 @@ form .typeLog > div > button > img {
   justify-content: space-between;
   align-items: center;
 }
+/* modal */
+.display {
+  display: block;
+}
+.hide {
+  display: none;
+}
+#modal-mode{
+  width:100%;
+	background: rgb(255, 255, 255,0.8);
+	position:fixed;
+	top:0;
+	left:0;
+  z-index: 999;
+  align-content: center;
+  height: 100%;
+  margin: auto;
+
+}
+#modal-window{
+  overflow-y: unset;
+ }
+ #modal-window{
+  background: white;
+  position: relative;
+  top: 15%;
+  min-width: 250px;
+  height: 77%;
+  border-radius: 15px;
+  margin: auto;
+  z-index: 1;
+  box-shadow: 0px 0px 20px 1px #888888;
+  
+ }
+.modal-close {
+  color: rgb(54, 48, 48);
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 3px;
+  width: 70px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+h2{
+text-align: -webkit-center
+}
 @media screen and (min-width: 1024px) {
   .container-change {
     grid-template-columns: repeat(2, 1fr);

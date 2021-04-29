@@ -102,7 +102,7 @@ export default () => {
     burger.classList.toggle('open');
     list.classList.toggle('open');
   });
-
+            
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       notePost.addEventListener('click', () => {
@@ -114,6 +114,8 @@ export default () => {
           console.error('Error adding document: ', err);
         });
       });
+
+      
       firebase.firestore().collection('post')
         .orderBy('datePost', 'desc')
         .onSnapshot((querySnapshot) => {
@@ -124,7 +126,7 @@ export default () => {
             <div class="more">
                 <div>
                     <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
-                    <p class="more-name">Fulanita pérez</p>
+                    <p class="more-name">${doc.data().user}</p>
                 </div>
                 <button class="btn-more" type="button">...</button>
                 <div class="btn-list">
@@ -172,11 +174,14 @@ export default () => {
             </section>
         </div>`;
           });
+          /* console.log(firebase.auth().currentUser.displayName) */
           querySnapshot.forEach((doc) => {
+            /* console.log(doc.data()) */
             if (doc.data().uid === firebase.auth().currentUser.uid) {
               removePost(doc.id);
-              updatePost(doc.id);
-            }
+              updatePost(doc.id, doc.data().publication)
+              
+              }
           });
         });
     } else {
