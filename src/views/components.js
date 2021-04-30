@@ -1,12 +1,12 @@
-import Login from './login.js';
-import Register from './register.js';
+import { Login, eventInitLogin } from './login.js';
+import { Register, eventInitRegister } from './register.js';
+import { Home, eventInitHome } from './home.js';
 import Fail from './404.js';
-import Home from './home.js';
 
 const components = {
-  login: Login,
-  register: Register,
+  login: { Login, eventInitLogin },
+  register: { Register, eventInitRegister },
+  home: { Home, eventInitHome },
   fail: Fail,
-  home: Home,
 };
 export { components };

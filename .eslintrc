@@ -30,6 +30,8 @@
     "jest/prefer-to-have-length": "warn",
     "jest/valid-expect": "error",
     "no-console": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "no-alert": "off",
+    "arrow-body-style": "off"
   }
 }
