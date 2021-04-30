@@ -1,14 +1,30 @@
 import { components } from '../components.js';
+import { createPost, showPosts } from '../../model/checkLogin-model.js';
 
 const changeView = (route) => {
   switch (route) {
     case '':
     case '#/login':
-      return components.login();
+      components.login.Login();
+      components.login.eventInitLogin();
+      break;
     case '#/Register':
-      return components.register();
+      components.register.Register();
+      components.register.eventInitRegister();
+      break;
     case '#/Home':
-      return components.home();
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          components.home.Home();
+          components.home.eventInitHome();
+          createPost();
+          showPosts();
+        } else {
+          alert('Usuario no logeado');
+          window.location.hash = '#/login';
+        }
+      });
+      break;
     default:
       return components.fail();
   }

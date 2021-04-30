@@ -1,7 +1,7 @@
 import { createUser } from '../model/firebase-login-model.js';
 import { signIn, createUserBD } from '../controller/login-controller.js';
 
-export default () => {
+const Register = (() => {
   const viewRegister = `<section class="container-change">
   <figure class="figure-login">
     <img src="./img/undraw_Work_time_re_hdyv.svg" alt="">
@@ -21,14 +21,14 @@ export default () => {
           </label>
         </div>
         <div class="label">
-          <span class="material-icons">person</span>
+        <span class="material-icons">mail_outline</span>
           <label class="flex" for="email"><h4>Email</h4>
             <input class="" type="text" id="email">
           </label>
         </div>
         <div class="label">
         <span class="material-icons">info</span>
-          <label class="flex" for="info"><h4>Info</h4>
+          <label class="flex" for="info"><h4>User Information</h4>
             <input class="" type="text" id="info">
           </label>
         </div>
@@ -41,9 +41,7 @@ export default () => {
           </label>
         </div>
         <div class="label">
-          <span class="material-icons">
-            vpn_key
-            </span>
+        <span class="material-icons">password</span>
           <label class="flex" for="c-password"><h4>Confirm Password</h4>
             <input class="" type="password" id="c-password">
           </label>
@@ -64,24 +62,24 @@ export default () => {
   reg.innerHTML = '';
   reg.innerHTML = viewRegister;
 
+  return reg;
+});
+
+const eventInitRegister = (() => {
+  const label = document.querySelectorAll('.flex input');
+  const form = document.querySelectorAll('.form .label');
   const singInForm = document.querySelector('#col-form');
 
-  const eventInput = (() => {
-    const label = document.querySelectorAll('.flex input');
-    const form = document.querySelectorAll('.form .label');
-
-    for (let i = 0; i < label.length; i += 1) {
-      label[i].addEventListener('focus', () => {
-        form[i].classList.add('focus');
-      });
-      label[i].addEventListener('blur', () => {
-        if (label[i].value === '') {
-          form[i].classList.remove('focus');
-        }
-      });
-    }
-  });
-  eventInput();
+  for (let i = 0; i < label.length; i += 1) {
+    label[i].addEventListener('focus', () => {
+      form[i].classList.add('focus');
+    });
+    label[i].addEventListener('blur', () => {
+      if (label[i].value === '') {
+        form[i].classList.remove('focus');
+      }
+    });
+  }
 
   singInForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -108,5 +106,6 @@ export default () => {
         .catch((err) => console.error(err));
     }
   });
-  return reg;
-};
+});
+
+export { Register, eventInitRegister };

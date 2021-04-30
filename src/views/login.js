@@ -1,6 +1,6 @@
 import { signIn, signInWithFacebook, signInWithGoogle } from '../controller/login-controller.js';
 
-export default () => {
+const Login = (() => {
   const viewLogin = `<section class="container-change">
   <figure class="figure-login">
     <img src="./img/undraw_Work_time_re_hdyv.svg" alt="">
@@ -15,7 +15,7 @@ export default () => {
     </div>
       <div class="form">
         <div class="label">
-          <span class="material-icons">person</span>
+        <span class="material-icons">mail_outline</span>
           <label class="flex" for="email"><h4>Email</h4>
             <input class="" id="email" type="text">
           </label>
@@ -39,47 +39,48 @@ export default () => {
         <div>
       </div>
   </form>  
-</section>`;
+  </section>`;
   const log = document.getElementById('main-login');
   log.innerHTML = '';
   log.innerHTML = viewLogin;
+
+  return log;
+});
+
+const eventInitLogin = (() => {
+  const label = document.querySelectorAll('.flex input');
+  const form = document.querySelectorAll('.form .label');
   const singInForm = document.querySelector('#col-form');
+  const btnFacebook = document.querySelector('#btn-facebook');
+  const btnGmail = document.querySelector('#btn-gmail');
 
-  const eventInput = (() => {
-    const label = document.querySelectorAll('.flex input');
-    const form = document.querySelectorAll('.form .label');
-
-    for (let i = 0; i < label.length; i += 1) {
-      label[i].addEventListener('focus', () => {
-        form[i].classList.add('focus');
-      });
-      label[i].addEventListener('blur', () => {
-        if (label[i].value === '') {
-          form[i].classList.remove('focus');
-        }
-      });
-    }
-  });
-  eventInput();
+  for (let i = 0; i < label.length; i += 1) {
+    label[i].addEventListener('focus', () => {
+      form[i].classList.add('focus');
+    });
+    label[i].addEventListener('blur', () => {
+      if (label[i].value === '') {
+        form[i].classList.remove('focus');
+      }
+    });
+  }
 
   singInForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const singupEmail = document.querySelector('#email').value;
     const singupPassword = document.querySelector('#password').value;
-    // console.log(singupEmail, singupPassword);
 
     signIn(singupEmail, singupPassword)
-      // eslint-disable-next-line no-unused-vars
-      .then((userCredential) => {
+    // userCredential
+      .then(() => {
         window.location.hash = '#/Home';
       })
-      // eslint-disable-next-line no-unused-vars
       .catch((err) => {
-        alert('Usuario no registrado');
+        alert(`Usuario no registrado ${err}`);
       });
   });
+
   // FACEBOOK
-  const btnFacebook = document.querySelector('#btn-facebook');
   btnFacebook.addEventListener('click', (e) => {
     e.preventDefault();
     signInWithFacebook()
@@ -91,8 +92,8 @@ export default () => {
         console.error(error);
       });
   });
+
   // GOOGLE
-  const btnGmail = document.querySelector('#btn-gmail');
   btnGmail.addEventListener('click', (e) => {
     e.preventDefault();
     signInWithGoogle()
@@ -104,5 +105,6 @@ export default () => {
         console.error(error);
       });
   });
-  return log;
-};
+});
+
+export { Login, eventInitLogin };
