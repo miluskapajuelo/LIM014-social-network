@@ -15,7 +15,7 @@ const getNameUser = () => new Promise((resolve) => {
   }
 });
 export default function addPost(post) {
-  const dateP = Date.now();
+  const dateP = firebase.firestore.FieldValue.serverTimestamp();
   getNameUser().then((msg) => {
     fs.collection('post').add({
       publication: post,
