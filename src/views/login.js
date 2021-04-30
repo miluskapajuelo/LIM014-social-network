@@ -69,15 +69,17 @@ const eventInitLogin = (() => {
     e.preventDefault();
     const singupEmail = document.querySelector('#email').value;
     const singupPassword = document.querySelector('#password').value;
-
-    signIn(singupEmail, singupPassword)
-    // userCredential
-      .then(() => {
-        window.location.hash = '#/Home';
-      })
-      .catch((err) => {
-        alert(`Usuario no registrado ${err}`);
-      });
+    if (firebase.auth().currentUser.emailVerified === true) {
+      signIn(singupEmail, singupPassword)
+        .then(() => {
+          window.location.hash = '#/Home';
+        })
+        .catch((err) => {
+          alert(`Usuario no registrado ${err}`);
+        });
+    } else {
+      alert('su correo no esta verificado');
+    }
   });
 
   // FACEBOOK
