@@ -15,7 +15,7 @@ const getNameUser = () => new Promise((resolve) => {
   }
 });
 export default function addPost(post) {
-  const dateP = Date.now();
+  const dateP = firebase.firestore.FieldValue.serverTimestamp()
   getNameUser().then((msg) => {
     fs.collection('post').add({
       publication: post,
@@ -75,7 +75,7 @@ export function updatePost(id, post) {
   const update = document.querySelectorAll(`.editBtn-${id}`);
   update.forEach((elemento) => {
     elemento.addEventListener("click", () => {
-      showModal();
+      /* showModal(); */
 
       const button = document.getElementById("btn-add-note");
       document.getElementById("input-new-note").value = post;
@@ -91,7 +91,7 @@ export function updatePost(id, post) {
           .then(() => {
             console.log("Document successfully updated!");
             button.innerHTML = "Share";
-            document.getElementById("input-new-note").value = "";
+           /*  document.getElementById("input-new-note").value = ""; */
           })
           .catch((error) => {
             console.error("Error removing document: ", error);

@@ -105,8 +105,4 @@ const eventInitHome = (() => {
   });
 });
 
-/* if (doc.data().uid === firebase.auth().currentUser.uid) {
-    removePost(doc.id);
-    updatePost(doc.id, doc.data().publication) */
-
 export { Home, eventInitHome };
