@@ -32,7 +32,7 @@ const Home = (() => {
             <div class="more">
                 <div>
                     <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
-                    <p class="more-name">Fulanita pérez</p>
+                    <p class="more-name">Fulanita de perez</p>
                 </div>
                 <button class="btn-more" type="button">...</button>
                 <div class="btn-list">
