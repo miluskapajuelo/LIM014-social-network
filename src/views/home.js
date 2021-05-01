@@ -35,7 +35,7 @@ const Home = (() => {
                     <p class="more-name">Fulanita de perez</p>
                 </div>
                 <button class="btn-more" type="button">...</button>
-                <div class="btn-list">
+                <div class="btn-list hide">
                     <button>Update</button>
                     <button>Delete</button>
                 </div>
@@ -98,11 +98,19 @@ const Home = (() => {
 const eventInitHome = (() => {
   const burger = document.querySelector('.burger');
   const list = document.querySelector('.nav-list ul');
+  const btnMore = document.querySelectorAll('.btn-more');
+  const btnList = document.querySelectorAll('.btn-list');
 
   burger.addEventListener('click', () => {
     burger.classList.toggle('open');
     list.classList.toggle('open');
   });
+  for (let i = 0; i < btnMore.length; i += 1) {
+    console.log(btnMore.length);
+    btnMore[i].addEventListener('click', () => {
+      btnList[i].classList.toggle('hide');
+    });
+  }
 });
 
 export { Home, eventInitHome };

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates&family=Pacifico&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 * {
   margin: 0;
   padding: 0;
@@ -9,7 +10,7 @@
   min-height: 100vh;
   background: linear-gradient(to top, #eeeeee, hsl(0, 0%, 100%));
   /* font-family: 'Montserrat Alternates', sans-serif;
-    font-family: 'Pacifico', cursive; */
+    font-family: 'Pacifico', cursive; #212529*/
 }
 a {
   text-decoration: none;
@@ -52,7 +53,7 @@ a {
   justify-content: center;
 }
 form .form {
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #5c4d7d;
   display: flex;
   flex-direction: column;
@@ -133,7 +134,7 @@ form .form > button {
   border: oldlace;
   background-color: hsla(194, 75%, 36%, 0.8);
   color: #ffffff;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: 'Poppins', sans-serif;
   cursor: pointer;
   box-shadow: 5px 5px 5px #c2e2e9;
 }
@@ -153,7 +154,7 @@ form .form .label > .flex {
   transition: 0.5s;
 }
 .label .flex > input {
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 15px;
   padding: 1px 6px;
   border: none;
@@ -163,7 +164,7 @@ form .form .label > .flex {
 }
 form .typeLog {
   padding: 0px 20px;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 15px;
   color: #5c4d7d;
   display: flex;
@@ -198,7 +199,7 @@ form .typeLog > div > button > img {
   color: #0091ad;
   font-size: 20px;
   font-weight: bold;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
 }
 .container-fail {
@@ -208,7 +209,7 @@ form .typeLog > div > button > img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
@@ -303,7 +304,7 @@ form .typeLog > div > button > img {
   align-items: center;
   font-size: 15px;
   color: white;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 80px;
   border-bottom: 1px solid #60517c;
 }
@@ -315,7 +316,6 @@ form .typeLog > div > button > img {
 }
 .grid {
   display: grid;
-  /*grid-template-rows: 3;*/
   grid-gap: 15px;
   padding-top: 56px;
   padding-bottom: 30px;
@@ -324,7 +324,7 @@ form .typeLog > div > button > img {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 .best-post{
   display: none;
@@ -355,7 +355,7 @@ form .typeLog > div > button > img {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
   box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
 }
 .grid > .search > textarea{
@@ -365,7 +365,7 @@ form .typeLog > div > button > img {
   border: 1px solid rgb(209, 207, 207);
   outline: none;
   padding: 15px;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   resize: none;
 }
@@ -377,7 +377,7 @@ form .typeLog > div > button > img {
 }
 .grid >.search .btn-group >button{
   width: 100%;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   font-size: 15px;
   line-height: 28px;
@@ -409,7 +409,7 @@ form .typeLog > div > button > img {
 .grid > .search-body > .search > input{
   width: 100%;
   font-size: 14px;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
   padding: 8px 15px;
   border-radius: 5px;
   outline: none;
@@ -439,7 +439,7 @@ form .typeLog > div > button > img {
 }
 .search-body > .buttom-nav button{
   font-size: 14px;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 20px;
   padding: 10px 20px;
   background-color: white;
@@ -459,11 +459,11 @@ form .typeLog > div > button > img {
 }
 .posting{
   background-color: white;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+  box-shadow: 1px 2px 13px -4px rgba(158,158,158,1);
 }
 .posting >.more{
   display: flex;
@@ -477,6 +477,7 @@ form .typeLog > div > button > img {
   justify-content: flex-start;
   align-items: center;
   padding: 12px 0px 0px 20px;
+  text-transform: uppercase;
 }
 .posting >.more >div>img{
   margin-right: 15px;
@@ -500,7 +501,7 @@ form .typeLog > div > button > img {
 .more > .btn-list > button{
   width: 100%;
 }
-.more > .btn-list::-webkit-scrollbar{
+.more > .btn-list.hide{
   display: none;
 }
 .btn-more:hover{
@@ -534,7 +535,7 @@ form .typeLog > div > button > img {
   color: rgba(23, 129, 161, 1);
   background:rgba(23, 129, 161, 0.2);
   line-height: 35px;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   border:none;
   cursor: pointer;
@@ -562,7 +563,7 @@ form .typeLog > div > button > img {
   width: 100%;
   padding: 10px 15px;
   font-size: 14px;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Poppins', sans-serif;
   height: 40px;
   min-width: 40px;
   resize: none;
@@ -587,7 +588,7 @@ form .typeLog > div > button > img {
 }
 #modal-mode {
   width: 100%;
-  background: rgb(255, 255, 255,0.8);
+  background: rgba(33, 37, 41, 0.6);
   position: fixed;
   top: 0;
   left: 0;
@@ -600,41 +601,84 @@ form .typeLog > div > button > img {
 
 }
 #modal-window{
-  overflow-y: unset;
- }
- #modal-window{
   background: white;
   position: relative;
   border-radius: 15px;
   margin: auto;
   z-index: 1;
-  box-shadow: 0px 0px 20px 1px #888888;
+  box-shadow: 4px 4px 4px 1px rgba(0, 0, 0, 0.4);
   width: 100%;
-  max-width: 420px;
+  max-width: 450px;
   padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  animation-name:modal-animate;
+  animation-duration: 1s;
+  /* overflow-y: unset; */
  }
 .modal-close {
-  color: rgb(54, 48, 48);
-  line-height: 50px;
-  font-size: 80%;
-  right: 0;
-  text-align: center;
-  top: 3px;
-  width: 70px;
-  text-decoration: none;
-  cursor: pointer;
-  position: absolute;
+   color: rgb(134 131 131);
+    font-size: 14px;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    position: absolute;
 }
 .headerPost {
-  display: flex;
-  position: relative;
+    display: flex;
+    position: relative;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ececec;
+    line-height: 35px;
 }
-.tituloEditar{
-  width: 100%;
+.headerPost > h3{
+    width: 100%;
     text-align: center;
+    font-size: 15px;
+    color: #212529;
 }
-
-
+#modal-window > .contentGeneral{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contentGeneral > textarea{
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    padding: 12px;
+    border: 1px solid #e2dddd;
+    margin-bottom: 20px;
+}
+.contentGeneral > button{
+  width: 100%;
+  padding: 9px;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(to top, #723C70, #892B64);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px #c2e2e9;
+}
+.contentGeneral > h5{
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-size: 15px;
+  color: #2a2e31;
+}
+@keyframes modal-animate {
+  0% {
+    scale: 50%;
+    opacity: 0;
+  } 100% {
+    scale: 100%;
+    opacity: 1;
+  }
+}
 @media screen and (min-width: 1024px) {
   .container-change {
     grid-template-columns: repeat(2, 1fr);
@@ -675,7 +719,7 @@ form .typeLog > div > button > img {
     grid-area: best;
     align-self: start;
     text-align: center;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Poppins', sans-serif;
     border-radius: 8px 8px 0px 0px;
 }
 .best-post > h3{
