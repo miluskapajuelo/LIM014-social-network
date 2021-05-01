@@ -50,33 +50,30 @@ function showModal(msg) {
   const modalMode = document.getElementById("modal-mode");
   const modalWindow = document.getElementById("modal-window");
   modalMode.classList.toggle("hide");
-  modalWindow.classList.toggle("hide");
-  modalWindow.innerHTML = `   <section id="body-modal" class="contentGeneral">
-  <div class="contentArea">
-  <div><h2>Editar publicación</h2></div>
+ 
+  modalWindow.innerHTML = `<section class="headerPost"><h2>Editar publicación</h2>
+  <button title="Close" class="modal-close">Close</button></section> 
+  <section id="body-modal" class="contentGeneral">
+  <div class="contentArea"></div>
       <div class="nameP" id="modal-username">${msg}</div>
       <textarea id="input-edit-note"></textarea>
       
       <div><button id="btn-edit-note">Guardar</button></div>
-      <a href="#" title="Close" class="modal-close">Close</a>
-      </div>
       </section>
       `;
-
   const btnCloseModal = modalWindow.querySelector(".modal-close");
 
   btnCloseModal.addEventListener("click", (e) => {
     e.preventDefault();
-
     modalMode.classList.toggle("hide");
-    modalWindow.classList.toggle("hide");
+  
   });
 }
 
 export function updatePost(id, post) {
   const update = document.querySelectorAll(`.editBtn-${id}`);
   const modalMode = document.getElementById("modal-mode");
-  const modalWindow = document.getElementById("modal-window");
+ 
   update.forEach((elemento) => {
     elemento.addEventListener("click", (e) => {
       e.preventDefault()
@@ -85,27 +82,21 @@ export function updatePost(id, post) {
         const button = document.getElementById("btn-edit-note");
         document.getElementById("input-edit-note").value = post;
         button.addEventListener("click", () => {
-          var washingtonRef = fs.collection("post").doc(id);
+          let postId = fs.collection("post").doc(id);
           const post = document.getElementById("input-edit-note").value;
-          return washingtonRef
+          return postId
             .update({
               publication: post,
             })
             .then(() => {
               console.log("Document successfully updated!");
-              /* button.innerHTML = "Guardar"; */
               modalMode.classList.toggle("hide");
-              modalWindow.classList.toggle("hide");
-              /*  document.getElementById("input-new-note").value = ""; */
             })
             .catch((error) => {
               console.error("Error removing document: ", error);
             });
         });})
-      
-
-      /* button.innerHTML = "Habilitarse"; */
-      
+           
     });
   });
 }

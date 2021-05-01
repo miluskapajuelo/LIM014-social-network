@@ -582,19 +582,21 @@ form .typeLog > div > button > img {
 .display {
   display: block;
 }
-.hide {
+#modal-mode.hide {
   display: none;
 }
-#modal-mode{
-  width:100%;
-	background: rgb(255, 255, 255,0.8);
-	position:fixed;
-	top:0;
-	left:0;
+#modal-mode {
+  width: 100%;
+  background: rgb(255, 255, 255,0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 999;
-  align-content: center;
   height: 100%;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
 
 }
 #modal-window{
@@ -603,45 +605,36 @@ form .typeLog > div > button > img {
  #modal-window{
   background: white;
   position: relative;
-  top: 15%;
-  width: 39%;
-  height: 77%;
   border-radius: 15px;
   margin: auto;
   z-index: 1;
   box-shadow: 0px 0px 20px 1px #888888;
-  
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
  }
 .modal-close {
   color: rgb(54, 48, 48);
   line-height: 50px;
   font-size: 80%;
-  position: absolute;
   right: 0;
   text-align: center;
   top: 3px;
   width: 70px;
   text-decoration: none;
   cursor: pointer;
+  position: absolute;
 }
-
-h2{
-text-align: -webkit-center
-}
-
-.contentGeneral{
+.headerPost {
   display: flex;
-  height: 100%;
+  position: relative;
+}
+.tituloEditar{
   width: 100%;
-}
-.contentArea{
-  display: flex;
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
-    justify-content: space-evenly;
     text-align: center;
 }
+
+
 @media screen and (min-width: 1024px) {
   .container-change {
     grid-template-columns: repeat(2, 1fr);
