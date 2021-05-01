@@ -17,6 +17,7 @@ const changeView = (route) => {
         if (user) {
           components.home.Home();
           components.home.eventInitHome();
+          components.home.nameUser();
           createPost();
           showPosts();
         } else {

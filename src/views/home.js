@@ -1,3 +1,5 @@
+import { getNameUser } from '../model/firebase-post-model.js';
+
 const Home = (() => {
   const viewHome = `<header id="main-header" class ="header">
     <nav class="nav-list">
@@ -22,7 +24,7 @@ const Home = (() => {
             <img style="width: 100px; height: 100px;" src="./img/undraw_female_avatar_w3jk.svg" alt="profile" srcset="">
         </div>
         <div class="profile-name">
-            <h2>Fulanita Pérez</h2>
+        <h2 class="className"></h2>
             <p>Frontend developer</p>
         </div>
     </header>
@@ -105,4 +107,11 @@ const eventInitHome = (() => {
   });
 });
 
-export { Home, eventInitHome };
+const nameUser = (() => {
+  getNameUser().then((name) => {
+    console.log(name);
+    const nombre = document.querySelector('.className');
+    nombre.textContent = name;
+  });
+});
+export { Home, eventInitHome, nameUser };
