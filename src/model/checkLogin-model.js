@@ -73,7 +73,7 @@ const showPosts = (() => {
       querySnapshot.forEach((doc) => {
         if (doc.data().uid === firebase.auth().currentUser.uid) {
           removePost(doc.id);
-          updatePost(doc.id);
+          updatePost(doc.id, doc.data().publication);
         }
       });
     });

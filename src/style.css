@@ -578,6 +578,63 @@ form .typeLog > div > button > img {
   justify-content: space-between;
   align-items: center;
 }
+/* modal */
+.display {
+  display: block;
+}
+#modal-mode.hide {
+  display: none;
+}
+#modal-mode {
+  width: 100%;
+  background: rgb(255, 255, 255,0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+}
+#modal-window{
+  overflow-y: unset;
+ }
+ #modal-window{
+  background: white;
+  position: relative;
+  border-radius: 15px;
+  margin: auto;
+  z-index: 1;
+  box-shadow: 0px 0px 20px 1px #888888;
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+ }
+.modal-close {
+  color: rgb(54, 48, 48);
+  line-height: 50px;
+  font-size: 80%;
+  right: 0;
+  text-align: center;
+  top: 3px;
+  width: 70px;
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+}
+.headerPost {
+  display: flex;
+  position: relative;
+}
+.tituloEditar{
+  width: 100%;
+    text-align: center;
+}
+
+
 @media screen and (min-width: 1024px) {
   .container-change {
     grid-template-columns: repeat(2, 1fr);
