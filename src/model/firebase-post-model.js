@@ -1,5 +1,20 @@
 const fs = firebase.firestore();
 
+export const getInfo = () => new Promise((resolve) => {
+  const infodefault = 'Frontend developer';
+  if (firebase.auth().currentUser.displayName === null) {
+    const prueba = fs.collection('users').get();
+    prueba.then((omg) => {
+      omg.forEach((data) => {
+        if (data.data().id === firebase.auth().currentUser.uid) {
+          resolve(data.data().info);
+        }
+      });
+    });
+  } else {
+    resolve(infodefault);
+  }
+});
 export const getNameUser = () => new Promise((resolve) => {
   if (firebase.auth().currentUser.displayName === null) {
     const prueba = fs.collection('users').get();
