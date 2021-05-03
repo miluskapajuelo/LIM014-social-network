@@ -9,9 +9,9 @@ const Home = (() => {
         </div>
         <ul>
             <li id="Profile">
-              <a href="#"><span class="material-icons">account_circle</span>Profile</a>
+              <button><span style="margin-right: 5px;" class="material-icons">account_circle</span>Profile</button>
             </li>
-            <li id="logOut"><span class="material-icons">logout</span><button type="button" class="log-out">Log Out</button>
+            <li id="logOut"><button type="button" class="log-out"><span style="margin-right: 5px;" class="material-icons">logout</span>Log Out</button>
             </li>
         </ul>
       <div class="burger">
@@ -38,7 +38,7 @@ const Home = (() => {
                     <p class="more-name">Fulanita de perez</p>
                 </div>
                 <button class="btn-more" type="button">...</button>
-                <div class="btn-list">
+                <div class="btn-list hide">
                     <button>Update</button>
                     <button>Delete</button>
                 </div>
@@ -74,7 +74,7 @@ const Home = (() => {
     </section>
     <section class="search-body">
         <label for="search" class="search">
-            <input type="text" id="search">
+            <input type="text" id="search" placeholder="#Share user">
             <span>
                 <span class="material-icons">
                     search
@@ -105,6 +105,22 @@ const eventInitHome = (() => {
   burger.addEventListener('click', () => {
     burger.classList.toggle('open');
     list.classList.toggle('open');
+  });
+});
+const nameUser = (() => {
+  const nombre = document.querySelector('.className');
+  getNameUser().then((name) => {
+    nombre.textContent = name;
+  });
+});
+
+const logOut = (() => {
+  const btnLogOut = document.querySelector('.log-out');
+  btnLogOut.addEventListener('click', () => {
+    signOut().then(() => {
+      window.location.hash = '#/login';
+    });
+    console.log(signOut());
   });
 });
 

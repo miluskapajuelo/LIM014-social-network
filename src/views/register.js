@@ -23,7 +23,7 @@ const Register = (() => {
         <div class="label">
         <span class="material-icons">mail_outline</span>
           <label class="flex" for="email"><h4>Email</h4>
-            <input class="" type="text" id="email">
+            <input class="" type="email" id="email">
           </label>
         </div>
         <div class="label">
@@ -46,6 +46,7 @@ const Register = (() => {
             <input class="" type="password" id="c-password">
           </label>
         </div>
+        <div class="msg-text"></div>
         <a class="log" href="#/login">Log in</a>
         <button type="submit">Register</button>
       </div>
@@ -64,14 +65,28 @@ const Register = (() => {
 
   return reg;
 });
-
+const verifPassword = ((pass) => {
+  console.log(pass.search(/(?=.*[a-z])(?=.*[0-9])(?=.*[@$#!?])[a-zA-Z0-9@$#!?]{8,32}/g) !== -1);
+  return pass.search(/(?=.*[a-z])(?=.*[0-9])(?=.*[@$#!?])[a-zA-Z0-9@$#!?]{8,32}/g) !== -1;
+  /* if (pass.search(/(?=.*[a-z])(?=.*[0-9])(?=.*[@$#!?])[a-zA-Z0-9@$#!?]{8,32}/g) !== -1) {
+    band = true;
+  }
+  return band; */
+});
 const eventInitRegister = (() => {
   const label = document.querySelectorAll('.flex input');
   const form = document.querySelectorAll('.form .label');
   const singInForm = document.querySelector('#col-form');
+  const msgWarning = document.querySelector('.form .msg-text');
 
   for (let i = 0; i < label.length; i += 1) {
     label[i].addEventListener('focus', () => {
+      msgWarning.innerHTML = '';
+      form[0].classList.remove('fail');
+      form[1].classList.remove('fail');
+      form[2].classList.remove('fail');
+      form[3].classList.remove('fail');
+      form[4].classList.remove('fail');
       form[i].classList.add('focus');
     });
     label[i].addEventListener('blur', () => {
@@ -88,21 +103,43 @@ const eventInitRegister = (() => {
     const pass = document.querySelector('#password').value;
     const passCheck = document.querySelector('#c-password').value;
     const info = document.querySelector('#info').value;
+
     if (username === '') {
-      console.log('usuario vacio');
+      msgWarning.innerHTML = `<p>Username required
+      <span class="material-icons">priority_high
+      </span></p>`;
+      form[0].classList.add('fail');
     } else if (email === '') {
-      console.log('email vacio');
+      msgWarning.innerHTML = `<p>Email required
+      <span class="material-icons">priority_high
+      </span></p>`;
+      form[1].classList.add('fail');
     } else if (pass === '') {
-      console.log('pass vacio');
+      msgWarning.innerHTML = `<p>Password required
+      <span class="material-icons">priority_high
+      </span></p>`;
+      form[3].classList.add('fail');
     } else if (info === '') {
-      console.log('info vacio');
+      msgWarning.innerHTML = `<p>Your area in technology?
+                              </p>`;
+      form[2].classList.add('fail');
     } else if (pass !== passCheck) {
-      console.log('pass no coincide');
+      msgWarning.innerHTML = `<p>Repeat password
+      <span class="material-icons">priority_high
+      </span></p>`;
+      form[4].classList.add('fail');
+    } else if (verifPassword(pass) === false) {
+      msgWarning.innerHTML = `<p>minimum 8 digits, 1 number and 1 special character $#@!?
+      <span class="material-icons">priority_high
+      </span></p>`;
+      form[3].classList.add('fail');
+      form[4].classList.add('fail');
     } else {
       createUserBD(email, pass)
         .then((result) => { createUser(result.user.uid, username, email, info); })
         .then(() => {
           window.location.hash = '#/login';
+          alert('Sending validation message to your email.');
           verifEmail();
         })
         .catch((err) => console.error(err));
