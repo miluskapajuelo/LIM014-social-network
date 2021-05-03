@@ -107,22 +107,6 @@ const eventInitHome = (() => {
     list.classList.toggle('open');
   });
 });
-const nameUser = (() => {
-  const nombre = document.querySelector('.className');
-  getNameUser().then((name) => {
-    nombre.textContent = name;
-  });
-});
-
-const logOut = (() => {
-  const btnLogOut = document.querySelector('.log-out');
-  btnLogOut.addEventListener('click', () => {
-    signOut().then(() => {
-      window.location.hash = '#/login';
-    });
-    console.log(signOut());
-  });
-});
 
 const nameUser = (() => {
   const nombre = document.querySelector('.className');
