@@ -69,11 +69,22 @@ form .form > .label {
   margin-bottom: 25px;
   padding: 4px 0px;
 }
+.form .msg-text{
+  color: #ee0808;
+  font-weight: bold;
+  font-size: 12px;
+}
+.form .msg-text p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  text-align: center;
+}
 .form > .label::after,
 .form > .label::before {
   content: "";
   position: absolute;
-  background-color: #0091ad;
   height: 2px;
   width: 0;
   bottom: -1px;
@@ -84,10 +95,6 @@ form .form > .label {
 }
 .form > .label::after {
   right: 0px;
-}
-.form > .label.focus::after,
-.form > .label.focus::before {
-  width: 50%;
 }
 form .form > a {
   font-weight: normal;
@@ -112,6 +119,11 @@ form .form > .log::after {
 form .form > .log::before {
   right: -50px;
 }
+.form > .label.focus::after,
+.form > .label.focus::before {
+  width: 50%;
+  background-color: #0091ad;
+}
 .form .label.focus > .flex > h4 {
   top: -15px;
   font-size: 13px;
@@ -121,6 +133,22 @@ form .form > .log::before {
 .form > .label.focus span {
   color: #0091ad;
 }
+/*Fail*/
+.form > .label.fail::after,
+.form > .label.fail::before {
+  width: 50%;
+  background-color: #ee0808;
+}
+.form .label.fail > .flex > h4 {
+  top: -15px;
+  font-size: 13px;
+  transition: 0.5s;
+  color: #ee0808;
+}
+.form > .label.fail span {
+  color: #ee0808;
+}
+/*-------------------*-*-*-***-*-*--*-*-*-**/
 .form > .label span {
   display: flex;
   height: 100%;
@@ -298,20 +326,26 @@ form .typeLog > div > button > img {
 .nav-list >ul.open{
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
-.nav-list > ul > li a{
+.nav-list > ul > li button{
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 15px;
   color: white;
   font-family: 'Poppins', sans-serif;
-  line-height: 80px;
+  line-height: 70px; /*80*/
+  border: none;
+  padding:0px 20px;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
   border-bottom: 1px solid #60517c;
+  outline: none;
 }
 .nav-list > ul > li a >span{
   margin-right: 10px;
 }
-.nav-list > ul > li a:hover{
+.nav-list > ul > li button:hover{
   background-color: #80557e;
 }
 .grid {
@@ -334,7 +368,7 @@ form .typeLog > div > button > img {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle, hsla(190, 100%, 34%, 0.5), hsla(190, 100%, 34%, 0.7), #1780a1);
+  background: radial-gradient(circle, hsla(190, 100%, 34%, 0.7), hsla(190, 100%, 34%, 0.8));
 }
 .profile-header > .profile-name{
   display: flex;
@@ -349,39 +383,39 @@ form .typeLog > div > button > img {
 }
 .grid > .search{
   background: #e7e7e7;
-  /* background: #fffcf9; */
   padding: 20px 10px 0px 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   font-family: 'Poppins', sans-serif;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.1);
+  box-shadow: 1px 2px 13px -4px rgb(158 158 158);
+  border-radius: 5px;
 }
 .grid > .search > textarea{
   width: 100%;
   max-height: 120px;
   border-radius: 5px;
-  border: 1px solid rgb(209, 207, 207);
+  color: black;
+  border:none;
   outline: none;
   padding: 15px;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
   resize: none;
+  background: white;
 }
 .grid >.search .btn-group{
   width: 100%;
-  /*padding-top: 10px;*/
   display: flex;
   justify-content: space-around;
 }
 .grid >.search .btn-group >button{
   width: 100%;
   font-family: 'Poppins', sans-serif;
-  font-weight: bold;
   font-size: 15px;
   line-height: 28px;
-  color: rgba(67, 67, 67, 1);
+  color: black;
   border: none;
   padding: 8px;
   background-color: rgba(67, 67, 67, 0.01);
@@ -390,9 +424,9 @@ form .typeLog > div > button > img {
 .grid >.search .btn-group > button:hover{
   background-color: rgb(233, 227, 227);
 }
-.grid >.search .btn-group >button:first-child{
-  border-right: 1px solid rgba(67, 67, 67, 0.4);
-}
+/* .grid >.search .btn-group >button:first-child{
+  border-right: 2px solid #A01A58;
+} */
 .grid > .search-body{
   display: grid;
   width: 100%;
@@ -494,12 +528,22 @@ form .typeLog > div > button > img {
   display: flex;
   flex-direction: column;
   position: absolute;
-  right: 0;
+  right: 20px;
   font-size: 14px;
-  top: 28px;
+  top: 30px;
 }
 .more > .btn-list > button{
   width: 100%;
+    font-family: 'poppins', sans-serif;
+    cursor: pointer;
+    padding: 5px;
+    background: rgb(241, 240, 240);
+    border: none;
+    outline: none;
+}
+.btn-list > button:hover{
+  background: #0091ad;
+  color: white;
 }
 .more > .btn-list.hide{
   display: none;
@@ -533,17 +577,15 @@ form .typeLog > div > button > img {
   align-items: center;
   justify-content: center;
   color: rgba(23, 129, 161, 1);
-  background:rgba(23, 129, 161, 0.2);
+  font-weight: bold;
+  background: rgba(23, 129, 161, 0.2);
   line-height: 35px;
   font-family: 'Poppins', sans-serif;
   font-size: 14px;
-  border:none;
+  border: none;
   cursor: pointer;
-  font-weight: 600;
 }
-.btn-group >button:first-child{
-  border-right: 1px solid #93d0e2;
-} 
+
 .btn-group >button:hover{
   background:hsla(190, 100%, 34%, 0.7);
   color: white;
@@ -695,16 +737,14 @@ form .typeLog > div > button > img {
     justify-content: flex-end;
     position: relative;
     clip-path: none;
-}
-.nav-list > ul > li a{
-    line-height: 70px;
+  }
+  .nav-list > ul > li button{
     border-bottom: none;
-    padding:0px 20px;
-}
-.nav-list .burger {
+  }
+  .nav-list .burger {
   display: none;
-}
-.grid{
+  }
+  .grid{
     padding-top: 100px;
     margin: 0px auto;
     max-width: 1250px;
@@ -713,16 +753,16 @@ form .typeLog > div > button > img {
                           "best post";
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto auto 1fr;
-}
-.best-post{
+  }
+  .best-post{
     display: block;
     grid-area: best;
     align-self: start;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     border-radius: 8px 8px 0px 0px;
-}
-.best-post > h3{
+  }
+  .best-post > h3{
     padding-bottom: 5px;
     background-color: white;
     color: rgb(65, 63, 63);
@@ -730,24 +770,30 @@ form .typeLog > div > button > img {
     font-size: 14px;
     border-radius: 5px 5px 0px 0px;
     border-bottom: 1px solid rgba(186, 199, 224, 0.3);
-}
-.grid > .search{
+  }
+  .grid > .search{
     grid-area: pc;
-    
-}
-.profile-header{
+  }
+  .profile-header{
     grid-area: profile;
     grid-template-columns: none;
     align-self: start;
-}
-.grid > .search-body{
+  }
+  .grid > .search-body{
     grid-area: post;
     align-self: start;
-}
-.profile-header > .profile-name{
+  }
+  .profile-header > .profile-name{
     padding: 15px;
-}
-.search-body > .buttom-nav{
+  }
+  .search-body > .buttom-nav{
     display: none;
-}
+  }
+  .grid > .search{
+    padding: 20px 50px 0px 50px;
+    border-radius: 20px;
+  }
+  .grid > .search > textarea{
+    border-radius: 20px;
+  }
 }

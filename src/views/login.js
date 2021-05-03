@@ -17,7 +17,7 @@ const Login = (() => {
         <div class="label">
         <span class="material-icons">mail_outline</span>
           <label class="flex" for="email"><h4>Email</h4>
-            <input class="" id="email" type="text">
+            <input class="" id="email" type="email">
           </label>
         </div>
         <div class="label">
@@ -27,7 +27,8 @@ const Login = (() => {
           <label class="flex" for="password"><h4>Password</h4>
             <input class="" id="password" type="password">
           </label>
-        </div>
+          </div>
+          <div class="msg-text"></div>
         <a href="#/Register">Are you new? sing me</a>
         <button type="submit">Log In</button>
       </div>
@@ -53,13 +54,19 @@ const eventInitLogin = (() => {
   const singInForm = document.querySelector('#col-form');
   const btnFacebook = document.querySelector('#btn-facebook');
   const btnGmail = document.querySelector('#btn-gmail');
+  const msg = document.querySelector('.form .msg-text');
 
   for (let i = 0; i < label.length; i += 1) {
     label[i].addEventListener('focus', () => {
+      msg.innerHTML = '';
+      form[0].classList.remove('fail');
+      form[1].classList.remove('fail');
       form[i].classList.add('focus');
     });
     label[i].addEventListener('blur', () => {
       if (label[i].value === '') {
+        form[0].classList.remove('fail');
+        form[1].classList.remove('fail');
         form[i].classList.remove('focus');
       }
     });
@@ -69,16 +76,30 @@ const eventInitLogin = (() => {
     e.preventDefault();
     const singupEmail = document.querySelector('#email').value;
     const singupPassword = document.querySelector('#password').value;
-    if (firebase.auth().currentUser.emailVerified === true) {
+
+    if (singupEmail === '' || singupPassword === '') {
+      msg.innerHTML = `<p>Inputs empty
+                      <span class="material-icons">priority_high
+                      </span></p>`;
+      form[0].classList.add('fail');
+      form[1].classList.add('fail');
+    } else {
       signIn(singupEmail, singupPassword)
         .then(() => {
-          window.location.hash = '#/Home';
+          if (firebase.auth().currentUser.emailVerified === true) {
+            window.location.hash = '#/Home';
+          } else {
+            msg.innerHTML = `<p>Email not verified
+                      <span class="material-icons">priority_high
+                      </span></p>`;
+            form[0].classList.add('fail');
+          }
         })
         .catch((err) => {
-          alert(`Usuario no registrado ${err}`);
+          msg.innerHTML = `<p>${err}
+                      <span class="material-icons">priority_high
+                      </span></p>`;
         });
-    } else {
-      alert('su correo no esta verificado');
     }
   });
 
