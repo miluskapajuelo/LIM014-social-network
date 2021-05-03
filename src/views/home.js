@@ -1,3 +1,6 @@
+import { getNameUser } from '../model/firebase-post-model.js';
+import { signOut } from '../controller/login-controller.js';
+
 const Home = (() => {
   const viewHome = `<header id="main-header" class ="header">
     <nav class="nav-list">
@@ -6,9 +9,9 @@ const Home = (() => {
         </div>
         <ul>
             <li id="Profile">
-              <a href="#"><span class="material-icons">account_circle</span>Profile</a>
+              <button><span style="margin-right: 5px;" class="material-icons">account_circle</span>Profile</button>
             </li>
-            <li id="logOut"><a href="#"><span class="material-icons">logout</span>Log Out</a>
+            <li id="logOut"><button type="button" class="log-out"><span style="margin-right: 5px;" class="material-icons">logout</span>Log Out</button>
             </li>
         </ul>
       <div class="burger">
@@ -22,7 +25,7 @@ const Home = (() => {
             <img style="width: 100px; height: 100px;" src="./img/undraw_female_avatar_w3jk.svg" alt="profile" srcset="">
         </div>
         <div class="profile-name">
-            <h2>Fulanita Pérez</h2>
+        <h2 class="className"></h2>
             <p>Frontend developer</p>
         </div>
     </header>
@@ -71,7 +74,7 @@ const Home = (() => {
     </section>
     <section class="search-body">
         <label for="search" class="search">
-            <input type="text" id="search">
+            <input type="text" id="search" placeholder="#Share user">
             <span>
                 <span class="material-icons">
                     search
@@ -98,19 +101,29 @@ const Home = (() => {
 const eventInitHome = (() => {
   const burger = document.querySelector('.burger');
   const list = document.querySelector('.nav-list ul');
-  const btnMore = document.querySelectorAll('.btn-more');
-  const btnList = document.querySelectorAll('.btn-list');
 
   burger.addEventListener('click', () => {
     burger.classList.toggle('open');
     list.classList.toggle('open');
   });
-  for (let i = 0; i < btnMore.length; i += 1) {
-    console.log(btnMore.length);
-    btnMore[i].addEventListener('click', () => {
-      btnList[i].classList.toggle('hide');
-    });
-  }
+});
+const nameUser = (() => {
+  const nombre = document.querySelector('.className');
+  getNameUser().then((name) => {
+    nombre.textContent = name;
+  });
 });
 
-export { Home, eventInitHome };
+const logOut = (() => {
+  const btnLogOut = document.querySelector('.log-out');
+  btnLogOut.addEventListener('click', () => {
+    signOut().then(() => {
+      window.location.hash = '#/login';
+    });
+    console.log(signOut());
+  });
+});
+
+export {
+  Home, eventInitHome, nameUser, logOut,
+};

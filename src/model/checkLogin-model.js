@@ -25,7 +25,7 @@ const showPosts = (() => {
                     <p class="more-name">${doc.data().user}</p>
                 </div>
                 <button class="btn-more" type="button">...</button>
-                <div class="btn-list">
+                <div class="btn-list hide">
                   <button class="editBtn-${doc.id}">Update</button>
                   <button class="removeBtn-${doc.id}">Delete</button>
               </div>
@@ -53,10 +53,10 @@ const showPosts = (() => {
                     <div class="head-cm">
                         <h5 class="name-cm">Pycode</h5>
                         <button class="btn-more" type="button">...</button>
-                        <select class="btn-list" size="2">
-                            <option value="0">Update</option>
-                            <option value="2">Delete</option>
-                        </select>
+                        <div class="btn-list hide">
+                            <button>Update</button>
+                            <button>Delete</button>
+                        </div>
                     </div>
                     <p>#Phyton ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolore temporibus rerum saepe hic ex unde ducimus dicta velit sequi?</p>
                 </article>
@@ -69,6 +69,14 @@ const showPosts = (() => {
                 </article>
             </section>
         </div>`;
+        const elm = document.querySelectorAll('.more > .btn-more');
+        const btnList = document.querySelectorAll('.more > .btn-list');
+
+        for (let i = 0; i < elm.length; i += 1) {
+          elm[i].addEventListener('click', () => {
+            btnList[i].classList.toggle('hide');
+          });
+        }
       });
       querySnapshot.forEach((doc) => {
         if (doc.data().uid === firebase.auth().currentUser.uid) {
