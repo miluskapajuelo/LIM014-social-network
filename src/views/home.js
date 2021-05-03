@@ -1,4 +1,4 @@
-import { getNameUser } from '../model/firebase-post-model.js';
+import { getNameUser, getInfo } from '../model/firebase-post-model.js';
 import { signOut } from '../controller/login-controller.js';
 
 const Home = (() => {
@@ -26,7 +26,7 @@ const Home = (() => {
         </div>
         <div class="profile-name">
         <h2 class="className"></h2>
-            <p>Frontend developer</p>
+            <p class="classInfo"></p>
         </div>
     </header>
     <section class="best-post">
@@ -124,6 +124,27 @@ const logOut = (() => {
   });
 });
 
+const nameUser = (() => {
+  const nombre = document.querySelector('.className');
+  getNameUser().then((name) => {
+    nombre.textContent = name;
+  });
+});
+const infoUser = (() => {
+  const informacion = document.querySelector('.classInfo');
+  getInfo().then((info) => {
+    informacion.textContent = info;
+  });
+});
+const logOut = (() => {
+  const btnLogOut = document.querySelector('.log-out');
+  btnLogOut.addEventListener('click', () => {
+    signOut().then(() => {
+      window.location.hash = '#/login';
+    });
+    console.log(signOut());
+  });
+});
 export {
-  Home, eventInitHome, nameUser, logOut,
+  Home, eventInitHome, nameUser, infoUser, logOut,
 };

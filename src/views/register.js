@@ -1,6 +1,6 @@
 import { createUser } from '../model/firebase-login-model.js';
 import { createUserBD, verifEmail } from '../controller/login-controller.js';
-// signIn
+
 const Register = (() => {
   const viewRegister = `<section class="container-change">
   <figure class="figure-login">
