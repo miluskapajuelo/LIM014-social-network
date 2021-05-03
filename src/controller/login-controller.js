@@ -27,7 +27,7 @@ export const signOut = () => firebase.auth().signOut();
 // Verificar correo
 export const verifEmail = () => {
   const configuration = {
-    url: 'http://localhost:5000/',
+    url: 'http://localhost:5000/#/login',
   };
   firebase.auth().currentUser.sendEmailVerification(configuration).then(() => {
   // Email sent.
