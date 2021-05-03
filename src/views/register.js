@@ -1,5 +1,5 @@
 import { createUser } from '../model/firebase-login-model.js';
-import { signIn, createUserBD, verifEmail } from '../controller/login-controller.js';
+import { createUserBD, verifEmail } from '../controller/login-controller.js';
 
 const Register = (() => {
   const viewRegister = `<section class="container-change">
@@ -101,7 +101,6 @@ const eventInitRegister = (() => {
     } else {
       createUserBD(email, pass)
         .then((result) => { createUser(result.user.uid, username, email, info); })
-        .then(() => signIn(email, pass))
         .then(() => {
           window.location.hash = '#/login';
           verifEmail();

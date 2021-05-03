@@ -1,3 +1,6 @@
+import { getNameUser, getInfo } from '../model/firebase-post-model.js';
+import { signOut } from '../controller/login-controller.js';
+
 const Home = (() => {
   const viewHome = `<header id="main-header" class ="header">
     <nav class="nav-list">
@@ -8,7 +11,7 @@ const Home = (() => {
             <li id="Profile">
               <a href="#"><span class="material-icons">account_circle</span>Profile</a>
             </li>
-            <li id="logOut"><a href="#"><span class="material-icons">logout</span>Log Out</a>
+            <li id="logOut"><span class="material-icons">logout</span><button type="button" class="log-out">Log Out</button>
             </li>
         </ul>
       <div class="burger">
@@ -22,8 +25,8 @@ const Home = (() => {
             <img style="width: 100px; height: 100px;" src="./img/undraw_female_avatar_w3jk.svg" alt="profile" srcset="">
         </div>
         <div class="profile-name">
-            <h2>Fulanita Pérez</h2>
-            <p>Frontend developer</p>
+        <h2 class="className"></h2>
+            <p class="classInfo"></p>
         </div>
     </header>
     <section class="best-post">
@@ -105,4 +108,27 @@ const eventInitHome = (() => {
   });
 });
 
-export { Home, eventInitHome };
+const nameUser = (() => {
+  const nombre = document.querySelector('.className');
+  getNameUser().then((name) => {
+    nombre.textContent = name;
+  });
+});
+const infoUser = (() => {
+  const informacion = document.querySelector('.classInfo');
+  getInfo().then((info) => {
+    informacion.textContent = info;
+  });
+});
+const logOut = (() => {
+  const btnLogOut = document.querySelector('.log-out');
+  btnLogOut.addEventListener('click', () => {
+    signOut().then(() => {
+      window.location.hash = '#/login';
+    });
+    console.log(signOut());
+  });
+});
+export {
+  Home, eventInitHome, nameUser, infoUser, logOut,
+};
