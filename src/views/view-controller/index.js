@@ -17,10 +17,12 @@ const changeView = (route) => {
         if (user) {
           components.home.Home();
           components.home.eventInitHome();
+          components.home.nameUser();
+          components.home.logOut();
           createPost();
           showPosts();
         } else {
-          alert('Usuario no logeado');
+          // alert('Usuario no logeado');
           window.location.hash = '#/login';
         }
       });
