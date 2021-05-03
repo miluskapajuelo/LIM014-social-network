@@ -51,7 +51,7 @@ function showModal(msg) {
   const modalWindow = document.getElementById("modal-window");
   modalMode.classList.toggle("hide");
  
-  modalWindow.innerHTML = `<section class="headerPost"><h2>Editar publicación</h2>
+  modalWindow.innerHTML = `<section class="headerPost"><h2 class="tituloEditar">Editar publicación</h2>
   <button title="Close" class="modal-close">Close</button></section> 
   <section id="body-modal" class="contentGeneral">
   <div class="contentArea"></div>
