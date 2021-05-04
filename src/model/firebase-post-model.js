@@ -39,6 +39,7 @@ export default function addPost(post) {
       uid: firebase.auth().currentUser.uid,
       datePost: dateP,
       user: msg,
+      likePost:[]
     });
   });
 }
@@ -89,7 +90,6 @@ export function updatePost(id, post) {
   update.forEach((elemento) => {
     elemento.addEventListener('click', (e) => {
       e.preventDefault();
-
       getNameUser().then((msg) => {
         showModal(msg);
         const button = document.getElementById('btn-edit-note');
@@ -113,3 +113,37 @@ export function updatePost(id, post) {
     });
   });
 }
+
+const likes = (idUser, like) =>{
+  let array = like
+  if(array.length==0){
+    array.push(idUser)
+  }
+  else{
+    array.forEach(elemento=> {
+      if(elemento == idUser){
+        array.splice(idUser)}
+      else{
+        array.push(idUser)
+      }})
+  }
+  return array
+}
+
+export function likePost(id, like) {
+  const remove = document.querySelectorAll(`.btn-like-${id}`);
+  remove.forEach((elemento) => {
+    elemento.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Modal, estás segura que quieres eliminar el post?
+      getNameUser().then((msg) => {
+      fs.collection('post')
+        .doc(id)
+        .update({likePost: likes(msg, like)})
+        .then(() => {
+          console.log("Document successfully written!");
+      })
+    .catch(err=>console.log('hello error'));
+  })});
+})}
+/* firebase.firestore.FieldValue.increment(1) */

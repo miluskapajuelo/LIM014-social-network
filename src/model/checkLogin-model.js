@@ -1,4 +1,4 @@
-import addPost, { removePost, updatePost } from './firebase-post-model.js';
+import addPost, { removePost, updatePost, likePost } from './firebase-post-model.js';
 
 const createPost = (() => {
   const notePost = document.getElementById('btn-add-note');
@@ -35,11 +35,11 @@ const showPosts = (() => {
             </section>
             <section class="btn-posting">
                 <section class="btn-total">
-                    <p><span>12</span> likes</p>
+                    <p><span>12</span> "likes"</p>
                     <p><span>102</span> comment</p>
                 </section>
                 <section class="btn-group">
-                    <button class="btn-like" type="button">
+                    <button class="btn-like-${doc.id}" type="button">
                         <span class="material-icons">thumb_up_off_alt</span> Like</button>
                     <button type="button" class="btn-cm"><span class="material-icons">chat_bubble_outline</span> Comments</button>
                 </section>
@@ -79,11 +79,19 @@ const showPosts = (() => {
         }
       });
       querySnapshot.forEach((doc) => {
+        
         if (doc.data().uid === firebase.auth().currentUser.uid) {
           removePost(doc.id);
           updatePost(doc.id, doc.data().publication);
+          
+          
         }
+       
+        likePost(doc.id, doc.data().likePost) 
       });
+      
     });
 });
+
+
 export { createPost, showPosts };
