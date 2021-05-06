@@ -18,6 +18,7 @@ const showPosts = (() => {
     .onSnapshot((querySnapshot) => {
       commentPublish.innerHTML = '';
       querySnapshot.forEach((doc) => {
+        
         commentPublish.innerHTML += `<div class="posting show">
             <div class="more">
                 <div>
@@ -35,11 +36,11 @@ const showPosts = (() => {
             </section>
             <section class="btn-posting">
                 <section class="btn-total">
-                    <p><span>12</span> "likes"</p>
+                    <p><span id='btn-contador-${doc.id}'>12</span> "likes"</p>
                     <p><span>102</span> comment</p>
                 </section>
                 <section class="btn-group">
-                    <button class="btn-like-${doc.id}" type="button">
+                    <button class="btn-like" type="button">
                         <span class="material-icons">thumb_up_off_alt</span> Like</button>
                     <button type="button" class="btn-cm"><span class="material-icons">chat_bubble_outline</span> Comments</button>
                 </section>
@@ -83,15 +84,16 @@ const showPosts = (() => {
         if (doc.data().uid === firebase.auth().currentUser.uid) {
           removePost(doc.id);
           updatePost(doc.id, doc.data().publication);
-          
-          
         }
-       
-        likePost(doc.id, doc.data().likePost) 
-      });
+         // boton like
+        const btnLike = document.querySelectorAll(`.btn-like`)
+        btnLike.forEach((button) => {
+          button.addEventListener('click', () =>{
+            likePost(doc.id, counter)
+          })})
       
     });
 });
-
+})
 
 export { createPost, showPosts };
