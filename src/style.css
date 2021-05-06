@@ -595,7 +595,8 @@ form .typeLog > div > button > img {
   transition: .5s;
 }
 .posting.show >.show-comments{
-  display: none;
+  display: flex;
+  flex-direction: column;
 }
 .show-comments > .area-cm{
   width: 100%;

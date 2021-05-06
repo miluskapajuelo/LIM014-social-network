@@ -1,3 +1,5 @@
+import { showComment } from './comment.js';
+
 const postsView = ((doc) => {
   const viewPosts = `<div class="posting show">
     <div class="more">
@@ -31,25 +33,10 @@ const postsView = ((doc) => {
             <button type="button">Post</button>
         </section>
         <article class="one-cm">
-            <div class="head-cm">
-                <h5 class="name-cm">Pycode</h5>
-                <button class="btn-more" type="button">...</button>
-                <div class="btn-list hide">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <p>#Phyton ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolore temporibus rerum saepe hic ex unde ducimus dicta velit sequi?</p>
-        </article>
-        <article class="one-cm">
-            <div class="head-cm">
-                <h5 class="name-cm">Imran White</h5>
-                <button class="btn-more" type="button">...</button>
-            </div>
-            <p>Tengo que hacer mi Salat</p>
         </article>
     </section>
 </div>`;
+  showComment();
   return viewPosts;
 });
 
