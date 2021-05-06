@@ -1,12 +1,12 @@
-const fs = firebase.firestore();
+import { auth, fs } from '../configFirebase.js';
 
 export const getInfo = () => new Promise((resolve) => {
   const infodefault = 'Frontend developer';
-  if (firebase.auth().currentUser.displayName === null) {
+  if (auth.currentUser.displayName === null) {
     const prueba = fs.collection('users').get();
     prueba.then((omg) => {
       omg.forEach((data) => {
-        if (data.data().id === firebase.auth().currentUser.uid) {
+        if (data.data().id === auth.currentUser.uid) {
           resolve(data.data().info);
         }
       });
@@ -17,7 +17,7 @@ export const getInfo = () => new Promise((resolve) => {
 });
 
 export const getNameUser = () => new Promise((resolve) => {
-  if (firebase.auth().currentUser.displayName === null) {
+  if (auth.currentUser.displayName === null) {
     const prueba = fs.collection('users').get();
     prueba.then((omg) => {
       omg.forEach((data) => {

@@ -1,4 +1,5 @@
 import { signIn, signInWithFacebook, signInWithGoogle } from '../controller/login-controller.js';
+import { auth } from '../configFirebase.js';
 
 const Login = (() => {
   const viewLogin = `<section class="container-change">
@@ -86,7 +87,7 @@ const eventInitLogin = (() => {
     } else {
       signIn(singupEmail, singupPassword)
         .then(() => {
-          if (firebase.auth().currentUser.emailVerified === true) {
+          if (auth.currentUser.emailVerified === true) {
             window.location.hash = '#/Home';
           } else {
             msg.innerHTML = `<p>Email not verified
