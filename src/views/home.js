@@ -1,5 +1,6 @@
 import { getNameUser, getInfo } from '../model/firebase-post-model.js';
 import { signOut } from '../controller/login-controller.js';
+// import { searchPost } from '../model/checkLogin-model.js';
 
 const Home = (() => {
   const viewHome = `<header id="main-header" class ="header">
@@ -74,7 +75,7 @@ const Home = (() => {
     </section>
     <section class="search-body">
         <label for="search" class="search">
-            <input type="text" id="search" placeholder="#Share user">
+            <input type="text" id="search" placeholder="#Share a topic">
             <span>
                 <span class="material-icons">
                     search
@@ -106,6 +107,7 @@ const eventInitHome = (() => {
     burger.classList.toggle('open');
     list.classList.toggle('open');
   });
+  // searchPost(document.getElementById('search'));
 });
 
 const nameUser = (() => {
