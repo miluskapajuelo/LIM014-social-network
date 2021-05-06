@@ -1,4 +1,4 @@
-import addPost, { removePost, updatePost } from './firebase-post-model.js';
+import addPost, { removePost, updatePost, likes } from './firebase-post-model.js';
 import { postsView } from '../views/posts.js';
 import { auth, fs } from '../configFirebase.js';
 
@@ -30,12 +30,14 @@ const createPost = (() => {
     document.getElementById('input-new-note').value = '';
   });
 });
+
 const removeandUpdate = (() => {
   fs.collection('post').where('uid', '==', auth.currentUser.uid)
     .onSnapshot((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         updatePost(doc.id, doc.data().publication);
         removePost(doc.id);
+        likes(doc.id, doc.data().likePost)
       });
     });
 });

@@ -1,35 +1,37 @@
-import { auth, fs } from '../configFirebase.js';
+import { auth, fs } from "../configFirebase.js";
 
-export const getInfo = () => new Promise((resolve) => {
-  const infodefault = 'Frontend developer';
-  if (auth.currentUser.displayName === null) {
-    const prueba = fs.collection('users').get();
-    prueba.then((omg) => {
-      omg.forEach((data) => {
-        if (data.data().id === auth.currentUser.uid) {
-          resolve(data.data().info);
-        }
+export const getInfo = () =>
+  new Promise((resolve) => {
+    const infodefault = "Frontend developer";
+    if (auth.currentUser.displayName === null) {
+      const prueba = fs.collection("users").get();
+      prueba.then((omg) => {
+        omg.forEach((data) => {
+          if (data.data().id === auth.currentUser.uid) {
+            resolve(data.data().info);
+          }
+        });
       });
-    });
-  } else {
-    resolve(infodefault);
-  }
-});
+    } else {
+      resolve(infodefault);
+    }
+  });
 
-export const getNameUser = () => new Promise((resolve) => {
-  if (auth.currentUser.displayName === null) {
-    const prueba = fs.collection('users').get();
-    prueba.then((omg) => {
-      omg.forEach((data) => {
-        if (data.data().id === firebase.auth().currentUser.uid) {
-          resolve(data.data().user);
-        }
+export const getNameUser = () =>
+  new Promise((resolve) => {
+    if (auth.currentUser.displayName === null) {
+      const prueba = fs.collection("users").get();
+      prueba.then((omg) => {
+        omg.forEach((data) => {
+          if (data.data().id === firebase.auth().currentUser.uid) {
+            resolve(data.data().user);
+          }
+        });
       });
-    });
-  } else {
-    resolve(firebase.auth().currentUser.displayName);
-  }
-});
+    } else {
+      resolve(firebase.auth().currentUser.displayName);
+    }
+  });
 export default function addPost(post) {
   const dateP = firebase.firestore.FieldValue.serverTimestamp();
   getNameUser().then((msg) => {
@@ -115,14 +117,45 @@ export function updatePost(id, post) {
 }
 
 //firestore likes
-export const likePost = (id, counter) => {
-  return firebase
-    .firestore()
-    .collection("Posts")
+/* export const removeLike = (id, likePublication) => {
+  const btnLike = document.querySelectorAll(".btn-like");
+  btnLike.forEach((elemento) => {
+    elemento.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log(id)
+      return fs
+        .collection("post")
+        .doc(id)
+        .update({ 'likePost': ['likePublication'] })
+        .then(() => {
+          console.log("Document successfully written!");
+        });
+    });
+  });
+}; */
+//firestore likes
+const removeLike = (id,likePublication) => {
+  return fs
+    .collection("post")
     .doc(id)
-    .update({ likePost: counter })
+    .update({ likePost: likePublication})
     .then(() => {
       console.log("Document successfully written!");
-    })
-    .catch((err) => console.log("hello error"));
+    });
+};
+
+export const likes = (id, likePublication) => {
+  const btnLike = document.querySelectorAll(".btn-like");
+  btnLike.forEach((elemento) => {
+    elemento.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (likePublication.length === 0) {
+        getNameUser().then((msg) => {
+          likePublication.push(msg)
+          removeLike(id, likePublication);});
+      } else {
+        removeLike(id, []);
+      }
+    });
+  });
 };
