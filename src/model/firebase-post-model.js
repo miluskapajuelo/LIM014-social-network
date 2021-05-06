@@ -1,37 +1,35 @@
-const fs = firebase.firestore();
+import { auth, fs } from '../configFirebase.js';
 
-export const getInfo = () =>
-  new Promise((resolve) => {
-    const infodefault = "Frontend developer";
-    if (firebase.auth().currentUser.displayName === null) {
-      const prueba = fs.collection("users").get();
-      prueba.then((omg) => {
-        omg.forEach((data) => {
-          if (data.data().id === firebase.auth().currentUser.uid) {
-            resolve(data.data().info);
-          }
-        });
+export const getInfo = () => new Promise((resolve) => {
+  const infodefault = 'Frontend developer';
+  if (auth.currentUser.displayName === null) {
+    const prueba = fs.collection('users').get();
+    prueba.then((omg) => {
+      omg.forEach((data) => {
+        if (data.data().id === auth.currentUser.uid) {
+          resolve(data.data().info);
+        }
       });
-    } else {
-      resolve(infodefault);
-    }
-  });
+    });
+  } else {
+    resolve(infodefault);
+  }
+});
 
-export const getNameUser = () =>
-  new Promise((resolve) => {
-    if (firebase.auth().currentUser.displayName === null) {
-      const prueba = fs.collection("users").get();
-      prueba.then((omg) => {
-        omg.forEach((data) => {
-          if (data.data().id === firebase.auth().currentUser.uid) {
-            resolve(data.data().user);
-          }
-        });
+export const getNameUser = () => new Promise((resolve) => {
+  if (auth.currentUser.displayName === null) {
+    const prueba = fs.collection('users').get();
+    prueba.then((omg) => {
+      omg.forEach((data) => {
+        if (data.data().id === firebase.auth().currentUser.uid) {
+          resolve(data.data().user);
+        }
       });
-    } else {
-      resolve(firebase.auth().currentUser.displayName);
-    }
-  });
+    });
+  } else {
+    resolve(firebase.auth().currentUser.displayName);
+  }
+});
 export default function addPost(post) {
   const dateP = firebase.firestore.FieldValue.serverTimestamp();
   getNameUser().then((msg) => {

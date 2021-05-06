@@ -1,5 +1,6 @@
 import { components } from '../components.js';
-import { createPost, showPosts } from '../../model/checkLogin-model.js';
+import { createPost, showPosts, removeandUpdate } from '../../model/checkLogin-model.js';
+import { auth } from '../../configFirebase.js';
 
 const changeView = (route) => {
   switch (route) {
@@ -13,7 +14,7 @@ const changeView = (route) => {
       components.register.eventInitRegister();
       break;
     case '#/Home':
-      firebase.auth().onAuthStateChanged((user) => {
+      auth.onAuthStateChanged((user) => {
         if (user) {
           components.home.Home();
           components.home.eventInitHome();
@@ -22,6 +23,7 @@ const changeView = (route) => {
           components.home.logOut();
           createPost();
           showPosts();
+          removeandUpdate();
         } else {
           window.location.hash = '#/login';
         }
