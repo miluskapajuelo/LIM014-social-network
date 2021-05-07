@@ -1,7 +1,6 @@
-import { getNameUser, getInfo } from '../model/firebase-post-model.js';
-import { signOut } from '../controller/login-controller.js';
+import { signOut } from '../controller/login.js';
 import { postsView } from './posts.js';
-import { getPost } from '../controller/post.js';
+import { getPost, getNameUser, getInfo } from '../controller/post.js';
 
 const showPosts = (elm) => {
   getPost((post) => {

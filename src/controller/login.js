@@ -34,7 +34,7 @@ export const signOut = () => auth.signOut();
 // Verificar correo
 export const verifEmail = () => {
   const configuration = {
-    url: 'http://localhost:5000/#/login',
+    url: 'http://localhost:5000/',
   };
   auth.currentUser.sendEmailVerification(configuration).then(() => {
   // Email sent.

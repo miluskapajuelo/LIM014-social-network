@@ -1,4 +1,4 @@
-import { createUserBD, verifEmail, createUser } from '../controller/login-controller.js';
+import { createUserBD, verifEmail, createUser } from '../controller/login.js';
 
 const Register = (() => {
   const viewRegister = `<section class="container-change">

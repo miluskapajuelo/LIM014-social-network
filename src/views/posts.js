@@ -1,6 +1,17 @@
-// import { removePost } from '../model/firebase-post-model.js';
 import { removePostBd } from '../controller/post.js';
-// import { showComment } from './comments.js';
+import { updatePost } from '../model/firebase-post.js';
+import { commentView } from './comment.js';
+import { getComment, addCommentBd } from '../controller/comment.js';
+
+const showComment = (elm, idPost) => {
+  getComment(idPost, (post) => {
+    elm.innerHTML = '';
+    post.forEach((doc) => {
+      elm.appendChild(commentView(doc));
+    });
+  });
+};
+
 const postsView = ((doc) => {
   const divElem = document.createElement('div');
   divElem.classList.add('posting');
@@ -31,31 +42,44 @@ const postsView = ((doc) => {
     </section>
     <section class="show-comments show">
         <section class="area-cm">
-        <textarea name="" class="input-new-comment-${doc.id}" id="" cols="30" rows="10"></textarea>
-        <button type="button" class="btn-add-comment-${doc.id}">Post</button>
+        <textarea name="" class="input-new-comment" id="" cols="30" rows="10"></textarea>
+        <button type="button" class="btn-add-comment">Post</button>
         </section>
-        <article class="one-cm">
-        </article>
+        <section id="comment-article">
+        </section>
     </section>`;
   divElem.innerHTML = viewPosts;
   const elm = divElem.querySelector('.more > .btn-more');
   const btnList = divElem.querySelector('.more > .btn-list');
-
-  elm.addEventListener('click', () => {
-    btnList.classList.toggle('hide');
-  });
   const btnCm = divElem.querySelector('.btn-cm');
   const showCm = divElem.querySelector('.show-comments');
+  const btnRemove = divElem.querySelector('.removeBtn');
+  const btnUpdate = divElem.querySelector('.editBtn');
+
   btnCm.addEventListener('click', () => {
     showCm.classList.toggle('show');
   });
 
-  const btnRemove = divElem.querySelector('.removeBtn');
-  btnRemove.addEventListener('click', () => {
-    removePostBd(doc.id);
-  });
+  if (doc.data().uid === firebase.auth().currentUser.uid) {
+    elm.addEventListener('click', () => {
+      btnList.classList.toggle('hide');
+    });
+    btnRemove.addEventListener('click', () => {
+      removePostBd(doc.id);
+    });
+    btnUpdate.addEventListener('click', () => {
+      updatePost(doc);
+    });
+  }
 
-  // showComment();
+  const btnAddComment = divElem.querySelector('.btn-add-comment');
+  btnAddComment.addEventListener('click', () => {
+    const commentEdit = divElem.querySelector('.input-new-comment').value;
+    addCommentBd(doc.id, commentEdit);
+    divElem.querySelector('.input-new-comment').value = '';
+  });
+  const commentArticle = showCm.querySelector('#comment-article');
+  showComment(commentArticle, doc.id);
   return divElem;
 });
 
