@@ -1,5 +1,5 @@
 import { removePostBd } from '../controller/post.js';
-import { updatePost } from '../model/firebase-post.js';
+import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
 
@@ -14,6 +14,7 @@ const showComment = (elm, idPost, cmElm) => {
 };
 
 const postsView = ((doc) => {
+  let likepost = doc.data().likePost
   const divElem = document.createElement('div');
   divElem.classList.add('posting');
   const viewPosts = `<div class="more">
@@ -32,11 +33,11 @@ const postsView = ((doc) => {
     </section>
     <section class="btn-posting">
         <section class="btn-total">
-            <p><span>12</span> likes</p>
+            <p><span>${likepost.length}</span> likes</p>
             <p><span class="countCm"></span> comment</p>
         </section>
         <section class="btn-group">
-            <button class="btn-like" type="button">
+            <button id="btn-like" class="btn-like" type="button">
                 <span class="material-icons">thumb_up_off_alt</span> Like</button>
             <button type="button" class="btn-cm"><span class="material-icons">chat_bubble_outline</span> Comments</button>
         </section>
@@ -56,10 +57,13 @@ const postsView = ((doc) => {
   const showCm = divElem.querySelector('.show-comments');
   const btnRemove = divElem.querySelector('.removeBtn');
   const btnUpdate = divElem.querySelector('.editBtn');
+  const btnLike = divElem.querySelector('.btn-like')
 
   btnCm.addEventListener('click', () => {
     showCm.classList.toggle('show');
   });
+
+
 
   if (doc.data().uid === firebase.auth().currentUser.uid) {
     elm.addEventListener('click', () => {
@@ -73,6 +77,9 @@ const postsView = ((doc) => {
     });
   }
 
+  btnLike.addEventListener('click', ()=>{
+    likePost(doc)
+  })
   const btnAddComment = divElem.querySelector('.btn-add-comment');
   btnAddComment.addEventListener('click', () => {
     const commentEdit = divElem.querySelector('.input-new-comment').value;
