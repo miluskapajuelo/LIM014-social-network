@@ -6,6 +6,7 @@ import { getComment, addCommentBd } from '../controller/comment.js';
 const showComment = (elm, idPost) => {
   getComment(idPost, (post) => {
     // eslint-disable-next-line no-param-reassign
+    /* post.length */
     elm.innerHTML = '';
     post.forEach((doc) => {
       elm.appendChild(commentView(doc));
