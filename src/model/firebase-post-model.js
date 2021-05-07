@@ -46,69 +46,31 @@ export default function addPost(post) {
   });
 }
 
-export function removePost(id) {
-  const remove = document.querySelectorAll(`.removeBtn-${id}`);
-  remove.forEach((elemento) => {
-    elemento.addEventListener("click", (e) => {
-      e.preventDefault();
-      // Modal, estás segura que quieres eliminar el post?
-      fs.collection("post")
-        .doc(id)
-        .delete()
-        .then(() => {
-          alert("Document successfully deleted!");
-        })
-        .catch((error) => {
-          console.error("Error removing document: ", error);
-        });
-    });
-  });
-}
-function showModal(msg) {
-  const modalMode = document.getElementById("modal-mode");
-  const modalWindow = document.getElementById("modal-window");
-  modalMode.classList.toggle("hide");
-
-  modalWindow.innerHTML = `<section class="headerPost"><h3>Edit post</h3>
-  <button title="Close" class="modal-close">Close</button></section> 
-  <section id="body-modal" class="contentGeneral">
-      <h5 class="nameP" id="modal-username">${msg}</h5>
-      <textarea id="input-edit-note"></textarea>
-      <button id="btn-edit-note">Save</button>
-      </section>
-      `;
-  const btnCloseModal = modalWindow.querySelector(".modal-close");
-
-  btnCloseModal.addEventListener("click", (e) => {
-    e.preventDefault();
-    modalMode.classList.toggle("hide");
-  });
-}
-
 export function updatePost(id, post) {
   const update = document.querySelectorAll(`.editBtn-${id}`);
-  const modalMode = document.getElementById("modal-mode");
+  const modalMode = document.getElementById('modal-mode');
 
   update.forEach((elemento) => {
-    elemento.addEventListener("click", (e) => {
+    elemento.addEventListener('click', (e) => {
       e.preventDefault();
+
       getNameUser().then((msg) => {
         showModal(msg);
-        const button = document.getElementById("btn-edit-note");
-        document.getElementById("input-edit-note").value = post;
-        button.addEventListener("click", () => {
-          const postId = fs.collection("post").doc(id);
-          const postEdit = document.getElementById("input-edit-note").value;
+        const button = document.getElementById('btn-edit-note');
+        document.getElementById('input-edit-note').value = post;
+        button.addEventListener('click', () => {
+          const postId = fs.collection('post').doc(id);
+          const postEdit = document.getElementById('input-edit-note').value;
           return postId
             .update({
               publication: postEdit,
             })
             .then(() => {
-              console.log("Document successfully updated!");
-              modalMode.classList.toggle("hide");
+              console.log('Document successfully updated!');
+              modalMode.classList.toggle('hide');
             })
             .catch((error) => {
-              console.error("Error removing document: ", error);
+              console.error('Error removing document: ', error);
             });
         });
       });
@@ -116,46 +78,39 @@ export function updatePost(id, post) {
   });
 }
 
+
 //firestore likes
-/* export const removeLike = (id, likePublication) => {
-  const btnLike = document.querySelectorAll(".btn-like");
-  btnLike.forEach((elemento) => {
-    elemento.addEventListener("click", (e) => {
-      e.preventDefault();
-      console.log(id)
-      return fs
-        .collection("post")
-        .doc(id)
-        .update({ 'likePost': ['likePublication'] })
-        .then(() => {
-          console.log("Document successfully written!");
-        });
-    });
-  });
-}; */
-//firestore likes
-const removeLike = (id,likePublication) => {
-  return fs
+/* const removeLike = (id,likePublication, msg, op) => {
+  if(op==1){
+    let array = likePublication.push(msg)
+    return array
+  }
+  else{
+    let i = likePublication.indexOf(msg)
+    let array =likePublication.splice( i, 1 );
+  return array
+};
+return fs
     .collection("post")
     .doc(id)
-    .update({ likePost: likePublication})
+    .update({ 'likePost': array})
     .then(() => {
       console.log("Document successfully written!");
-    });
-};
-
-export const likes = (id, likePublication) => {
-  const btnLike = document.querySelectorAll(".btn-like");
-  btnLike.forEach((elemento) => {
-    elemento.addEventListener("click", (e) => {
+    });}
+ */
+/* export const likes = (id, likePublication) => {
+  const btnLike = document.getElementById(`btn-like-${id}`)
+  btnLike.addEventListener("click", (e) => {
       e.preventDefault();
       if (likePublication.length === 0) {
         getNameUser().then((msg) => {
-          likePublication.push(msg)
-          removeLike(id, likePublication);});
+          removeLike(id, likePublication, msg, 1);});
       } else {
-        removeLike(id, []);
-      }
-    });
-  });
-};
+        likePublication.forEach(element =>{
+            getNameUser().then((msg) => {
+              if(msg !== element){
+              removeLike(id, likePublication, msg)}
+              else{
+                removeLike(id, likePublication,msg )
+              }})
+      })}})} */

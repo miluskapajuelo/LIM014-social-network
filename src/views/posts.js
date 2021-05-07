@@ -1,5 +1,11 @@
-const postsView = ((doc) => {
-  const viewPosts = `<div class="posting show">
+import { auth } from "../configFirebase.js";
+import { removePost,updatePost } from "../controller/postController.js";
+
+const postsView = (doc) => {
+  const divElement = document.createElement("div");
+  divElement.classList.add("posting", "show");
+
+  const viewPosts = `
     <div class="more">
         <div>
             <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
@@ -7,8 +13,8 @@ const postsView = ((doc) => {
         </div>
         <button class="btn-more" type="button">...</button>
         <div class="btn-list hide">
-          <button class="editBtn-${doc.id}">Update</button>
-          <button class="removeBtn-${doc.id}">Delete</button>
+          <button class="editBtn">Update</button>
+          <button class="removeBtn">Delete</button>
       </div>
     </div>
     <section class="body-posting">
@@ -20,7 +26,7 @@ const postsView = ((doc) => {
             <p><span>102</span> comment</p>
         </section>
         <section class="btn-group">
-            <button class="btn-like" type="button">
+            <button id="btn-like-${doc.id}" class="btn-like" type="button">
                 <span class="material-icons">thumb_up_off_alt</span> Like</button>
             <button type="button" class="btn-cm"><span class="material-icons">chat_bubble_outline</span> Comments</button>
         </section>
@@ -49,8 +55,22 @@ const postsView = ((doc) => {
             <p>Tengo que hacer mi Salat</p>
         </article>
     </section>
-</div>`;
-  return viewPosts;
-});
+`;
+  divElement.innerHTML = viewPosts;
+  //grupo de queryselectors
+  const btnRemove = divElement.querySelector(".removeBtn");
+  const elm = divElement.querySelector(".more > .btn-more");
+  const btnList = divElement.querySelector(".more > .btn-list");
+  //habilita la lista de opciones
+  if (doc.data().uid == auth.currentUser.uid) {
+    elm.addEventListener("click", () => {
+      btnList.classList.toggle("hide");
+    });
+  }
+  //función para remover las publicaciones
+  btnRemove.addEventListener("click", () => removePost(doc.id));      
+     
+  return divElement;
+};
 
 export { postsView };

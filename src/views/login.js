@@ -1,4 +1,4 @@
-import { signIn, signInWithFacebook, signInWithGoogle } from '../controller/login-controller.js';
+import { signIn, signInWithFacebook, signInWithGoogle } from '../controller/auth.js';
 import { auth } from '../configFirebase.js';
 
 const Login = (() => {

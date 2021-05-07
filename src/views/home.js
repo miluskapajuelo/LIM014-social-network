@@ -1,8 +1,22 @@
-import { getNameUser, getInfo } from '../model/firebase-post-model.js';
-import { signOut } from '../controller/login-controller.js';
+import addPost, { getNameUser, getInfo } from '../model/firebase-post-model.js';
+import { signOut } from '../controller/auth.js';
+import { getPost } from "../controller/postController.js";
+import { postsView } from "../views/posts.js";
 // import { searchPost } from '../model/checkLogin-model.js';
 
+const showPosts = (elm) => {
+  getPost((post) => {
+    elm.innerHTML = ''
+    post.forEach((element) =>{
+      elm.appendChild(postsView(element))
+    })
+  });
+};
+
+
+
 const Home = (() => {
+  
   const viewHome = `<header id="main-header" class ="header">
     <nav class="nav-list">
         <div class="logo-nav">
@@ -92,10 +106,14 @@ const Home = (() => {
     </section>
     </section>
     `;
-  const home = document.getElementById('main-login');
+  const home = document.querySelector('.main-login');
   home.innerHTML = '';
   home.innerHTML = viewHome;
 
+  const commentPublish = home.querySelector('#commentPublish')
+  showPosts(commentPublish)
+
+  
   return home;
 });
 
