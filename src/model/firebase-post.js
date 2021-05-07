@@ -1,14 +1,19 @@
-import { addPost, updatePostBd } from '../controller/post.js';
+import {
+  addPost,
+  updatePostBd,
+  getNameUser,
+  likePostBd,
+} from '../controller/post.js';
 import { updateCommentBd } from '../controller/comment.js';
 
-export const createPost = (() => {
+export const createPost = () => {
   const notePost = document.getElementById('btn-add-note');
   notePost.addEventListener('click', () => {
     const post = document.getElementById('input-new-note').value;
     addPost(post);
     document.getElementById('input-new-note').value = '';
   });
-});
+};
 
 function showModal(doc) {
   const modalMode = document.getElementById('modal-mode');
@@ -40,7 +45,6 @@ export function updatePost(doc) {
     modalMode.classList.toggle('hide');
   });
 }
-
 export function updateComment(doc) {
   showModal(doc);
   const modalMode = document.getElementById('modal-mode');
@@ -49,5 +53,22 @@ export function updateComment(doc) {
     const postEdit = document.getElementById('input-edit-note').value;
     updateCommentBd(doc.id, postEdit);
     modalMode.classList.toggle('hide');
+  });
+}
+export function likePost(doc) {
+  const array = doc.data().likePost;
+  getNameUser().then((msg) => {
+    if (array.length > 0) {
+      const user = array.filter((element) => element === msg);
+      const i = array.indexOf(user.join());
+      if (i !== -1) {
+        array.splice(i, 1);
+      } else {
+        array.push(msg);
+      }
+    } else {
+      array.push(msg);
+    }
+    return likePostBd(doc, array);
   });
 }

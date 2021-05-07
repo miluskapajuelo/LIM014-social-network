@@ -25,17 +25,21 @@ export const addCommentBd = (id, inputcomment) => getNameUser().then((msg) => {
   });
 });
 
-export const removeCommentBd = ((id) => {
-  fs.collection('comments').doc(id).delete()
+export const removeCommentBd = (id) => {
+  fs.collection('comments')
+    .doc(id)
+    .delete()
     .then(() => {
       alert('Document successfully deleted!');
     })
     .catch((error) => {
       console.error('Error removing document: ', error);
     });
-});
+};
 
-export const updateCommentBd = (id, changedComment) => firebase.firestore().collection('comments')
+export const updateCommentBd = (id, changedComment) => firebase
+  .firestore()
+  .collection('comments')
   .doc(id)
   .update({ publication: changedComment })
   .then(() => {
