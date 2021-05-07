@@ -7,6 +7,7 @@ const showComment = (elm, idPost) => {
   getComment(idPost, (post) => {
     // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
+    // , post.length
     post.forEach((doc) => {
       elm.appendChild(commentView(doc));
     });

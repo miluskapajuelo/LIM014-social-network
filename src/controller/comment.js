@@ -2,10 +2,10 @@ import { fs } from '../configFirebase.js';
 import { getNameUser } from './post.js';
 
 const dateP = firebase.firestore.FieldValue.serverTimestamp();
-
 export const getComment = ((idPost, callback) => {
   fs.collection('comments')
     .where('postId', '==', idPost)
+    .orderBy('datePost', 'desc')
     .onSnapshot((querySnapshot) => {
       const newArray = [];
       querySnapshot.forEach((doc) => {
@@ -14,7 +14,6 @@ export const getComment = ((idPost, callback) => {
       callback(newArray);
     });
 });
-
 export const addCommentBd = (id, inputcomment) => getNameUser().then((msg) => {
   fs.collection('comments').add({
     publication: inputcomment,
