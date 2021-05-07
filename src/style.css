@@ -594,7 +594,7 @@ form .typeLog > div > button > img {
   padding: 15px;
   transition: .5s;
 }
-.posting.show >.show-comments{
+.show-comments.show{
   display: none;
 }
 .show-comments > .area-cm{
