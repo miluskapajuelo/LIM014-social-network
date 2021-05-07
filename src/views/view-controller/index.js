@@ -1,6 +1,7 @@
 import { components } from '../components.js';
-import { createPost, showPosts, removeandUpdate } from '../../model/checkLogin-model.js';
+import { createPost } from '../../model/firebase-post-model.js';
 import { auth } from '../../configFirebase.js';
+import { addComments } from '../../model/firebase-comment-model.js';
 
 const changeView = (route) => {
   switch (route) {
@@ -22,8 +23,7 @@ const changeView = (route) => {
           components.home.infoUser();
           components.home.logOut();
           createPost();
-          showPosts();
-          removeandUpdate();
+          addComments();
         } else {
           window.location.hash = '#/login';
         }
