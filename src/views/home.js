@@ -1,6 +1,26 @@
 import { getNameUser, getInfo } from '../model/firebase-post-model.js';
 import { signOut } from '../controller/login-controller.js';
-// import { searchPost } from '../model/checkLogin-model.js';
+import { postsView } from './posts.js';
+import { getPost } from '../controller/post.js';
+
+const showPosts = (elm) => {
+  getPost((post) => {
+    elm.innerHTML = '';
+    post.forEach((doc) => {
+      elm.appendChild(postsView(doc));
+    });
+  });
+};
+const filterPost = ((value, elm) => {
+  getPost((post) => {
+    elm.innerHTML = '';
+    post.forEach((doc) => {
+      if (doc.data().publication.toLowerCase().search(value.toLowerCase()) !== -1) {
+        elm.appendChild(postsView(doc));
+      }
+    });
+  });
+});
 
 const Home = (() => {
   const viewHome = `<header id="main-header" class ="header">
@@ -95,6 +115,17 @@ const Home = (() => {
   const home = document.getElementById('main-login');
   home.innerHTML = '';
   home.innerHTML = viewHome;
+  const commentPublic = home.querySelector('#commentPublish');
+  const btnSearch = home.querySelector('#search');
+  showPosts(commentPublic);
+
+  btnSearch.addEventListener('keyup', (e) => {
+    if (e.target.value.length > 0) {
+      filterPost(e.target.value, commentPublic);
+    } else {
+      showPosts(commentPublic);
+    }
+  });
 
   return home;
 });

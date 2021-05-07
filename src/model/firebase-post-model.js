@@ -1,4 +1,5 @@
 import { auth, fs } from '../configFirebase.js';
+// import { removePostBd } from '../controller/post.js';
 
 export const getInfo = () => new Promise((resolve) => {
   const infodefault = 'Frontend developer';
@@ -30,7 +31,7 @@ export const getNameUser = () => new Promise((resolve) => {
     resolve(firebase.auth().currentUser.displayName);
   }
 });
-export default function addPost(post) {
+export const addPost = ((post) => {
   const dateP = firebase.firestore.FieldValue.serverTimestamp();
   getNameUser().then((msg) => {
     fs.collection('post').add({
@@ -41,26 +42,7 @@ export default function addPost(post) {
       user: msg,
     });
   });
-}
-
-export function removePost(id) {
-  const remove = document.querySelectorAll(`.removeBtn-${id}`);
-  remove.forEach((elemento) => {
-    elemento.addEventListener('click', (e) => {
-      e.preventDefault();
-      // Modal, estás segura que quieres eliminar el post?
-      fs.collection('post')
-        .doc(id)
-        .delete()
-        .then(() => {
-          alert('Document successfully deleted!');
-        })
-        .catch((error) => {
-          console.error('Error removing document: ', error);
-        });
-    });
-  });
-}
+});
 function showModal(msg) {
   const modalMode = document.getElementById('modal-mode');
   const modalWindow = document.getElementById('modal-window');
