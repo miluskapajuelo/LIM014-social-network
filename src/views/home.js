@@ -53,7 +53,7 @@ const Home = (() => {
         <h3>Best Post</h3>
         <div class="posting show">
             <div class="more">
-                <div>
+                <div class="img-post">
                     <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
                     <p class="more-name">Fulanita de perez</p>
                 </div>
@@ -137,7 +137,6 @@ const eventInitHome = (() => {
     burger.classList.toggle('open');
     list.classList.toggle('open');
   });
-  // searchPost(document.getElementById('search'));
 });
 
 const nameUser = (() => {

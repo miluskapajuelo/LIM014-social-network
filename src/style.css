@@ -9,8 +9,6 @@
   width: 100%;
   min-height: 100vh;
   background: linear-gradient(to top, #eeeeee, hsl(0, 0%, 100%));
-  /* font-family: 'Montserrat Alternates', sans-serif;
-    font-family: 'Pacifico', cursive; #212529*/
 }
 a {
   text-decoration: none;
@@ -506,7 +504,7 @@ form .typeLog > div > button > img {
   align-items: center;
   position: relative;
 }
-.more > div{
+.more > .img-post{
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -524,15 +522,17 @@ form .typeLog > div > button > img {
   cursor: pointer;
   font-weight: bold;
 }
-.more > .btn-list{
+.btn-list{
   display: flex;
   flex-direction: column;
   position: absolute;
   right: 20px;
   font-size: 14px;
   top: 30px;
+  z-index: 50;
+  box-shadow: 4px 4px 4px 1px rgba(0, 0, 0, 0.4);
 }
-.more > .btn-list > button{
+.btn-list > button{
   width: 100%;
     font-family: 'poppins', sans-serif;
     cursor: pointer;
@@ -545,7 +545,7 @@ form .typeLog > div > button > img {
   background: #0091ad;
   color: white;
 }
-.more > .btn-list.hide{
+.btn-list.hide{
   display: none;
 }
 .btn-more:hover{
@@ -615,6 +615,9 @@ form .typeLog > div > button > img {
 }
 .area-cm textarea::-webkit-scrollbar{
   display: none;
+}
+.one-cm{
+  position: relative;
 }
 .one-cm > .head-cm{
   display: flex;

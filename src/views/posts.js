@@ -3,9 +3,10 @@ import { updatePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
 
-const showComment = (elm, idPost) => {
+const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
     elm.innerHTML = '';
+    cmElm.textContent = post.length;
     post.forEach((doc) => {
       elm.appendChild(commentView(doc));
     });
@@ -16,7 +17,7 @@ const postsView = ((doc) => {
   const divElem = document.createElement('div');
   divElem.classList.add('posting');
   const viewPosts = `<div class="more">
-        <div>
+        <div class="img-post">
             <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
             <p class="more-name">${doc.data().user}</p>
         </div>
@@ -32,7 +33,7 @@ const postsView = ((doc) => {
     <section class="btn-posting">
         <section class="btn-total">
             <p><span>12</span> likes</p>
-            <p><span>102</span> comment</p>
+            <p><span class="countCm"></span> comment</p>
         </section>
         <section class="btn-group">
             <button class="btn-like" type="button">
@@ -79,7 +80,8 @@ const postsView = ((doc) => {
     divElem.querySelector('.input-new-comment').value = '';
   });
   const commentArticle = showCm.querySelector('#comment-article');
-  showComment(commentArticle, doc.id);
+  const countElm = divElem.querySelector('.countCm');
+  showComment(commentArticle, doc.id, countElm);
   return divElem;
 });
 
