@@ -5,6 +5,7 @@ import { getComment, addCommentBd } from '../controller/comment.js';
 
 const showComment = (elm, idPost) => {
   getComment(idPost, (post) => {
+    /* post.length */
     // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
     // , post.length
@@ -37,7 +38,7 @@ const postsView = ((doc) => {
             <p><span>102</span> comment</p>
         </section>
         <section class="btn-group">
-            <button class="btn-like" type="button">
+            <button id="btn-like-${doc.id}" class="btn-like" type="button">
                 <span class="material-icons">thumb_up_off_alt</span> Like</button>
             <button type="button" class="btn-cm"><span class="material-icons">chat_bubble_outline</span> Comments</button>
         </section>

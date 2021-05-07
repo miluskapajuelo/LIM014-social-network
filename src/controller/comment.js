@@ -2,7 +2,8 @@ import { fs } from '../configFirebase.js';
 import { getNameUser } from './post.js';
 
 const dateP = firebase.firestore.FieldValue.serverTimestamp();
-export const getComment = ((idPost, callback) => {
+
+export const getComment = (idPost, callback) => {
   fs.collection('comments')
     .where('postId', '==', idPost)
     .orderBy('datePost', 'desc')
@@ -13,7 +14,8 @@ export const getComment = ((idPost, callback) => {
       });
       callback(newArray);
     });
-});
+};
+
 export const addCommentBd = (id, inputcomment) => getNameUser().then((msg) => {
   fs.collection('comments').add({
     publication: inputcomment,
@@ -24,17 +26,21 @@ export const addCommentBd = (id, inputcomment) => getNameUser().then((msg) => {
   });
 });
 
-export const removeCommentBd = ((id) => {
-  fs.collection('comments').doc(id).delete()
+export const removeCommentBd = (id) => {
+  fs.collection('comments')
+    .doc(id)
+    .delete()
     .then(() => {
       alert('Document successfully deleted!');
     })
     .catch((error) => {
       console.error('Error removing document: ', error);
     });
-});
+};
 
-export const updateCommentBd = (id, changedComment) => firebase.firestore().collection('comments')
+export const updateCommentBd = (id, changedComment) => firebase
+  .firestore()
+  .collection('comments')
   .doc(id)
   .update({ publication: changedComment })
   .then(() => {

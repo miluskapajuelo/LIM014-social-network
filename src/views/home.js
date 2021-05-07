@@ -113,7 +113,7 @@ const Home = (() => {
     </section>
     </section>
     `;
-  const home = document.getElementById('main-login');
+  const home = document.querySelector('.main-login');
   home.innerHTML = '';
   home.innerHTML = viewHome;
   const commentPublic = home.querySelector('#commentPublish');
@@ -127,6 +127,9 @@ const Home = (() => {
       showPosts(commentPublic);
     }
   });
+
+  const commentPublish = home.querySelector('#commentPublish');
+  showPosts(commentPublish);
 
   return home;
 });
