@@ -1,4 +1,5 @@
 import { addPost, updatePostBd } from '../controller/post.js';
+import { updateCommentBd } from '../controller/comment.js';
 
 export const createPost = (() => {
   const notePost = document.getElementById('btn-add-note');
@@ -13,7 +14,7 @@ function showModal(doc) {
   const modalMode = document.getElementById('modal-mode');
   const modalWindow = document.getElementById('modal-window');
   modalMode.classList.toggle('hide');
-  modalWindow.innerHTML = `<section class="headerPost"><h3>Edit post</h3>
+  modalWindow.innerHTML = `<section class="headerPost"><h3>Edit</h3>
   <button title="Close" class="modal-close">Close</button></section> 
   <section id="body-modal" class="contentGeneral">
       <h5 class="nameP" id="modal-username">${doc.data().user}</h5>
@@ -36,6 +37,17 @@ export function updatePost(doc) {
   button.addEventListener('click', () => {
     const postEdit = document.getElementById('input-edit-note').value;
     updatePostBd(doc.id, postEdit);
+    modalMode.classList.toggle('hide');
+  });
+}
+
+export function updateComment(doc) {
+  showModal(doc);
+  const modalMode = document.getElementById('modal-mode');
+  const button = document.getElementById('btn-edit-note');
+  button.addEventListener('click', () => {
+    const postEdit = document.getElementById('input-edit-note').value;
+    updateCommentBd(doc.id, postEdit);
     modalMode.classList.toggle('hide');
   });
 }
