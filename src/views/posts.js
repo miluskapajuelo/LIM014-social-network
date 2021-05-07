@@ -1,12 +1,22 @@
-import { auth } from "../configFirebase.js";
-import { removePost,updatePost } from "../controller/postController.js";
+import { removePostBd } from '../controller/post.js';
+import { updatePost } from '../model/firebase-post.js';
+import { commentView } from './comment.js';
+import { getComment, addCommentBd } from '../controller/comment.js';
 
-const postsView = (doc) => {
-  const divElement = document.createElement("div");
-  divElement.classList.add("posting", "show");
+const showComment = (elm, idPost) => {
+  getComment(idPost, (post) => {
+    // eslint-disable-next-line no-param-reassign
+    elm.innerHTML = '';
+    post.forEach((doc) => {
+      elm.appendChild(commentView(doc));
+    });
+  });
+};
 
-  const viewPosts = `
-    <div class="more">
+const postsView = ((doc) => {
+  const divElem = document.createElement('div');
+  divElem.classList.add('posting');
+  const viewPosts = `<div class="more">
         <div>
             <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
             <p class="more-name">${doc.data().user}</p>
@@ -31,46 +41,47 @@ const postsView = (doc) => {
             <button type="button" class="btn-cm"><span class="material-icons">chat_bubble_outline</span> Comments</button>
         </section>
     </section>
-    <section class="show-comments">
+    <section class="show-comments show">
         <section class="area-cm">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-            <button type="button">Post</button>
+        <textarea name="" class="input-new-comment" id="" cols="30" rows="10"></textarea>
+        <button type="button" class="btn-add-comment">Post</button>
         </section>
-        <article class="one-cm">
-            <div class="head-cm">
-                <h5 class="name-cm">Pycode</h5>
-                <button class="btn-more" type="button">...</button>
-                <div class="btn-list hide">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <p>#Phyton ipsum dolor sit amet consectetur adipisicing elit. Laudantium dolore temporibus rerum saepe hic ex unde ducimus dicta velit sequi?</p>
-        </article>
-        <article class="one-cm">
-            <div class="head-cm">
-                <h5 class="name-cm">Imran White</h5>
-                <button class="btn-more" type="button">...</button>
-            </div>
-            <p>Tengo que hacer mi Salat</p>
-        </article>
-    </section>
-`;
-  divElement.innerHTML = viewPosts;
-  //grupo de queryselectors
-  const btnRemove = divElement.querySelector(".removeBtn");
-  const elm = divElement.querySelector(".more > .btn-more");
-  const btnList = divElement.querySelector(".more > .btn-list");
-  //habilita la lista de opciones
-  if (doc.data().uid == auth.currentUser.uid) {
-    elm.addEventListener("click", () => {
-      btnList.classList.toggle("hide");
+        <section id="comment-article">
+        </section>
+    </section>`;
+  divElem.innerHTML = viewPosts;
+  const elm = divElem.querySelector('.more > .btn-more');
+  const btnList = divElem.querySelector('.more > .btn-list');
+  const btnCm = divElem.querySelector('.btn-cm');
+  const showCm = divElem.querySelector('.show-comments');
+  const btnRemove = divElem.querySelector('.removeBtn');
+  const btnUpdate = divElem.querySelector('.editBtn');
+
+  btnCm.addEventListener('click', () => {
+    showCm.classList.toggle('show');
+  });
+
+  if (doc.data().uid === firebase.auth().currentUser.uid) {
+    elm.addEventListener('click', () => {
+      btnList.classList.toggle('hide');
+    });
+    btnRemove.addEventListener('click', () => {
+      removePostBd(doc.id);
+    });
+    btnUpdate.addEventListener('click', () => {
+      updatePost(doc);
     });
   }
-  //función para remover las publicaciones
-  btnRemove.addEventListener("click", () => removePost(doc.id));      
-     
-  return divElement;
-};
+
+  const btnAddComment = divElem.querySelector('.btn-add-comment');
+  btnAddComment.addEventListener('click', () => {
+    const commentEdit = divElem.querySelector('.input-new-comment').value;
+    addCommentBd(doc.id, commentEdit);
+    divElem.querySelector('.input-new-comment').value = '';
+  });
+  const commentArticle = showCm.querySelector('#comment-article');
+  showComment(commentArticle, doc.id);
+  return divElem;
+});
 
 export { postsView };

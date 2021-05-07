@@ -1,17 +1,29 @@
-import addPost, { getNameUser, getInfo } from '../model/firebase-post-model.js';
-import { signOut } from '../controller/auth.js';
-import { getPost } from "../controller/postController.js";
-import { postsView } from "../views/posts.js";
-// import { searchPost } from '../model/checkLogin-model.js';
+import { signOut } from '../controller/login.js';
+import { postsView } from './posts.js';
+import { getPost, getNameUser, getInfo } from '../controller/post.js';
 
 const showPosts = (elm) => {
   getPost((post) => {
-    elm.innerHTML = ''
-    post.forEach((element) =>{
-      elm.appendChild(postsView(element))
-    })
+    // eslint-disable-next-line no-param-reassign
+    elm.innerHTML = '';
+    post.forEach((doc) => {
+      elm.appendChild(postsView(doc));
+    });
   });
 };
+const filterPost = ((value, elm) => {
+  getPost((post) => {
+    // eslint-disable-next-line no-param-reassign
+    elm.innerHTML = '';
+    post.forEach((doc) => {
+      if (doc.data().publication.toLowerCase().search(value.toLowerCase()) !== -1) {
+        elm.appendChild(postsView(doc));
+      }
+    });
+  });
+});
+
+
 
 
 
@@ -109,6 +121,17 @@ const Home = (() => {
   const home = document.querySelector('.main-login');
   home.innerHTML = '';
   home.innerHTML = viewHome;
+  const commentPublic = home.querySelector('#commentPublish');
+  const btnSearch = home.querySelector('#search');
+  showPosts(commentPublic);
+
+  btnSearch.addEventListener('keyup', (e) => {
+    if (e.target.value.length > 0) {
+      filterPost(e.target.value, commentPublic);
+    } else {
+      showPosts(commentPublic);
+    }
+  });
 
   const commentPublish = home.querySelector('#commentPublish')
   showPosts(commentPublish)

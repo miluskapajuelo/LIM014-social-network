@@ -1,5 +1,5 @@
 import { components } from '../components.js';
-import { createPost} from '../../model/checkLogin-model.js';
+import { createPost } from '../../model/firebase-post.js';
 import { auth } from '../../configFirebase.js';
 
 const changeView = (route) => {
