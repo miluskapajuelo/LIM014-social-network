@@ -23,7 +23,12 @@ const filterPost = ((value, elm) => {
   });
 });
 
+
+
+
+
 const Home = (() => {
+  
   const viewHome = `<header id="main-header" class ="header">
     <nav class="nav-list">
         <div class="logo-nav">
@@ -113,7 +118,7 @@ const Home = (() => {
     </section>
     </section>
     `;
-  const home = document.getElementById('main-login');
+  const home = document.querySelector('.main-login');
   home.innerHTML = '';
   home.innerHTML = viewHome;
   const commentPublic = home.querySelector('#commentPublish');
@@ -128,6 +133,10 @@ const Home = (() => {
     }
   });
 
+  const commentPublish = home.querySelector('#commentPublish')
+  showPosts(commentPublish)
+
+  
   return home;
 });
 
