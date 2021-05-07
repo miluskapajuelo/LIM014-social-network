@@ -21,12 +21,7 @@ const filterPost = ((value, elm) => {
   });
 });
 
-
-
-
-
 const Home = (() => {
-  
   const viewHome = `<header id="main-header" class ="header">
     <nav class="nav-list">
         <div class="logo-nav">
@@ -131,10 +126,8 @@ const Home = (() => {
     }
   });
 
-  const commentPublish = home.querySelector('#commentPublish')
-  showPosts(commentPublish)
-
-  
+  const commentPublish = home.querySelector('#commentPublish');
+  showPosts(commentPublish);
   return home;
 });
 
