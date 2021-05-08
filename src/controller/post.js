@@ -52,7 +52,7 @@ export const addPost = ((post) => {
       uid: firebase.auth().currentUser.uid,
       datePost: dateP,
       user: msg,
-      likePost:[]
+      likePost: [],
     });
   });
 });
@@ -60,7 +60,6 @@ export const addPost = ((post) => {
 export const removePostBd = ((id) => {
   fs.collection('post').doc(id).delete()
     .then(() => {
-      alert('Document successfully deleted!');
     })
     .catch((error) => {
       console.error('Error removing document: ', error);
@@ -79,11 +78,12 @@ export const updatePostBd = (id, postEdit) => fs.collection('post').doc(id)
 
 export const likePostBd = (doc, likeUser) => {
   fs.collection('post').doc(doc.id)
-  .update({
-    'likePost': likeUser,
-  }).then(() => {
-    console.log('Document successfully liked!');
-  })
-  .catch((error) => {
-    console.error('Error removing document: ', error);
-  });}
+    .update({
+      likePost: likeUser,
+    }).then(() => {
+      console.log('Document successfully liked!');
+    })
+    .catch((error) => {
+      console.error('Error removing document: ', error);
+    });
+};

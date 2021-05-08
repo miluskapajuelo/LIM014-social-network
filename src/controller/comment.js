@@ -31,7 +31,6 @@ export const removeCommentBd = (id) => {
     .doc(id)
     .delete()
     .then(() => {
-      alert('Document successfully deleted!');
     })
     .catch((error) => {
       console.error('Error removing document: ', error);
