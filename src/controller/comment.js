@@ -14,7 +14,7 @@ export const getComment = ((idPost, callback) => {
       });
       callback(newArray);
     });
-};
+});
 
 export const addCommentBd = (id, inputcomment) =>
   getNameUser().then((msg) => {
