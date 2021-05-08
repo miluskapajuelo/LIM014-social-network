@@ -6,7 +6,7 @@ import { getComment, addCommentBd } from '../controller/comment.js';
 const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
     elm.innerHTML = '';
-    cmElm.textContent = post.length;
+    cmElm.innerHTML = post.length; 
     post.forEach((doc) => {
       elm.appendChild(commentView(doc));
     });
@@ -60,11 +60,18 @@ const postsView = ((doc) => {
   const showCm = divElem.querySelector('.show-comments');
   const btnRemove = divElem.querySelector('.removeBtn');
   const btnUpdate = divElem.querySelector('.editBtn');
-  const btnLike = divElem.querySelector('.btn-like')
+  const btnLike = divElem.querySelector('.btn-like');
+  const btnAddComment = divElem.querySelector('.btn-add-comment');
+  const commentArticle = showCm.querySelector('#comment-article');
 
   btnCm.addEventListener('click', () => {
     showCm.classList.toggle('show');
   });
+  
+   //function no limited by logged in user
+   btnLike.addEventListener('click', ()=>{
+    likePost(doc)
+  })
 
   //get number of likes per doc
   countLikesPost(doc, countLikes)
@@ -81,20 +88,16 @@ const postsView = ((doc) => {
       updatePost(doc);
     });
   }
-  //function no limited by logged in user
-  btnLike.addEventListener('click', ()=>{
-    likePost(doc)
-  })
-  
-  const btnAddComment = divElem.querySelector('.btn-add-comment');
+   
   btnAddComment.addEventListener('click', () => {
     const commentEdit = divElem.querySelector('.input-new-comment').value;
     addCommentBd(doc.id, commentEdit);
     divElem.querySelector('.input-new-comment').value = '';
   });
-  const commentArticle = showCm.querySelector('#comment-article');
+
   const countElm = divElem.querySelector('.countCm');
   showComment(commentArticle, doc.id, countElm);
+
   return divElem;
 });
 
