@@ -1,6 +1,6 @@
 import { signOut } from '../controller/login.js';
 import { postsView } from './posts.js';
-import { getPost, getNameUser, getInfo } from '../controller/post.js';
+import { getPost, getNameUser, getInfo,getBestPost } from '../controller/post.js';
 
 const showPosts = (elm) => {
   getPost((post) => {
@@ -21,7 +21,14 @@ const filterPost = ((value, elm) => {
   });
 });
 
-
+const showBestPosts = (elm) => {
+  getBestPost((post) => {
+    elm.innerHTML = '';
+    post.forEach((doc) => {
+      elm.appendChild(postsView(doc));
+    });
+  });
+};
 
 
 
@@ -54,41 +61,9 @@ const Home = (() => {
             <p class="classInfo"></p>
         </div>
     </header>
-    <section class="best-post">
+    <section class="bestPost">
         <h3>Best Post</h3>
-        <div class="posting show">
-            <div class="more">
-                <div class="img-post">
-                    <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
-                    <p class="more-name">Fulanita de perez</p>
-                </div>
-                <button class="btn-more" type="button">...</button>
-                <div class="btn-list hide">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <section class="body-posting">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, est? Tempore</p>
-            </section>
-            <section class="btn-posting">
-                <section class="btn-total">
-                    <p><span>20</span> likes</p>
-                    <p><span>102</span> comment</p>
-                </section>
-                <section class="btn-group">
-                    <button type="button" class="btn-like">
-                        <span class="material-icons">thumb_up</span>Like</button>
-                    <button type="button" class="btn-cm"><span class="material-icons">chat_bubble_outline</span> Comments</button>
-                </section>
-            </section>
-            <section class="show-comments">
-                <section class="area-cm">
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                    <button type="button">Post</button>
-                </section>
-            </section>
-        </div>
+        
     </section>
     <section class="search">
         <textarea id="input-new-note" placeholder="What do you want to share?" name="comment" cols="30" rows="10"></textarea>
@@ -123,6 +98,11 @@ const Home = (() => {
   const btnSearch = home.querySelector('#search');
   showPosts(commentPublic);
 
+
+  const bestPost = home.querySelector('.bestPost');
+  showBestPosts(bestPost);
+
+
   btnSearch.addEventListener('keyup', (e) => {
     if (e.target.value.length > 0) {
       filterPost(e.target.value, commentPublic);
@@ -130,9 +110,6 @@ const Home = (() => {
       showPosts(commentPublic);
     }
   });
-
-  const commentPublish = home.querySelector('#commentPublish')
-  showPosts(commentPublish)
 
   
   return home;
