@@ -3,7 +3,7 @@ import { getNameUser } from './post.js';
 
 const dateP = firebase.firestore.FieldValue.serverTimestamp();
 
-export const getComment = (idPost, callback) => {
+export const getComment = ((idPost, callback) => {
   fs.collection('comments')
     .where('postId', '==', idPost)
     .orderBy('datePost', 'desc')
@@ -14,7 +14,7 @@ export const getComment = (idPost, callback) => {
       });
       callback(newArray);
     });
-};
+});
 
 export const addCommentBd = (id, inputcomment) => getNameUser().then((msg) => {
   fs.collection('comments').add({

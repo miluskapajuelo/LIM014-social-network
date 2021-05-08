@@ -4,7 +4,6 @@ import { getPost, getNameUser, getInfo } from '../controller/post.js';
 
 const showPosts = (elm) => {
   getPost((post) => {
-    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
     post.forEach((doc) => {
       elm.appendChild(postsView(doc));
@@ -13,7 +12,6 @@ const showPosts = (elm) => {
 };
 const filterPost = ((value, elm) => {
   getPost((post) => {
-    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
     post.forEach((doc) => {
       if (doc.data().publication.toLowerCase().search(value.toLowerCase()) !== -1) {
@@ -55,7 +53,7 @@ const Home = (() => {
         <h3>Best Post</h3>
         <div class="posting show">
             <div class="more">
-                <div>
+                <div class="img-post">
                     <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
                     <p class="more-name">Fulanita de perez</p>
                 </div>
@@ -142,7 +140,6 @@ const eventInitHome = (() => {
     burger.classList.toggle('open');
     list.classList.toggle('open');
   });
-  // searchPost(document.getElementById('search'));
 });
 
 const nameUser = (() => {

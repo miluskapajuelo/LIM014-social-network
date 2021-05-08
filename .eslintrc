@@ -32,6 +32,7 @@
     "no-console": "off",
     "consistent-return": "off",
     "no-alert": "off",
-    "arrow-body-style": "off"
+    "arrow-body-style": "off",
+    "no-param-reassign": "off"
   }
 }
