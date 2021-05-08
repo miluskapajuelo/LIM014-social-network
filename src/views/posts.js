@@ -1,4 +1,4 @@
-import { removePostBd } from '../controller/post.js';
+import { removePostBd ,countLikesPost} from '../controller/post.js';
 import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
@@ -15,6 +15,7 @@ const showComment = (elm, idPost, cmElm) => {
 
 const postsView = ((doc) => {
   let likepost = doc.data().likePost
+  let countLikes = likepost.length
   const divElem = document.createElement('div');
   divElem.classList.add('posting');
   const viewPosts = `<div class="more">
@@ -33,7 +34,7 @@ const postsView = ((doc) => {
     </section>
     <section class="btn-posting">
         <section class="btn-total">
-            <p><span>${likepost.length}</span> likes</p>
+            <p><span>${countLikes}</span> likes</p>
             <p><span class="countCm"></span> comment</p>
         </section>
         <section class="btn-group">
@@ -51,6 +52,8 @@ const postsView = ((doc) => {
         </section>
     </section>`;
   divElem.innerHTML = viewPosts;
+
+   //queryselector of buttons in divElement
   const elm = divElem.querySelector('.more > .btn-more');
   const btnList = divElem.querySelector('.more > .btn-list');
   const btnCm = divElem.querySelector('.btn-cm');
@@ -63,8 +66,10 @@ const postsView = ((doc) => {
     showCm.classList.toggle('show');
   });
 
+  //get number of likes per doc
+  countLikesPost(doc, countLikes)
 
-
+  //functions limited by logged in user
   if (doc.data().uid === firebase.auth().currentUser.uid) {
     elm.addEventListener('click', () => {
       btnList.classList.toggle('hide');
@@ -76,10 +81,11 @@ const postsView = ((doc) => {
       updatePost(doc);
     });
   }
-
+  //function no limited by logged in user
   btnLike.addEventListener('click', ()=>{
     likePost(doc)
   })
+  
   const btnAddComment = divElem.querySelector('.btn-add-comment');
   btnAddComment.addEventListener('click', () => {
     const commentEdit = divElem.querySelector('.input-new-comment').value;
