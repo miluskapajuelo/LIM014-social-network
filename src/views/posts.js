@@ -1,7 +1,7 @@
-import { removePostBd } from '../controller/post.js';
 import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
+import { confirmDeletePost } from '../model/modalDelete.js';
 
 const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
@@ -68,7 +68,7 @@ const postsView = ((doc) => {
       btnList.classList.toggle('hide');
     });
     btnRemove.addEventListener('click', () => {
-      removePostBd(doc.id);
+      confirmDeletePost(doc);
     });
     btnUpdate.addEventListener('click', () => {
       updatePost(doc);
@@ -81,8 +81,10 @@ const postsView = ((doc) => {
   const btnAddComment = divElem.querySelector('.btn-add-comment');
   btnAddComment.addEventListener('click', () => {
     const commentEdit = divElem.querySelector('.input-new-comment').value;
-    addCommentBd(doc.id, commentEdit);
-    divElem.querySelector('.input-new-comment').value = '';
+    if (commentEdit.length) {
+      addCommentBd(doc.id, commentEdit);
+      divElem.querySelector('.input-new-comment').value = '';
+    }
   });
   const commentArticle = showCm.querySelector('#comment-article');
   const countElm = divElem.querySelector('.countCm');
