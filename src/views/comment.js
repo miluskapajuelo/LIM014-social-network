@@ -17,6 +17,8 @@ export const commentView = ((doc) => {
   divElem2.innerHTML = viewComment;
   const btnRemoveCm = divElem2.querySelector('.removeBtnComment');
   const btnUpdateCm = divElem2.querySelector('.editBtnComment');
+  const elm = divElem2.querySelector('.btn-more');
+  const btnList = divElem2.querySelector('.btn-list');
 
   if (doc.data().uid === firebase.auth().currentUser.uid) {
     btnRemoveCm.addEventListener('click', () => {
@@ -24,6 +26,9 @@ export const commentView = ((doc) => {
     });
     btnUpdateCm.addEventListener('click', () => {
       updateComment(doc);
+    });
+    elm.addEventListener('click', () => {
+      btnList.classList.toggle('hide');
     });
   }
   return divElem2;
