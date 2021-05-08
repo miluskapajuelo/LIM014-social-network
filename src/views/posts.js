@@ -2,6 +2,10 @@ import { removePostBd ,countLikesPost} from '../controller/post.js';
 import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
+import { auth } from '../configFirebase.js';
+
+
+
 
 const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
@@ -20,7 +24,7 @@ const postsView = ((doc) => {
   divElem.classList.add('posting');
   const viewPosts = `<div class="more">
         <div class="img-post">
-            <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
+            <img id="imgUser" style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
             <p class="more-name">${doc.data().user}</p>
         </div>
         <button class="btn-more" type="button">...</button>
@@ -63,6 +67,7 @@ const postsView = ((doc) => {
   const btnLike = divElem.querySelector('.btn-like');
   const btnAddComment = divElem.querySelector('.btn-add-comment');
   const commentArticle = showCm.querySelector('#comment-article');
+  const imgUser = divElem.querySelector('#imgUser')
 
   btnCm.addEventListener('click', () => {
     showCm.classList.toggle('show');
@@ -87,6 +92,7 @@ const postsView = ((doc) => {
     btnUpdate.addEventListener('click', () => {
       updatePost(doc);
     });
+    
   }
    
   btnAddComment.addEventListener('click', () => {
