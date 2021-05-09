@@ -1,12 +1,15 @@
+import { removePostBd ,countLikesPost} from '../controller/post.js';
 import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
+import { auth } from '../configFirebase.js';
 import { confirmDeletePost } from '../model/modalDelete.js';
+
 
 const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
     elm.innerHTML = '';
-    cmElm.textContent = post.length;
+    cmElm.innerHTML = post.length; 
     post.forEach((doc) => {
       elm.appendChild(commentView(doc));
     });
@@ -14,12 +17,13 @@ const showComment = (elm, idPost, cmElm) => {
 };
 
 const postsView = ((doc) => {
-  const likepost = doc.data().likePost;
+  let likepost = doc.data().likePost
+  let countLikes = likepost.length
   const divElem = document.createElement('div');
   divElem.classList.add('posting');
   const viewPosts = `<div class="more">
         <div class="img-post">
-            <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
+            <img id="imgUser" style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
             <p class="more-name">${doc.data().user}</p>
         </div>
         <button class="btn-more" type="button">...</button>
@@ -33,7 +37,7 @@ const postsView = ((doc) => {
     </section>
     <section class="btn-posting">
         <section class="btn-total">
-            <p><span>${likepost.length}</span> likes</p>
+            <p><span>${countLikes}</span> likes</p>
             <p><span class="countCm"></span> comment</p>
         </section>
         <section class="btn-group">
@@ -51,6 +55,8 @@ const postsView = ((doc) => {
         </section>
     </section>`;
   divElem.innerHTML = viewPosts;
+
+   //queryselector of buttons in divElement
   const elm = divElem.querySelector('.more > .btn-more');
   const btnList = divElem.querySelector('.more > .btn-list');
   const btnCm = divElem.querySelector('.btn-cm');
@@ -58,11 +64,23 @@ const postsView = ((doc) => {
   const btnRemove = divElem.querySelector('.removeBtn');
   const btnUpdate = divElem.querySelector('.editBtn');
   const btnLike = divElem.querySelector('.btn-like');
+  const btnAddComment = divElem.querySelector('.btn-add-comment');
+  const commentArticle = showCm.querySelector('#comment-article');
+  const imgUser = divElem.querySelector('#imgUser')
 
   btnCm.addEventListener('click', () => {
     showCm.classList.toggle('show');
   });
+  
+   //function no limited by logged in user
+   btnLike.addEventListener('click', ()=>{
+    likePost(doc)
+  })
 
+  //get number of likes per doc
+  countLikesPost(doc, countLikes)
+
+  //functions limited by logged in user
   if (doc.data().uid === firebase.auth().currentUser.uid) {
     elm.addEventListener('click', () => {
       btnList.classList.toggle('hide');
@@ -73,12 +91,9 @@ const postsView = ((doc) => {
     btnUpdate.addEventListener('click', () => {
       updatePost(doc);
     });
+    
   }
 
-  btnLike.addEventListener('click', () => {
-    likePost(doc);
-  });
-  const btnAddComment = divElem.querySelector('.btn-add-comment');
   btnAddComment.addEventListener('click', () => {
     const commentEdit = divElem.querySelector('.input-new-comment').value;
     if (commentEdit.length) {
@@ -86,9 +101,10 @@ const postsView = ((doc) => {
       divElem.querySelector('.input-new-comment').value = '';
     }
   });
-  const commentArticle = showCm.querySelector('#comment-article');
+
   const countElm = divElem.querySelector('.countCm');
   showComment(commentArticle, doc.id, countElm);
+
   return divElem;
 });
 

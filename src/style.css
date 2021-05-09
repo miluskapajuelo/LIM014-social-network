@@ -791,7 +791,7 @@ form .typeLog > div > button > img {
     display: block;
     grid-area: best;
     align-self: start;
-    text-align: center;
+    /* text-align: center; */
     font-family: 'Poppins', sans-serif;
     border-radius: 8px 8px 0px 0px;
   }
@@ -801,8 +801,13 @@ form .typeLog > div > button > img {
     color: rgb(65, 63, 63);
     line-height: 35px;
     font-size: 14px;
+    text-align: center;
     border-radius: 5px 5px 0px 0px;
     border-bottom: 1px solid rgba(186, 199, 224, 0.3);
+  }
+  .bestPost{
+    display: grid;
+    grid-gap: 15px;
   }
   .grid > .search{
     grid-area: pc;
