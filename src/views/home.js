@@ -30,10 +30,7 @@ const showBestPosts = (elm) => {
   });
 };
 
-
-
 const Home = (() => {
-  
   const viewHome = `<header id="main-header" class ="header">
     <nav class="nav-list">
         <div class="logo-nav">
@@ -124,7 +121,6 @@ const Home = (() => {
     }
   });
 
-  
   return home;
 });
 

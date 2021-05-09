@@ -66,7 +66,6 @@ export const getPost = ((callback) => {
 export const removePostBd = ((id) => {
   fs.collection('post').doc(id).delete()
     .then(() => {
-      alert('Document successfully deleted!');
     })
     .catch((error) => {
       console.error('Error removing document: ', error);

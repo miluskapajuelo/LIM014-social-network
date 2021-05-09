@@ -1,5 +1,5 @@
-import { removeCommentBd } from '../controller/comment.js';
 import { updateComment } from '../model/firebase-post.js';
+import { confirmDeleteComment } from '../model/modalDelete.js';
 
 export const commentView = ((doc) => {
   const divElem2 = document.createElement('div');
@@ -22,7 +22,7 @@ export const commentView = ((doc) => {
 
   if (doc.data().uid === firebase.auth().currentUser.uid) {
     btnRemoveCm.addEventListener('click', () => {
-      removeCommentBd(doc.id);
+      confirmDeleteComment(doc);
     });
     btnUpdateCm.addEventListener('click', () => {
       updateComment(doc);

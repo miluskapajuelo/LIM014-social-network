@@ -3,8 +3,7 @@ import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
 import { auth } from '../configFirebase.js';
-
-
+import { confirmDeletePost } from '../model/modalDelete.js';
 
 
 const showComment = (elm, idPost, cmElm) => {
@@ -87,18 +86,20 @@ const postsView = ((doc) => {
       btnList.classList.toggle('hide');
     });
     btnRemove.addEventListener('click', () => {
-      removePostBd(doc.id);
+      confirmDeletePost(doc);
     });
     btnUpdate.addEventListener('click', () => {
       updatePost(doc);
     });
     
   }
-   
+
   btnAddComment.addEventListener('click', () => {
     const commentEdit = divElem.querySelector('.input-new-comment').value;
-    addCommentBd(doc.id, commentEdit);
-    divElem.querySelector('.input-new-comment').value = '';
+    if (commentEdit.length) {
+      addCommentBd(doc.id, commentEdit);
+      divElem.querySelector('.input-new-comment').value = '';
+    }
   });
 
   const countElm = divElem.querySelector('.countCm');
