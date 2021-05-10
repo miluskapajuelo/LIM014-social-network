@@ -82,10 +82,7 @@ const Home = (() => {
                     </span>
             </span>
         </label>
-        <div class="buttom-nav">
-            <button type="button" class="latestPost">Latest</button>
-            <button type="button" class="btnBestPost">Best top</button>
-        </div>
+
         <div id="commentPublish" class="posting-history">
             
         </div>
@@ -97,14 +94,7 @@ const Home = (() => {
   home.innerHTML = viewHome;
   const commentPublic = home.querySelector('#commentPublish');
   const btnSearch = home.querySelector('#search');
-  const btnBestPost = home.querySelector('.btnBestPost');
-  const latestPost = home.querySelector('.latestPost');
-  btnBestPost.addEventListener('click', () => {
-    showBestPosts(commentPublic);
-  });
-  latestPost.addEventListener('click', () => {
-    showPosts(commentPublic);
-  });
+
 
   const bestPost = home.querySelector('.bestPost');
   showBestPosts(bestPost);
