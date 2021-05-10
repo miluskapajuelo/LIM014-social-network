@@ -1,10 +1,10 @@
 import {
   addPost,
   updatePostBd,
-  getNameUser,
   likePostBd,
 } from '../controller/post.js';
 import { updateCommentBd } from '../controller/comment.js';
+import { getUser } from '../controller/login.js';
 
 export const createPost = () => {
   const post = document.getElementById('input-new-note');
@@ -65,18 +65,17 @@ export function updateComment(doc) {
 
 export function likePost(doc) {
   const array = doc.data().likePost;
-  getNameUser().then((msg) => {
-    if (array.length > 0) {
-      const user = array.filter((element) => element === msg);
-      const i = array.indexOf(user.join());
-      if (i !== -1) {
-        array.splice(i, 1);
-      } else {
-        array.push(msg);
-      }
+  const getName = getUser().displayName;
+  if (array.length > 0) {
+    const user = array.filter((element) => element === getName);
+    const i = array.indexOf(user.join());
+    if (i !== -1) {
+      array.splice(i, 1);
     } else {
-      array.push(msg);
+      array.push(getName);
     }
-    return likePostBd(doc, array);
-  });
+  } else {
+    array.push(getName);
+  }
+  return likePostBd(doc, array);
 }

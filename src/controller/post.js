@@ -1,7 +1,8 @@
-import { auth, fs } from '../configFirebase.js';
+import { fs } from '../configFirebase.js';
+import { getUser } from './login.js';
 
-//get info of user logged
-export const getInfo = () => new Promise((resolve) => {
+// get info of user logged
+/* export const getInfo = () => new Promise((resolve) => {
   const infodefault = 'Frontend developer';
   if (auth.currentUser.displayName === null) {
     const prueba = fs.collection('users').get();
@@ -15,10 +16,10 @@ export const getInfo = () => new Promise((resolve) => {
   } else {
     resolve(infodefault);
   }
-});
+}); */
 
-//get name of user logged
-export const getNameUser = () => new Promise((resolve) => {
+// get name of user logged
+/* export const getNameUser = () => new Promise((resolve) => {
   if (auth.currentUser.displayName === null) {
     const prueba = fs.collection('users').get();
     prueba.then((omg) => {
@@ -32,24 +33,22 @@ export const getNameUser = () => new Promise((resolve) => {
     resolve(firebase.auth().currentUser.displayName);
   }
 });
-
-//Create post in firebase
+ */
+// Create post in firebase
 export const addPost = ((post) => {
   const dateP = firebase.firestore.FieldValue.serverTimestamp();
-  getNameUser().then((msg) => {
-    fs.collection('post').add({
-      publication: post,
-      email: firebase.auth().currentUser.email,
-      uid: firebase.auth().currentUser.uid,
-      datePost: dateP,
-      user: msg,
-      likePost:[],
-      countLikes:0
-    });
+  fs.collection('post').add({
+    publication: post,
+    email: firebase.auth().currentUser.email,
+    uid: firebase.auth().currentUser.uid,
+    datePost: dateP,
+    user: getUser().displayName,
+    likePost: [],
+    countLikes: 0,
   });
 });
 
-//Get doc of all post
+// Get doc of all post
 export const getPost = ((callback) => {
   fs.collection('post')
     .orderBy('datePost', 'desc')
@@ -62,7 +61,7 @@ export const getPost = ((callback) => {
     });
 });
 
-//Delete post 
+// Delete post
 export const removePostBd = ((id) => {
   fs.collection('post').doc(id).delete()
     .then(() => {
@@ -72,7 +71,7 @@ export const removePostBd = ((id) => {
     });
 });
 
-//Update post where users edited post
+// Update post where users edited post
 export const updatePostBd = (id, postEdit) => fs.collection('post').doc(id)
   .update({
     publication: postEdit,
@@ -83,41 +82,42 @@ export const updatePostBd = (id, postEdit) => fs.collection('post').doc(id)
     console.error('Error removing document: ', error);
   });
 
-//Update users who liked a post
+// Update users who liked a post
 export const likePostBd = (doc, likeUser) => {
   fs.collection('post').doc(doc.id)
-  .update({
-    'likePost': likeUser,
-  }).then(() => {
-    console.log('Document successfully liked!');
-  })
-  .catch((error) => {
-    console.error('Error removing document: ', error);
-  });}
+    .update({
+      likePost: likeUser,
+    }).then(() => {
+      console.log('Document successfully liked!');
+    })
+    .catch((error) => {
+      console.error('Error removing document: ', error);
+    });
+};
 
-//Update number of likes
-export const countLikesPost = (doc, countLikes) =>{
+// Update number of likes
+export const countLikesPost = (doc, countLikes) => {
   fs.collection('post').doc(doc.id)
-  .update({
-    'countLikes': countLikes,
-  }).then(() => {
-    console.log('Document successfully counted!');
-  })
-  .catch((error) => {
-    console.error('Error removing document: ', error);
-  });
-}
+    .update({
+      countLikes,
+    }).then(() => {
+      console.log('Document successfully counted!');
+    })
+    .catch((error) => {
+      console.error('Error removing document: ', error);
+    });
+};
 
-//Get best post top(5)
+// Get best post top(5)
 export const getBestPost = ((callback) => {
-    fs.collection('post')
-      .orderBy('countLikes', 'desc')
-      .limit(5)
-      .onSnapshot((querySnapshot) => {
-        const newArray = [];
-        querySnapshot.forEach((doc) => {
-          newArray.push(doc);
-        });
-        callback(newArray);
+  fs.collection('post')
+    .orderBy('countLikes', 'desc')
+    .limit(5)
+    .onSnapshot((querySnapshot) => {
+      const newArray = [];
+      querySnapshot.forEach((doc) => {
+        newArray.push(doc);
       });
-  });
+      callback(newArray);
+    });
+});
