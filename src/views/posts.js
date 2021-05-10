@@ -72,8 +72,8 @@ const postsView = ((doc) => {
   // function no limited by logged in user
   btnLike.addEventListener('click', () => {
     likePost(doc);
-    countLikesPost(doc, countLikes);
   });
+  countLikesPost(doc, countLikes);
 
   // get number of likes per doc
 
