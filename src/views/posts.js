@@ -1,15 +1,13 @@
-import { removePostBd ,countLikesPost} from '../controller/post.js';
+import { countLikesPost } from '../controller/post.js';
 import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
-import { auth } from '../configFirebase.js';
 import { confirmDeletePost } from '../model/modalDelete.js';
-
 
 const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
     elm.innerHTML = '';
-    cmElm.innerHTML = post.length; 
+    cmElm.innerHTML = post.length;
     post.forEach((doc) => {
       elm.appendChild(commentView(doc));
     });
@@ -17,8 +15,8 @@ const showComment = (elm, idPost, cmElm) => {
 };
 
 const postsView = ((doc) => {
-  let likepost = doc.data().likePost
-  let countLikes = likepost.length
+  const likepost = doc.data().likePost;
+  const countLikes = likepost.length;
   const divElem = document.createElement('div');
   divElem.classList.add('posting');
   const viewPosts = `<div class="more">
@@ -56,7 +54,7 @@ const postsView = ((doc) => {
     </section>`;
   divElem.innerHTML = viewPosts;
 
-   //queryselector of buttons in divElement
+  // queryselector of buttons in divElement
   const elm = divElem.querySelector('.more > .btn-more');
   const btnList = divElem.querySelector('.more > .btn-list');
   const btnCm = divElem.querySelector('.btn-cm');
@@ -66,21 +64,20 @@ const postsView = ((doc) => {
   const btnLike = divElem.querySelector('.btn-like');
   const btnAddComment = divElem.querySelector('.btn-add-comment');
   const commentArticle = showCm.querySelector('#comment-article');
-  const imgUser = divElem.querySelector('#imgUser')
 
   btnCm.addEventListener('click', () => {
     showCm.classList.toggle('show');
   });
-  
-   //function no limited by logged in user
-   btnLike.addEventListener('click', ()=>{
-    likePost(doc)
-  })
 
-  //get number of likes per doc
-  countLikesPost(doc, countLikes)
+  // function no limited by logged in user
+  btnLike.addEventListener('click', () => {
+    likePost(doc);
+    countLikesPost(doc, countLikes);
+  });
 
-  //functions limited by logged in user
+  // get number of likes per doc
+
+  // functions limited by logged in user
   if (doc.data().uid === firebase.auth().currentUser.uid) {
     elm.addEventListener('click', () => {
       btnList.classList.toggle('hide');
@@ -91,7 +88,6 @@ const postsView = ((doc) => {
     btnUpdate.addEventListener('click', () => {
       updatePost(doc);
     });
-    
   }
 
   btnAddComment.addEventListener('click', () => {

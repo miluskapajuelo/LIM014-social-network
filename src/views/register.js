@@ -1,4 +1,6 @@
-import { createUserBD, verifEmail, createUser } from '../controller/login.js';
+import {
+  createUserBD, verifEmail, updateProfile,
+} from '../controller/login.js';
 
 const Register = (() => {
   const viewRegister = `<section class="container-change">
@@ -130,7 +132,10 @@ const eventInitRegister = (() => {
       form[4].classList.add('fail');
     } else {
       createUserBD(email, pass)
-        .then((result) => { createUser(result.user.uid, username, email, info); })
+        .then(() => {
+          updateProfile(username);
+          console.log(firebase.auth().currentUser);
+        })
         .then(() => {
           window.location.hash = '#/login';
           alert('Sending validation message to your email.');

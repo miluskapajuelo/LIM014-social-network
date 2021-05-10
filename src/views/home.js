@@ -1,6 +1,8 @@
-import { signOut } from '../controller/login.js';
+import { signOut, getUser } from '../controller/login.js';
 import { postsView } from './posts.js';
-import { getPost, getNameUser, getInfo,getBestPost } from '../controller/post.js';
+import {
+  getPost, getBestPost,
+} from '../controller/post.js';
 
 const showPosts = (elm) => {
   getPost((post) => {
@@ -95,23 +97,18 @@ const Home = (() => {
   home.innerHTML = viewHome;
   const commentPublic = home.querySelector('#commentPublish');
   const btnSearch = home.querySelector('#search');
-  const btnBestPost = home.querySelector('.btnBestPost')
-  const latestPost = home.querySelector('.latestPost')
-
-  btnBestPost.addEventListener('click',()=>{
+  const btnBestPost = home.querySelector('.btnBestPost');
+  const latestPost = home.querySelector('.latestPost');
+  btnBestPost.addEventListener('click', () => {
     showBestPosts(commentPublic);
-  })
-  latestPost.addEventListener('click',()=>{
+  });
+  latestPost.addEventListener('click', () => {
     showPosts(commentPublic);
-  })
-
-  showPosts(commentPublic);
-
+  });
 
   const bestPost = home.querySelector('.bestPost');
   showBestPosts(bestPost);
-
-  
+  showPosts(commentPublic);
 
   btnSearch.addEventListener('keyup', (e) => {
     if (e.target.value.length > 0) {
@@ -120,7 +117,6 @@ const Home = (() => {
       showPosts(commentPublic);
     }
   });
-
   return home;
 });
 
@@ -133,18 +129,14 @@ const eventInitHome = (() => {
     list.classList.toggle('open');
   });
 });
-
 const nameUser = (() => {
   const nombre = document.querySelector('.className');
-  getNameUser().then((name) => {
-    nombre.textContent = name;
-  });
+  nombre.textContent = getUser().displayName;
 });
+
 const infoUser = (() => {
   const informacion = document.querySelector('.classInfo');
-  getInfo().then((info) => {
-    informacion.textContent = info;
-  });
+  informacion.textContent = getUser().pa;
 });
 const logOut = (() => {
   const btnLogOut = document.querySelector('.log-out');
