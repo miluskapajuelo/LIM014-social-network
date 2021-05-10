@@ -1,17 +1,16 @@
-import { auth, fs } from '../configFirebase.js';
+import { auth } from '../configFirebase.js';
 // Iniciar sesion con credenciales creadas
 export const signIn = (email, password) => {
   return auth.signInWithEmailAndPassword(email, password);
 };
 
 /* Crea usuario, el documento recibe el nombre del id */
-export const createUser = (id, user, email, info) => fs
+/* export const createUser = (id, user, info) => fs
   .collection('users').doc(id).set({
     id,
     user,
-    email,
     info,
-  });
+  }); */
 // Crear usuario
 export const createUserBD = (email, password) => {
   return auth.createUserWithEmailAndPassword(email, password);
@@ -38,6 +37,16 @@ export const verifEmail = () => {
   };
   auth.currentUser.sendEmailVerification(configuration).then(() => {
   // Email sent.
+  }).catch((error) => {
+    console.log(error);
+  });
+};
+export const getUser = () => auth.currentUser;
+
+export const updateProfile = (username) => {
+  getUser().updateProfile({
+    displayName: username,
+  }).then(() => {
   }).catch((error) => {
     console.log(error);
   });
