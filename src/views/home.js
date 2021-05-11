@@ -1,7 +1,7 @@
 import { signOut, getUser } from '../controller/login.js';
 import { postsView } from './posts.js';
 import {
-  getPost, getBestPost,
+  getPost, getInfo, getBestPost,
 } from '../controller/post.js';
 
 const showPosts = (elm) => {
@@ -136,7 +136,9 @@ const nameUser = (() => {
 
 const infoUser = (() => {
   const informacion = document.querySelector('.classInfo');
-  informacion.textContent = getUser().pa;
+  getInfo().then((info) => {
+    informacion.textContent = info;
+  });
 });
 const logOut = (() => {
   const btnLogOut = document.querySelector('.log-out');
