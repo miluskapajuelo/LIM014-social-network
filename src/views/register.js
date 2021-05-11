@@ -1,5 +1,5 @@
 import {
-  createUserBD, verifEmail, updateProfile,
+  createUserBD, verifEmail, updateProfile, createUser,
 } from '../controller/login.js';
 
 const Register = (() => {
@@ -132,9 +132,9 @@ const eventInitRegister = (() => {
       form[4].classList.add('fail');
     } else {
       createUserBD(email, pass)
-        .then(() => {
+        .then((result) => {
           updateProfile(username);
-          console.log(firebase.auth().currentUser);
+          createUser(result.user.uid, info);
         })
         .then(() => {
           window.location.hash = '#/login';

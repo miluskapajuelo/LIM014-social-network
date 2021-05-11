@@ -1,39 +1,20 @@
-import { fs } from '../configFirebase.js';
+import { auth, fs } from '../configFirebase.js';
 import { getUser } from './login.js';
 
-// get info of user logged
-/* export const getInfo = () => new Promise((resolve) => {
-  const infodefault = 'Frontend developer';
-  if (auth.currentUser.displayName === null) {
-    const prueba = fs.collection('users').get();
-    prueba.then((omg) => {
-      omg.forEach((data) => {
-        if (data.data().id === auth.currentUser.uid) {
-          resolve(data.data().info);
-        }
-      });
+// Get info of user logged
+export const getInfo = () => new Promise((resolve) => {
+  const infodefault = 'Frontend developer - def';
+  const prueba = fs.collection('users').get();
+  prueba.then((omg) => {
+    omg.forEach((data) => {
+      if (data.data().id === auth.currentUser.uid) {
+        resolve(data.data().info);
+      }
     });
-  } else {
     resolve(infodefault);
-  }
-}); */
-
-// get name of user logged
-/* export const getNameUser = () => new Promise((resolve) => {
-  if (auth.currentUser.displayName === null) {
-    const prueba = fs.collection('users').get();
-    prueba.then((omg) => {
-      omg.forEach((data) => {
-        if (data.data().id === firebase.auth().currentUser.uid) {
-          resolve(data.data().user);
-        }
-      });
-    });
-  } else {
-    resolve(firebase.auth().currentUser.displayName);
-  }
+  });
 });
- */
+
 // Create post in firebase
 export const addPost = ((post) => {
   const dateP = firebase.firestore.FieldValue.serverTimestamp();

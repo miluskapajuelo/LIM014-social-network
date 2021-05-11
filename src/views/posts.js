@@ -76,7 +76,7 @@ const postsView = ((doc) => {
   countLikesPost(doc, countLikes);
 
   // get number of likes per doc
-
+  countLikesPost(doc, countLikes);
   // functions limited by logged in user
   if (doc.data().uid === firebase.auth().currentUser.uid) {
     elm.addEventListener('click', () => {
