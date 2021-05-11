@@ -1,5 +1,5 @@
 import { fs } from '../configFirebase.js';
-import { getNameUser } from './post.js';
+import { getUser } from './login.js';
 
 const dateP = firebase.firestore.FieldValue.serverTimestamp();
 export const getComment = ((idPost, callback) => {
@@ -15,13 +15,13 @@ export const getComment = ((idPost, callback) => {
     });
 });
 
-export const addCommentBd = (id, inputcomment) => getNameUser().then((msg) => {
+export const addCommentBd = ((id, inputcomment) => {
   fs.collection('comments').add({
     publication: inputcomment,
     uid: firebase.auth().currentUser.uid,
     postId: id,
     datePost: dateP,
-    user: msg,
+    user: getUser().displayName,
   });
 });
 

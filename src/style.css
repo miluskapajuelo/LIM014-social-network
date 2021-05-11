@@ -53,6 +53,7 @@ a {
   align-items: center;
   justify-content: center;
 }
+
 form .form {
   font-family: 'Poppins', sans-serif;
   color: #5c4d7d;
@@ -687,6 +688,35 @@ form .typeLog > div > button > img {
     font-size: 15px;
     color: #212529;
 }
+#modal-window > .contentGeneralDelete{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.buttonconfirm{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.contentGeneralDelete > .buttonconfirm > button{
+  padding: 9px 15px;
+  width: 150px;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(to top, #723C70, #892B64);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  box-shadow: 5px 5px 5px #c2e2e9;
+}
+.contentGeneralDelete > h5{
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-size: 15px;
+  color: #2a2e31;
+}
 #modal-window > .contentGeneral{
   display: flex;
   flex-direction: column;
@@ -773,7 +803,7 @@ form .typeLog > div > button > img {
     display: block;
     grid-area: best;
     align-self: start;
-    text-align: center;
+    /* text-align: center; */
     font-family: 'Poppins', sans-serif;
     border-radius: 8px 8px 0px 0px;
   }
@@ -783,8 +813,13 @@ form .typeLog > div > button > img {
     color: rgb(65, 63, 63);
     line-height: 35px;
     font-size: 14px;
+    text-align: center;
     border-radius: 5px 5px 0px 0px;
     border-bottom: 1px solid rgba(186, 199, 224, 0.3);
+  }
+  .bestPost{
+    display: grid;
+    grid-gap: 15px;
   }
   .grid > .search{
     grid-area: pc;

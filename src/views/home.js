@@ -1,6 +1,8 @@
-import { signOut } from '../controller/login.js';
+import { signOut, getUser } from '../controller/login.js';
 import { postsView } from './posts.js';
-import { getPost, getNameUser, getInfo } from '../controller/post.js';
+import {
+  getPost, getInfo, getBestPost,
+} from '../controller/post.js';
 
 const showPosts = (elm) => {
   getPost((post) => {
@@ -20,6 +22,15 @@ const filterPost = ((value, elm) => {
     });
   });
 });
+
+const showBestPosts = (elm) => {
+  getBestPost((post) => {
+    elm.innerHTML = '';
+    post.forEach((doc) => {
+      elm.appendChild(postsView(doc));
+    });
+  });
+};
 
 const Home = (() => {
   const viewHome = `<header id="main-header" class ="header">
@@ -51,39 +62,9 @@ const Home = (() => {
     </header>
     <section class="best-post">
         <h3>Best Post</h3>
-        <div class="posting show">
-            <div class="more">
-                <div class="img-post">
-                    <img style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
-                    <p class="more-name">Fulanita de perez</p>
-                </div>
-                <button class="btn-more" type="button">...</button>
-                <div class="btn-list hide">
-                    <button>Update</button>
-                    <button>Delete</button>
-                </div>
-            </div>
-            <section class="body-posting">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, est? Tempore</p>
-            </section>
-            <section class="btn-posting">
-                <section class="btn-total">
-                    <p><span>20</span> likes</p>
-                    <p><span>102</span> comment</p>
-                </section>
-                <section class="btn-group">
-                    <button type="button" class="btn-like">
-                        <span class="material-icons">thumb_up</span>Like</button>
-                    <button type="button" class="btn-cm"><span class="material-icons">chat_bubble_outline</span> Comments</button>
-                </section>
-            </section>
-            <section class="show-comments">
-                <section class="area-cm">
-                    <textarea name="" id="" cols="30" rows="10"></textarea>
-                    <button type="button">Post</button>
-                </section>
-            </section>
+        <div class="bestPost">
         </div>
+        
     </section>
     <section class="search">
         <textarea id="input-new-note" placeholder="What do you want to share?" name="comment" cols="30" rows="10"></textarea>
@@ -101,10 +82,7 @@ const Home = (() => {
                     </span>
             </span>
         </label>
-        <div class="buttom-nav">
-            <button type="button" class="active">Latest</button>
-            <button type="button">Best top</button>
-        </div>
+
         <div id="commentPublish" class="posting-history">
             
         </div>
@@ -116,6 +94,8 @@ const Home = (() => {
   home.innerHTML = viewHome;
   const commentPublic = home.querySelector('#commentPublish');
   const btnSearch = home.querySelector('#search');
+  const bestPost = home.querySelector('.bestPost');
+  showBestPosts(bestPost);
   showPosts(commentPublic);
 
   btnSearch.addEventListener('keyup', (e) => {
@@ -125,7 +105,6 @@ const Home = (() => {
       showPosts(commentPublic);
     }
   });
-
   const commentPublish = home.querySelector('#commentPublish');
   showPosts(commentPublish);
   return home;
@@ -140,13 +119,11 @@ const eventInitHome = (() => {
     list.classList.toggle('open');
   });
 });
-
 const nameUser = (() => {
   const nombre = document.querySelector('.className');
-  getNameUser().then((name) => {
-    nombre.textContent = name;
-  });
+  nombre.textContent = getUser().displayName;
 });
+
 const infoUser = (() => {
   const informacion = document.querySelector('.classInfo');
   getInfo().then((info) => {

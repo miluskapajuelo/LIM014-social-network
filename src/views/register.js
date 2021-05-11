@@ -1,4 +1,6 @@
-import { createUserBD, verifEmail, createUser } from '../controller/login.js';
+import {
+  createUserBD, verifEmail, updateProfile, createUser,
+} from '../controller/login.js';
 
 const Register = (() => {
   const viewRegister = `<section class="container-change">
@@ -124,7 +126,10 @@ const eventInitRegister = (() => {
       form[4].classList.add('fail');
     } else {
       createUserBD(email, pass)
-        .then((result) => { createUser(result.user.uid, username, email, info); })
+        .then((result) => {
+          updateProfile(username);
+          createUser(result.user.uid, info);
+        })
         .then(() => {
           window.location.hash = '#/login';
           alert('Sending validation message to your email.');
