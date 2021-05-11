@@ -33,6 +33,7 @@
     "consistent-return": "off",
     "no-alert": "off",
     "arrow-body-style": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "import/no-cycle": "off"
   }
 }

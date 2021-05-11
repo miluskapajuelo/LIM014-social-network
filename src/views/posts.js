@@ -37,9 +37,9 @@ const postsView = ((doc) => {
             <p><span class="countCm"></span> comment</p>
         </section>
         <section class="btn-group">
-            <button id="btn-like" class="btn-like" type="button">
+            <button id="btn-like" class="btn-like omg" type="button">
                 <span class="material-icons">thumb_up_off_alt</span> Like</button>
-            <button type="button" class="btn-cm"><span class="material-icons">chat_bubble_outline</span> Comments</button>
+            <button type="button" class="btn-cm omg"><span class="material-icons">chat_bubble_outline</span> Comments</button>
         </section>
     </section>
     <section class="show-comments show">

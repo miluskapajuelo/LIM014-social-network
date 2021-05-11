@@ -1,4 +1,5 @@
 import { auth, fs } from '../configFirebase.js';
+import { removeCommentBd } from './comment.js';
 
 export const getInfo = () => new Promise((resolve) => {
   const infodefault = 'Frontend developer';
@@ -65,6 +66,12 @@ export const removePostBd = ((id) => {
     .catch((error) => {
       console.error('Error removing document: ', error);
     });
+  const delateCm = fs.collection('comments').where('postId', '==', id).get();
+  delateCm.then((omg) => {
+    omg.forEach((cm) => {
+      removeCommentBd(cm.id);
+    });
+  });
 });
 
 export const updatePostBd = (id, postEdit) => fs.collection('post').doc(id)

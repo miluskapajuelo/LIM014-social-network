@@ -4,6 +4,7 @@ import { auth } from '../configFirebase.js';
 const Login = (() => {
   const viewLogin = `<section class="container-change">
   <figure class="figure-login">
+    <p>Connect and be part of the most important network of women in technology.</p>
     <img src="./img/undraw_Work_time_re_hdyv.svg" alt="">
   </figure>
   <form class="col" id="col-form">
