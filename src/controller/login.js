@@ -1,16 +1,15 @@
-import { auth } from '../configFirebase.js';
+import { fs, auth } from '../configFirebase.js';
 // Iniciar sesion con credenciales creadas
 export const signIn = (email, password) => {
   return auth.signInWithEmailAndPassword(email, password);
 };
 
 /* Crea usuario, el documento recibe el nombre del id */
-/* export const createUser = (id, user, info) => fs
+export const createUser = (id, info) => fs
   .collection('users').doc(id).set({
     id,
-    user,
     info,
-  }); */
+  });
 // Crear usuario
 export const createUserBD = (email, password) => {
   return auth.createUserWithEmailAndPassword(email, password);
