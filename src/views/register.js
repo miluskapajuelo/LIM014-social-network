@@ -5,6 +5,7 @@ import {
 const Register = (() => {
   const viewRegister = `<section class="container-change">
   <figure class="figure-login">
+    <p>Connect and be part of the most important network of women in technology.</p>
     <img src="./img/undraw_Work_time_re_hdyv.svg" alt="">
   </figure>
   <form action="" class="col" id="col-form">
@@ -50,13 +51,6 @@ const Register = (() => {
         <div class="msg-text"></div>
         <a class="log" href="#/login">Log in</a>
         <button type="submit">Register</button>
-      </div>
-      <div class="typeLog">
-        <p>or enter with</p>
-        <div>
-          <button type="button" id="btn-gmail"><img src='./img/google-plus.svg'></button>
-          <button type="button" id="btn-facebook"><img src='./img/facebook.svg'></button>
-        </div>
       </div>
       </form> 
 </section>`;

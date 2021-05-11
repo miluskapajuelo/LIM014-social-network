@@ -2,7 +2,6 @@ import { fs } from '../configFirebase.js';
 import { getUser } from './login.js';
 
 const dateP = firebase.firestore.FieldValue.serverTimestamp();
-
 export const getComment = ((idPost, callback) => {
   fs.collection('comments')
     .where('postId', '==', idPost)
@@ -27,14 +26,7 @@ export const addCommentBd = ((id, inputcomment) => {
 });
 
 export const removeCommentBd = (id) => {
-  fs.collection('comments')
-    .doc(id)
-    .delete()
-    .then(() => {
-    })
-    .catch((error) => {
-      console.error('Error removing document: ', error);
-    });
+  fs.collection('comments').doc(id).delete();
 };
 
 export const updateCommentBd = (id, changedComment) => firebase

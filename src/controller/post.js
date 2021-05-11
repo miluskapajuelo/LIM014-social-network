@@ -1,4 +1,5 @@
 import { auth, fs } from '../configFirebase.js';
+import { removeCommentBd } from './comment.js';
 import { getUser } from './login.js';
 
 // Get info of user logged
@@ -42,7 +43,6 @@ export const getPost = ((callback) => {
     });
 });
 
-// Delete post
 export const removePostBd = ((id) => {
   fs.collection('post').doc(id).delete()
     .then(() => {
@@ -50,6 +50,12 @@ export const removePostBd = ((id) => {
     .catch((error) => {
       console.error('Error removing document: ', error);
     });
+  const delateCm = fs.collection('comments').where('postId', '==', id).get();
+  delateCm.then((omg) => {
+    omg.forEach((cm) => {
+      removeCommentBd(cm.id);
+    });
+  });
 });
 
 // Update post where users edited post
@@ -69,7 +75,7 @@ export const likePostBd = (doc, likeUser) => {
     .update({
       likePost: likeUser,
     }).then(() => {
-     /*  console.log('Document successfully liked!'); */
+    /*  console.log('Document successfully liked!'); */
     })
     .catch((error) => {
       console.error('Error removing document: ', error);
@@ -80,7 +86,7 @@ export const likePostBd = (doc, likeUser) => {
 export const countLikesPost = (doc, countLikesPost1) => {
   fs.collection('post').doc(doc.id)
     .update({
-      countLikes:countLikesPost1,
+      countLikes: countLikesPost1,
     }).then(() => {
       /* console.log('Document successfully counted!'); */
     })

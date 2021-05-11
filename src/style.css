@@ -26,13 +26,16 @@ a {
 .container-change.hidden {
   display: none;
 }
-.container-change .figure-login > img {
+.container-change .figure-login > img,
+.container-change .figure-login > p {
   display: none;
 }
 .container-change .figure-login {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: right;
 }
 .img-login .userPic {
   width: 100px;
@@ -572,7 +575,7 @@ form .typeLog > div > button > img {
 .posting .btn-posting > .btn-group{
   display: flex;
 }
-.btn-posting > .btn-group >button{
+.omg{
   width: 100%;
   display: flex;
   align-items: center;
@@ -758,8 +761,17 @@ form .typeLog > div > button > img {
   .container-change {
     grid-template-columns: repeat(2, 1fr);
   }
-  .container-change .figure-login > img {
+  .container-change .figure-login > img{
     display: block;
+  }
+  .container-change .figure-login > p{
+    display: block;
+    font-family: "Pacifico", cursive;
+    font-size: 30px;
+    color: #0091ad;
+    padding: 0px 20px;
+    margin-bottom: -40px;
+    z-index: 50;
   }
   /* home */
   .nav-list > ul{

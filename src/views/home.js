@@ -94,8 +94,6 @@ const Home = (() => {
   home.innerHTML = viewHome;
   const commentPublic = home.querySelector('#commentPublish');
   const btnSearch = home.querySelector('#search');
-
-
   const bestPost = home.querySelector('.bestPost');
   showBestPosts(bestPost);
   showPosts(commentPublic);
@@ -107,6 +105,8 @@ const Home = (() => {
       showPosts(commentPublic);
     }
   });
+  const commentPublish = home.querySelector('#commentPublish');
+  showPosts(commentPublish);
   return home;
 });
 

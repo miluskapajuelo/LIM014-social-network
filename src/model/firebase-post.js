@@ -51,7 +51,6 @@ export function updatePost(doc) {
     modalMode.classList.toggle('hide');
   });
 }
-
 export function updateComment(doc) {
   showModal(doc);
   const modalMode = document.getElementById('modal-mode');
@@ -62,7 +61,6 @@ export function updateComment(doc) {
     modalMode.classList.toggle('hide');
   });
 }
-
 export function likePost(doc) {
   const array = doc.data().likePost;
   const getName = getUser().displayName;
