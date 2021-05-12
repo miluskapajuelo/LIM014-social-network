@@ -20,6 +20,7 @@ Luego trabajamos en los prototipos de alta fidelidad de las diferentes vistas:
 ![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/login%20mobile.JPG)
 
 * Vista Desktop
+
 ![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/login%20desktop.JPG)
 ![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/register%20desktop.JPG)
 ![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/home%20desktop.JPG)
