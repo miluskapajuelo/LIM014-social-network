@@ -20,6 +20,7 @@ Luego trabajamos en los prototipos de alta fidelidad de las diferentes vistas:
 ![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/login%20mobile.JPG)
 
 * Vista Desktop
+
 ![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/login%20desktop.JPG)
 ![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/register%20desktop.JPG)
 ![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/home%20desktop.JPG)
@@ -32,6 +33,8 @@ Luego trabajamos en los prototipos de alta fidelidad de las diferentes vistas:
 ### 1.2 Qué problema resuelve el producto / para qué le servirá a estos usuarios.
 
 ### 1.3 Historias de usuario
+
+![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/hu%.JPG)
 
 ### 1.4 Organizacion de las Historias de Usuario
 
