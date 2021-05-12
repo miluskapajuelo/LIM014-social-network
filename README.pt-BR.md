@@ -11,13 +11,19 @@ Las caraterísticas técnicas de nuestra aplicación son las siguientes:
 
 ## 1. Prototipos
 
-Inicialmente éste era el prototipo de baja fidelidad para las vistas de registro e inicio de sesión.
+Inicialmente éste era el prototipo de baja fidelidad:
+![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/baja.JPG)
 
 Luego trabajamos en los prototipos de alta fidelidad de las diferentes vistas:
 
 * Vista mobile
+![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/login%20mobile.JPG)
 
 * Vista Desktop
+![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/login%20desktop.JPG)
+![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/register%20desktop.JPG)
+![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/home%20desktop.JPG)
+
 
 ## 2. Definición del producto
 
