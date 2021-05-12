@@ -1,324 +1,168 @@
-# Criando uma Rede Social
+# Woman Coding
+Es una Red Social dirigida a mujeres que forman parte de la tecnologia en todo el mundo, donde podrán compartir herramientas, tips, consejos de buenas prácticas, nuevas tecnologías; así como interactuar entre ellas.
 
-## Índice
+Las caraterísticas técnicas de nuestra aplicación son las siguientes:
 
-* [1. Prefácio](#1-prefácio)
-* [2. Resumo do projeto](#2-resumo-do-projeto)
-* [3. Objetivos de aprendizagem](#3-objetivos-de-aprendizagem)
-* [4. Considerações gerais](#4-considerações-gerais)
-* [5. Critérios de aceitação mínimos do
-  projeto](#5-criterios-de-aceitação-mínimos-do-projeto)
-* [6. Hacker edition](#6-hacker-edition)
-* [7. Entrega](#7-entrega)
-* [8. Guias, dicas e leituras
-  complementares](#8-guias-dicas-e-leituras-complementares)
+- Es una Single-Page Application
+- Diseñada con un enfoque mobile first (versión traducida)
+- Debe permitir la persintencia de datos
+- Red Social responsiva en la que podemos escribir, leer, actualizar y eliminar datos.
+- Para implementar la aplicación usamos HTML, CCS, Vanilla JavaScript, Firebase
 
-***
+## 1. Prototipos
 
-## 1. Prefácio
+Inicialmente éste era el prototipo de baja fidelidad para las vistas de registro e inicio de sesión.
 
-Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. As redes sociais
-invadiram nossas vidas. Nós as amamos ou odiamos, e muitas pessoas não conseguem
-viver sem elas.
+Luego trabajamos en los prototipos de alta fidelidad de las diferentes vistas:
 
-Há redes sociais de todo tipo para todos os tipos de interesse. Por exemplo: em
-uma rodada de financiamento com investidores, foi apresentada uma rede social
-para químicos onde os usuários podem publicar artigos a respeito de suas
-pesquisas, comentar os artigos de seus colegas e filtrar artigos de acordo com
-determinadas tags ou popularidade, mais recente ou mais comentado.
+* Vista mobile
 
-## 2. Resumo do projeto
+* Vista Desktop
 
-Neste projeto você construirá uma Rede Social sobre o que você e sua equipe
-decidirem. Pode ser, por exemplo, sobre alimentação saudável, feminismo,
-educação, saúde, energias renováveis, amantes das
-[Empanadas](https://pt.wikipedia.org/wiki/Empanada), de
-[Tacos](https://pt.wikipedia.org/wiki/Taco_(culin%C3%A1ria)), de
-[Feijoada](https://pt.wikipedia.org/wiki/Feijoada), ou do que seja.
+## 2. Definición del producto
 
-Sua Rede Social terá que permitir à qualquer usuário criar uma conta de acesso,
-logar-se com ela, criar, editar, deletar e dar _likes_ em publicações.
+### 1.1 Quiénes son los principales usuarios de producto
 
-## 3. Objetivos de aprendizagem
+### 1.2 Qué problema resuelve el producto / para qué le servirá a estos usuarios.
 
-O objetivo principal de aprendizagem deste projeto é construir uma [Single-page
-Application
-(SPA)](https://pt.wikipedia.org/wiki/Aplicativo_de_p%C3%A1gina_%C3%BAnica)
-[_responsiva_](../../topics/css/02-responsive) (com mais de uma tela/ página) na
-qual seja possível **ler e escrever dados.**
+### 1.3 Historias de usuario
 
-### HTML e CSS
+### 1.4 Organizacion de las Historias de Usuario
 
-* [ ] [HTML
-  semântico](https://developer.mozilla.org/pt-BR/docs/Glossario/Semantica)
-* [ ] [CSS `flexbox`](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 
-### DOM e Web APIs
 
-* [ ] [Manipulação do
-  DOM](https://developer.mozilla.org/pt-BR/docs/DOM/Referencia_do_DOM/Introdu%C3%A7%C3%A3o)
-* [ ] [History
-  API](https://developer.mozilla.org/pt-BR/docs/Web/API/History_API)
-* [ ]
-  [`localStorage`](https://developer.mozilla.org/pt-BR/docs/Web/API/Window/Window.localStorage)
+## 3. Pruebas unitarias (unit tests)
 
-### Javascript
 
-* [ ] [Uso de
-  callbacks](https://developer.mozilla.org/pt-BR/docs/Glossario/Callback_function)
-* [ ] [Consumo de
-  Promises](https://scotch.io/tutorials/javascript-promises-for-dummies#toc-consuming-promises)
-* [ ] Uso de ES modules
-  ([`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
-  |
-  [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export))
+## 4. Entrevistas con usuarios
 
-### Firebase
+* Hacer al menos 2 entrevistas con usuarios.
 
-* [ ] [Firestore](https://firebase.google.com/docs/firestore)
-* [ ] [Firebase Auth](https://firebase.google.com/docs/auth/web/start)
-* [ ] [Firebase security rules](https://firebase.google.com/docs/rules)
-* [ ] [Uso de
-  onSnapshot](https://firebase.google.com/docs/firestore/query-data/listen) |
-  [onAuthStateChanged](https://firebase.google.com/docs/auth/web/start#set_an_authentication_state_observer_and_get_user_data)
+* Hacer sesiones de _testing de usabilidad_ con el producto en HTML.
+
+
+## 5. Objetivos de aprendizaje
+
+El objetivo principal de aprendizaje de este proyecto es construir una
+[Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
+[_responsive_](../../topics/css/02-responsive) (con más de una vista / página)
+en la que podamos **leer y escribir datos.**
+
+### HTML y CSS
+
+* [x] [Uso de HTML semántico.](https://developer.mozilla.org/en-US/docs/Glossary/Semantics#Semantics_in_HTML)
+* [x] Uso de selectores de CSS.
+* [x] [Uso de flexbox en CSS.](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+* [x] [Uso de CSS Grid Layout](https://css-tricks.com/snippets/css/complete-guide-grid/)
+
+### DOM y Web APIs
+
+* [x] Uso de selectores del DOM.
+* [x] Manejo de eventos del DOM (addEventListener, removeEventListener,
+Event objeto, delegación de eventos)
+* [x] [Manipulación dinámica del DOM](
+  https://developer.mozilla.org/es/docs/Referencia_DOM_de_Gecko/Introducci%C3%B3n)
+(appendChild | createElement | createTextNode | innerHTML | textContent | etc.)
+* [x] Implementación de routing ([History API.](
+  https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador
+  ) | `hashchange`)
+
+### JavaScript
+
+* [x] Uso de condicionales (if-else | switch | operador ternario)
+* [x] Uso de funciones (parámetros | argumentos | valor de retorno)
+* [x] Manipular arrays (filter | map | sort | reduce)
+* [x] Manipular objects (key | value)
+* [x] Uso ES modules ([`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import)
+| [`export`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export))
+* [x] Diferenciar entre expression y statements.
+* [x] Diferenciar entre tipos de datos atómicos y estructurados.
+* [x] [Uso de callbacks.](https://developer.mozilla.org/es/docs/Glossary/Callback_function)
+* [x] [Consumo de Promesas.](https://scotch.io/tutorials/javascript-promises-for-dummies#toc-consuming-promises)
 
 ### Testing
 
-* [ ] [Teste unitários](https://jestjs.io/docs/pt-BR/getting-started)
-* [ ] [Testes assíncronos](https://jestjs.io/docs/pt-BR/asynchronous)
-* [ ] [Mocking](https://jestjs.io/docs/pt-BR/manual-mocks)
+* [x] [Testeo unitario.](https://jestjs.io/docs/es-ES/getting-started)
+* [x] [Testeo asíncrono.](https://jestjs.io/docs/es-ES/asynchronous)
+* [x] [Uso de librerias de Mock.](https://jestjs.io/docs/es-ES/manual-mocks)
 
-### Git e Github
+### Estructura del código y guía de estilo
 
-* [ ] Colaboração pelo Github
-* [ ] Organização pelo Github
+* [x] Organizar y dividir el código en módulos (Modularización)
+* [x] Uso de identificadores descriptivos (Nomenclatura | Semántica)
+* [x] Uso de linter (ESLINT)
 
-### Boas práticas de programação
+### Git y Github
 
-* [ ] Modularização
-* [ ] Nomenclatura / Semântica
-* [ ] Linting
+* [x] Uso de comandos de git (add | commit | pull | status | push)
+* [x] Manejo de repositorios de GitHub (clone | fork | gh-pages)
+* [x] Colaboración en Github (branches | pull requests | |tags)
+* [x] Organización en Github (projects | issues | labels | milestones)
 
-***
+### Firebase
 
-## 4. Considerações gerais
+* [x] [Firestore.](https://firebase.google.com/docs/firestore)
+* [x] [Firebase Auth.](https://firebase.google.com/docs/auth/web/start)
+* [x] [Firebase security rules.](https://firebase.google.com/docs/rules)
+* [x] Observadores. ([onAuthStateChanged](https://firebase.google.com/docs/auth/web/manage-users?hl=es#get_the_currently_signed-in_user)
+ | [onSnapshot](https://firebase.google.com/docs/firestore/query-data/listen#listen_to_multiple_documents_in_a_collection))
 
-* Este projeto deve ser desenvolvido em trios.
+### UX
 
-* A lógica do projeto deve estar implementada completamente em JavaScript
-  (ES6+), HTML e CSS :smiley:. Para este projeto **não está permitido** o uso de
-  _frameworks_ ou bibliotecas de CSS e JS.
+* [x] Diseñar la aplicación pensando y entendiendo al usuario.
+* [x] Crear prototipos para obtener feedback e iterar.
+* [x] Aplicar los principios de diseño visual (contraste, alineación, jerarquía)
+* [x] Planear y ejecutar tests de usabilidad.
 
-* A divisão e organização do trabalho deve permitir, sem exceção, que **cada
-  integrante** da equipe pratique a aprendizagem de tudo que está envolvido em
-  **cada história**. _Não dividam o trabalho como em uma fábrica._
-
-* Está avançando em seus projetos com alguma fluidez e sem grandes problemas?
-  Seja generosa com suas parceiras, deixe-as aprender e praticar sem restrições,
-  mesmo que demore um pouco mais. Aproveite para _mentorá-las_, para fazer _pair
-  programming_. Uma das melhores formas de aprender é explicar verbalmente.
-
-* Está sentindo dificuldade e para você é mais difícil de avançar? Não fique com
-  as partes "fáceis" do projeto. Converse, negocie, busque sua oportunidade de
-  praticar e aprender o que é mais difícil para você.
-
-* Vocês apenas poderão trabalhar em uma história por vez. Não avancem para a
-  próxima sem completar a anterior. As histórias apenas são concluídas quando se
-  completam **todos** os critérios de aceitação + **toda** sua definição de
-  pronto.
-
-Para começar, você precisará criar um _fork_ e _clone_ deste repositório.
-
-## 5. Critérios de aceitação mínimos do projeto
-
-### 5.1 Boilerplate
-
-Este projeto não inclui um _boilerplate_, portanto você terá que definir a
-estrutura de pastas e escrever seus próprios testes unitários (_tests_). Para
-isso, você pode guiar-se por meio de projetos anteriores.
-
-### 5.2 Definição do produto
-
-No `README.md`, conte-nos brevemente como você mapeou as necessidades dos seus
-usuários e como você chegou à definição final do seu produto. É importante que
-detalhe:
-
-* Quem são os principais usuários do produto.
-* Qual problema o produto resolve/para que ele serve para esses usuários.
-
-### 5.3 Histórias de usuário
-
-Depois de entender as necessidades de seus usuários, escreva as Histórias de
-Usuário. Elas representam tudo o que ele precisa fazer/ver na Rede Social. Cada
-uma de suas histórias de usuário deve possuir:
-
-* **Critérios de aceitação:** tudo o que deve acontecer para satisfazer as
-  necessidades do usuário.
-
-* **Definição de pronto:** todos os aspectos técnicos que devem ser atendidos
-  para que, como equipe, saibam que essa história está finalizada e pronta para
-  ser publicada. **Todas** suas histórias de usuário (com exceções), devem
-  incluir esses aspectos em sua definição de pronto (além de tudo o que precisa
-  adicionar):
-
-  - Ser uma SPA.
-  - Ser _responsivo_.
-  - Receber _code review_ de pelo menos uma parceira de outra equipe.
-  - Fazer _tests_ unitários.
-  - Fazer testes manuais buscando erros e imperfeições simples.
-  - Fazer testes de usabilidade e incorporar o _feedback_ dos usuários como
-    melhorias.
-  - Fazer deploy do aplicativo e marcar a versão (git tag).
-
-### 5.4 Desenho da Interface de Usuário (protótipo de baixa fidelidade)
-
-Você deve definir qual será o fluxo que o usuário seguirá dentro do seu
-aplicativo e, com isso, criar a interface do usuário (UI) que siga este fluxo.
-
-### 5.5 Responsivo
-
-Deve funcionar bem em dispositivos de tela grande (computadores, laptops etc.) e
-pequena (_tablets_, telefones celulares etc.). Sugerimos seguir a técnica
-_`mobile first`_ (mais detalhes sobre essa técnica ao final).
-
-### 5.6 Considerações sobre o comportamento da Interface do Usuário (UI)
-
-Essas considerações ajudarão você a escrever as definições de pronto de sua
-H.U.:
-
-#### Criação e login de conta de usuário
-
-* _Login_ com Firebase:
-  - Para o _login_ e postagens na timeline, você pode usar o
-    [Firebase](https://firebase.google.com/products/database/)
-  - O usuário deve poder criar uma conta de acesso ou autenticar-se com conta de
-    e-mail e senha e também com uma conta do Google.
-* Validações:
-  - Somente usuários com contas válidas têm acesso permitido.
-  - Não haver usuários repetidos.
-  - A conta do usuário deve ser um email válido.
-  - O que o usuário digita no campo de senha (_input_) deve ser secreto.
-* Comportamento:
-  - Quando o formulário de registro ou login é enviado, ele deve ser validado.
-  - Se houver erros, mensagens descritivas devem ser exibidas para ajudar o
-    usuário.
-
-#### Timeline/linha do tempo
-
-* Validações:
-  - Ao publicar, deve ser validado se há conteúdo no _input_.
-* Comportamento:
-  - Ao recarregar o aplicativo, é necessário verificar se o usuário está
-    _logado_ antes de exibir o conteúdo,
-  - Conseguir publicar um _post_.
-  - Poder dar e remover _likes_ em uma publicação. Máximo de um por usuário.
-  - Visualizar contagem de _likes_.
-  - Poder excluir uma postagem específica.
-  - Solicitar confirmação antes de excluir um _post_.
-  - Ao clicar em editar um _post_, você deve alterar o texto para um _input_ que
-    permite editar o texto e salvar as alterações.
-  - Ao salvar as alterações, você deve voltar ao texto normal, mas com a
-    informação editada.
-  - Ao recarregar a página, poder ver os textos editados.
-
-### 5.7 Considerações técnicas sobre front-end
-
-* Separar a manipulação do DOM da lógica (separação de responsabilidades).
-* Ter várias telas. Para isso, seu aplicativo deve ser um [Single Page
-  Application
-  (SPA)](https://pt.wikipedia.org/wiki/Aplicativo_de_p%C3%A1gina_%C3%BAnica)
-* Alterar e persistir dados. Os dados que você adiciona ou modifica devem
-  persistir por todo o aplicativo. Recomendamos que você use o
-  [Firebase](https://firebase.google.com/) para isso também.
-
-#### Testes unitários
-
-* Lembre-se de que não há _setup_ de **testes** definido, isso dependerá da
-  estrutura do seu projeto. Você não deve esquecer de pensar sobre os testes.
-  Eles podem ajudar a definir a estrutura e sua lógica.
-
-* Os testes de unidade devem cobrir no mínimo 70% de _statements_, _functions_,
-  _lines_ e _branches_.
-
-### 5.8 Considerações técnicas UX
-
-* Faça pelo menos 2 entrevistas com os usuários.
-* Faça um protótipo de baixa fidelidade.
-* Verifique se a implementação do código segue as diretrizes do protótipo.
-* Faça sessões de teste de usabilidade com o produto em HTML.
-
-## 6. Hacker Edition
-
-As seções chamadas _Hacker Edition_ são **opcionais**. Se **você terminou** e
-cumpriu todos os requisitos acima e sobrou tempo, tente concluí-las. Dessa
-forma, você pode aprofundar e/ou exercitar mais os objetivos de aprendizagem do
-projeto.
-
-* Criar posts com imagens.
-* Procurar usuários, adicionar e excluir "amigos".
-* Definir a privacidade de _posts_ (público ou apenas para amigos).
-* Permitir ver na linha do tempo de usuários "não amigos" apenas os posts
-  públicos.
-* Permitir comentar ou responder a uma postagem.
-* Editar perfil.
-
-## 7. Entrega
-
-O projeto será entregue subindo seu código no GitHub (`commit` /`push`) e a
-interface será hospedada usando o GitHub pages ou outro serviço de hospedagem
-que você pode ter encontrado ao longo do caminho.
-
-***
-
-## 8. Guias, dicas e leituras complementares
+## 6. Tips y Lecturas complementarias
 
 ### Mobile first
 
-O conceito de [_mobile
-first_](https://tableless.com.br/mobile-first-a-arte-de-pensar-com-foco/) faz
-referência a um processo de desenho e desenvolvimento que parte de como se vê e
-como funciona uma aplicação primeiro em um dispositivo móvel e mais adiante se
-analisa como adaptar a aplicação à telas progressivamente maiores. Esta é uma
-contraposição ao modelo tradicional, no qual primeiro se desenha os websites (ou
-webapps) para desktops e depois os adaptam para telas menores.
+El concepto de [_mobile first_](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
+hace referencia a un proceso de diseño y desarrollo donde partimos de cómo se ve
+y cómo funciona la aplicación en un dispositivo móvil primero, y más adelante se
+ve como adaptar la aplicación a pantallas progresivamente grandes y
+características específicas del entorno desktop. Esto es en contraposición al
+modelo tradicional, donde primero se diseñaban los websites (o webapps) para
+desktop y después se trataba de _arrugar_ el diseño para que entre en pantallas
+más chicas. La clave acá es asegurarse de que desde el principio diseñan usando
+la vista _responsive_ de las herramientas de desarrollador (developer tools) del
+navegador. De esa forma, partimos de cómo se ve y comporta la aplicación en una
+pantalla y entorno móvil.
 
-A motivação aqui é se assegurar que desde o começo sejam desenhadas telas
-_responsivas_. Dessa forma, começamos com a aparência e o comportamento do
-aplicativo em uma tela e ambiente móvel.
+### Múltiples vistas
 
-### Múltiplas telas
+En proyectos anteriores nuestras aplicaciones habían estado compuestas de una
+sola _vista_ principal (una sóla _página_). En este proyecto se introduce la
+necesidad de tener que dividir nuestra interfaz en varias _vistas_ o _páginas_
+y ofrecer una manera de navegar entre estas vistas. Este problema se puede
+afrontar de muchas maneras: con archivos HTML independientes (cada uno con su
+URL) y links tradicionales, manteniendo estado en memoria y rederizando
+condicionalmente (sin refrescar la página), [manipulando el historial del
+navegador](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_navegador)
+con [`window.history`](https://developer.mozilla.org/es/docs/Web/API/Window/history).
+En este proyecto te invitamos a explorar opciones y decidir una opción
+de implementación.
 
-Em projetos anteriores, nossas aplicações eram compostas de apenas uma tela
-_principal_ (uma só _página_). Neste projeto, precisaremos dividir nossa
-interface em várias _views_ ou _pages_ e oferecer uma maneira de navegar entre
-essas telas. Esse problema pode ser resolvido de várias maneiras: com arquivos
-HTML independentes (cada um com seu próprio URL) e links tradicionais; mantendo
-na memória e renderizando condicionalmente (sem atualizar a página);
-[manipulando o histórico do
-navegador](https://developer.mozilla.org/es/docs/DOM/Manipulando_el_historial_del_na_gador)
-com
-[`window.history`](https://developer.mozilla.org/es/docs/Web/API/Window/history).
-Neste projeto, convidamos você a explorar opções e decidir sobre uma opção de
-implementação.
+### Escritura de datos
 
-### Gravação de dados
+En los proyectos anteriores hemos consumido (leído) datos, pero todavía no
+habíamos escrito datos (salvar cambios, crear datos, borrar, ...). En este
+proyecto tendrás que crear (salvar) nuevos datos, así como leer, actualizar y
+modificar datos existentes. Estos datos se podrán guardar de forma remota
+usando [Firebase](https://firebase.google.com/).
 
-Nos projetos anteriores, consumimos dados, mas ainda não tínhamos escrito dados
-(salvar alterações, criar dados, excluir, etc). Neste projeto, você precisará
-criar (salvar) novos dados, além de ler, atualizar e modificar os dados
-existentes. Esses dados podem ser salvos remotamente usando o
-[Firebase](https://firebase.google.com/).
+### Otras:
 
-Outras:
-
-* [Mobile
-  First](https://tableless.com.br/mobile-first-a-arte-de-pensar-com-foco/)
+* [Pildora SPA](https://www.loom.com/share/fa63a8ad0e9a43428222c15b6f6613d3)
+* [Repositorio de pildora de SPA](https://github.com/betsyvies/bootcamp-spa)
+* [Pildora de mock Firebase](https://www.youtube.com/watch?v=06myVn41OTY&t=1s)
+* [Repositorio de pildora de mock Firebase](https://github.com/Danielalab/2018-2-Testing)
+* [Pildora MVC](https://github.com/merunga/todomvc-vanillajs)
+* [Modulos: Export](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/export)
+* [Modulos: Import](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/import)
+* [Diseño web, responsive design y la importancia del mobile first - Media Click](https://www.mediaclick.es/blog/diseno-web-responsive-design-y-la-importancia-del-mobile-first/)
+* [Mobile First: el enfoque actual del diseño web móvil - 1and1](https://www.1and1.es/digitalguide/paginas-web/diseno-web/mobile-first-la-nueva-tendencia-del-diseno-web/)
+* [Mobile First - desarrolloweb.com](https://desarrolloweb.com/articulos/mobile-first-responsive.html)
 * [Mobile First - ZURB](https://zurb.com/word/mobile-first)
-* [Mobile First Is NOT Mobile Only - Nielsen Norman
-  Group](https://www.nngroup.com/articles/mobile-first-not-mobile-only/)
-* [Flexbox - CSS
-  Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-* [Módulos:
-  Export](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/export)
-* [Módulos:
-  Import](https://developer.mozilla.org/es/docs/Web/JavaScript/Referencia/Sentencias/import)
+* [Mobile First Is NOT Mobile Only - Nielsen Norman Group](https://www.nngroup.com/articles/mobile-first-not-mobile-only/)
