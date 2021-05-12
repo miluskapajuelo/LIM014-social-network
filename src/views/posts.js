@@ -1,4 +1,3 @@
-import { countLikesPost } from '../controller/post.js';
 import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
@@ -15,8 +14,6 @@ const showComment = (elm, idPost, cmElm) => {
 };
 
 const postsView = ((doc) => {
-  const likepost = doc.data().likePost;
-  const countLikes = likepost.length;
   const divElem = document.createElement('div');
   divElem.classList.add('posting');
   const viewPosts = `<div class="more">
@@ -35,7 +32,7 @@ const postsView = ((doc) => {
     </section>
     <section class="btn-posting">
         <section class="btn-total">
-            <p><span>${countLikes}</span> likes</p>
+            <p><span>${doc.data().likePost.length}</span> likes</p>
             <p><span class="countCm"></span> comment</p>
         </section>
         <section class="btn-group">
@@ -64,19 +61,16 @@ const postsView = ((doc) => {
   const btnLike = divElem.querySelector('.btn-like');
   const btnAddComment = divElem.querySelector('.btn-add-comment');
   const commentArticle = showCm.querySelector('#comment-article');
-
+  // const redes = divElem.querySelector('.material-icons');
   btnCm.addEventListener('click', () => {
     showCm.classList.toggle('show');
   });
-
   // function no limited by logged in user
   btnLike.addEventListener('click', () => {
+    // redes.textContent = 'thumb_up';
     likePost(doc);
   });
-  countLikesPost(doc, countLikes);
-
   // get number of likes per doc
-  countLikesPost(doc, countLikes);
   // functions limited by logged in user
   if (doc.data().uid === firebase.auth().currentUser.uid) {
     elm.addEventListener('click', () => {
@@ -89,11 +83,6 @@ const postsView = ((doc) => {
       updatePost(doc);
     });
   }
-
-  btnLike.addEventListener('click', () => {
-    likePost(doc);
-  });
-
   btnAddComment.addEventListener('click', () => {
     const commentEdit = divElem.querySelector('.input-new-comment').value;
     if (commentEdit.length) {

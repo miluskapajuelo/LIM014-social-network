@@ -75,26 +75,12 @@ export const likePostBd = (doc, likeUser) => {
     .update({
       likePost: likeUser,
     }).then(() => {
-    /*  console.log('Document successfully liked!'); */
+      console.log('Document successfully liked!');
     })
     .catch((error) => {
       console.error('Error removing document: ', error);
     });
 };
-
-// Update number of likes
-export const countLikesPost = (doc, countLikesPost1) => {
-  fs.collection('post').doc(doc.id)
-    .update({
-      countLikes: countLikesPost1,
-    }).then(() => {
-      /* console.log('Document successfully counted!'); */
-    })
-    .catch((error) => {
-      console.error('Error removing document: ', error);
-    });
-};
-
 // Get best post top(5)
 export const getBestPost = ((callback) => {
   fs.collection('post')
