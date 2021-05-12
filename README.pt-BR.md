@@ -33,7 +33,7 @@ Luego trabajamos en los prototipos de alta fidelidad de las diferentes vistas:
 ### 1.2 Qué problema resuelve el producto / para qué le servirá a estos usuarios.
 
 ### 1.3 Historias de usuario
-
+![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/hu%.JPG)
 
 
 ### 1.4 Organizacion de las Historias de Usuario
