@@ -1,5 +1,5 @@
-import { signIn, signInWithFacebook, signInWithGoogle } from '../controller/login.js';
-import { auth } from '../configFirebase.js';
+import { signIn, signInWithFacebook, signInWithGoogle } from '../controller/login';
+import { auth } from '../configFirebase';
 
 const Login = (() => {
   const viewLogin = `<section class="container-change">

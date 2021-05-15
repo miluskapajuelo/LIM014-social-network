@@ -2,10 +2,13 @@ import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
 import { confirmDeletePost } from '../model/modalDelete.js';
+import { getUser } from '../controller/login.js';
 
 const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
+    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
+    // eslint-disable-next-line no-param-reassign
     cmElm.innerHTML = post.length;
     post.forEach((doc) => {
       elm.appendChild(commentView(doc));
@@ -72,7 +75,7 @@ const postsView = ((doc) => {
   });
   // get number of likes per doc
   // functions limited by logged in user
-  if (doc.data().uid === firebase.auth().currentUser.uid) {
+  if (doc.data().uid === getUser().uid) {
     elm.addEventListener('click', () => {
       btnList.classList.toggle('hide');
     });

@@ -18,11 +18,11 @@ export const getInfo = () => new Promise((resolve) => {
 
 // Create post in firebase
 export const addPost = ((post) => {
-  const dateP = firebase.firestore.FieldValue.serverTimestamp();
+  const dateP = fs.FieldValue.serverTimestamp();
   fs.collection('post').add({
     publication: post,
-    email: firebase.auth().currentUser.email,
-    uid: firebase.auth().currentUser.uid,
+    email: getUser().email,
+    uid: getUser().uid,
     datePost: dateP,
     user: getUser().displayName,
     likePost: [],
