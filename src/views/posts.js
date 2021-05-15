@@ -18,9 +18,10 @@ const showComment = (elm, idPost, cmElm) => {
 };
 
 const postsView = ((doc) => {
+  const likepost = doc.data().likePost;
+  const countLikes = likepost.length;
   const divElem = document.createElement('div');
   divElem.classList.add('posting');
-  const countLikes = doc.data().likePost.length;
   const viewPosts = `<div class="more">
         <div class="img-post">
             <img id="imgUser" style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
@@ -37,7 +38,7 @@ const postsView = ((doc) => {
     </section>
     <section class="btn-posting">
         <section class="btn-total">
-            <p><span>${doc.data().likePost.length}</span> likes</p>
+            <p><span>${countLikes}</span> likes</p>
             <p><span class="countCm"></span> comment</p>
         </section>
         <section class="btn-group">
@@ -74,8 +75,8 @@ const postsView = ((doc) => {
   // function no limited by logged in user
   btnLike.addEventListener('click', () => {
     likePost(doc);
-    countLikesPost(doc, countLikes);
   });
+  countLikesPost(doc, countLikes);
   // get number of likes per doc
   // functions limited by logged in user
   if (doc.data().uid === getUser().uid) {
