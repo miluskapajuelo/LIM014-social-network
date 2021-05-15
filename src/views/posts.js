@@ -1,3 +1,4 @@
+import { countLikesPost } from '../controller/post.js';
 import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
@@ -19,6 +20,7 @@ const showComment = (elm, idPost, cmElm) => {
 const postsView = ((doc) => {
   const divElem = document.createElement('div');
   divElem.classList.add('posting');
+  const countLikes = doc.data().likePost.length;
   const viewPosts = `<div class="more">
         <div class="img-post">
             <img id="imgUser" style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
@@ -68,10 +70,11 @@ const postsView = ((doc) => {
   btnCm.addEventListener('click', () => {
     showCm.classList.toggle('show');
   });
+
   // function no limited by logged in user
   btnLike.addEventListener('click', () => {
-    // redes.textContent = 'thumb_up';
     likePost(doc);
+    countLikesPost(doc, countLikes);
   });
   // get number of likes per doc
   // functions limited by logged in user
