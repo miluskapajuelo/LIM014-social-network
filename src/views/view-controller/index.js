@@ -1,6 +1,7 @@
 import { components } from '../components.js';
 import { createPost } from '../../model/firebase-post.js';
 
+// eslint-disable-next-line consistent-return
 const changeView = (route) => {
   switch (route) {
     case '':

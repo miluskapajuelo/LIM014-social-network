@@ -29,8 +29,7 @@ export const removeCommentBd = (id) => {
   firebase.firestore().collection('comments').doc(id).delete();
 };
 
-export const updateCommentBd = (id, changedComment) => firebase
-  .firestore()
+export const updateCommentBd = (id, changedComment) => firebase.firestore()
   .collection('comments')
   .doc(id)
   .update({ publication: changedComment })

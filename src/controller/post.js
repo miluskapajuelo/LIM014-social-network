@@ -20,8 +20,8 @@ export const addPost = ((post) => {
   const dateP = firebase.firestore.FieldValue.serverTimestamp();
   firebase.firestore().collection('post').add({
     publication: post,
-    email: firebase.auth().currentUser.email,
-    uid: firebase.auth().currentUser.uid,
+    email: getUser().email,
+    uid: getUser().uid,
     datePost: dateP,
     user: getUser().displayName,
     likePost: [],
@@ -76,7 +76,20 @@ export const likePostBd = (doc, likeUser) => {
       likePost: likeUser,
     })
     .then(() => {
-      console.log('Document successfully liked!');
+    /*  console.log('Document successfully liked!'); */
+    })
+    .catch((error) => {
+      console.error('Error removing document: ', error);
+    });
+};
+// Update number of likes
+export const countLikesPost = (doc, countLikesPost1) => {
+  firebase.firestore().collection('post').doc(doc.id)
+    .update({
+      countLikes: countLikesPost1,
+    })
+    .then(() => {
+      /* console.log('Document successfully counted!'); */
     })
     .catch((error) => {
       console.error('Error removing document: ', error);
