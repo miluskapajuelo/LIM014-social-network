@@ -1,6 +1,7 @@
 import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
+import { getUser } from '../controller/login.js';
 import { confirmDeletePost } from '../model/modalDelete.js';
 
 const showComment = (elm, idPost, cmElm) => {
@@ -85,8 +86,11 @@ const postsView = ((doc) => {
   }
   btnAddComment.addEventListener('click', () => {
     const commentEdit = divElem.querySelector('.input-new-comment').value;
+    const idUser = firebase.auth().currentUser.uid;
+    const dateP = firebase.firestore.FieldValue.serverTimestamp();
+    const nameDisplay = getUser().displayName;
     if (commentEdit.length) {
-      addCommentBd(doc.id, commentEdit);
+      addCommentBd(doc.id, commentEdit, idUser, dateP, nameDisplay);
       divElem.querySelector('.input-new-comment').value = '';
     }
   });

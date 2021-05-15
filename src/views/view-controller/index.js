@@ -1,6 +1,5 @@
 import { components } from '../components.js';
 import { createPost } from '../../model/firebase-post.js';
-import { auth } from '../../configFirebase.js';
 
 const changeView = (route) => {
   switch (route) {
@@ -14,7 +13,7 @@ const changeView = (route) => {
       components.register.eventInitRegister();
       break;
     case '#/Home':
-      auth.onAuthStateChanged((user) => {
+      firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           components.home.Home();
           components.home.eventInitHome();

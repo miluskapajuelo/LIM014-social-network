@@ -1,9 +1,9 @@
-import { fs } from '../configFirebase.js';
-import { getUser } from './login.js';
-
-const dateP = firebase.firestore.FieldValue.serverTimestamp();
+/* import { getUser } from './login.js';
+ */
+/* const dateP = firebase.firestore.FieldValue.serverTimestamp();
+ */
 export const getComment = ((idPost, callback) => {
-  fs.collection('comments')
+  firebase.firestore().collection('comments')
     .where('postId', '==', idPost)
     .orderBy('datePost', 'desc')
     .onSnapshot((querySnapshot) => {
@@ -15,18 +15,18 @@ export const getComment = ((idPost, callback) => {
     });
 });
 
-export const addCommentBd = ((id, inputcomment) => {
-  fs.collection('comments').add({
+export const addCommentBd = ((id, inputcomment, idUser, dateP, nameDisplay) => {
+  firebase.firestore().collection('comments').add({
     publication: inputcomment,
-    uid: firebase.auth().currentUser.uid,
+    uid: idUser, // firebase.auth().currentUser.uid,
     postId: id,
     datePost: dateP,
-    user: getUser().displayName,
+    user: nameDisplay, // getUser().displayName,
   });
 });
 
 export const removeCommentBd = (id) => {
-  fs.collection('comments').doc(id).delete();
+  firebase.firestore().collection('comments').doc(id).delete();
 };
 
 export const updateCommentBd = (id, changedComment) => firebase
