@@ -18,7 +18,7 @@ export const getInfo = () => new Promise((resolve) => {
 
 // Create post in firebase
 export const addPost = ((post) => {
-  const dateP = fs.FieldValue.serverTimestamp();
+  const dateP = firebase.firestore.FieldValue.serverTimestamp();
   fs.collection('post').add({
     publication: post,
     email: getUser().email,
@@ -81,10 +81,22 @@ export const likePostBd = (doc, likeUser) => {
       console.error('Error removing document: ', error);
     });
 };
+// Update number of likes
+export const countLikesPost = (doc, countLikesPost1) => {
+  fs.collection('post').doc(doc.id)
+    .update({
+      countLikes: countLikesPost1,
+    }).then(() => {
+      /* console.log('Document successfully counted!'); */
+    })
+    .catch((error) => {
+      console.error('Error removing document: ', error);
+    });
+};
 // Get best post top(5)
 export const getBestPost = ((callback) => {
   fs.collection('post')
-    .orderBy('countLikes', 'desc')
+    .orderBy('countLikes', 'asc')
     .limit(5)
     .onSnapshot((querySnapshot) => {
       const newArray = [];
