@@ -1,9 +1,12 @@
-// importamos la funcion que vamos a testear
-// import { myFunction } from '../src/lib/index';
-import { addPost } from '../src/controller/post.js';
+import MockFirebase from '../__mocks__/loginFirebase.js';
+import { createUser } from '../src/controller/login.js';
 
-describe('myFunction', () => {
+global.fs = MockFirebase();
+
+describe('createUser', () => {
   it('debería ser una función', () => {
-    expect(typeof addPost).toBe('function');
+    return createUser('comprar pan').then((data) => {
+      expect(data).toBe('comprar pan');
+    });
   });
 });
