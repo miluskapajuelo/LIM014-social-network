@@ -1,11 +1,15 @@
+import { countLikesPost } from '../controller/post.js';
 import { updatePost, likePost } from '../model/firebase-post.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
 import { confirmDeletePost } from '../model/modalDelete.js';
+import { getUser } from '../controller/login.js';
 
 const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
+    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
+    // eslint-disable-next-line no-param-reassign
     cmElm.innerHTML = post.length;
     post.forEach((doc) => {
       elm.appendChild(commentView(doc));
@@ -14,6 +18,8 @@ const showComment = (elm, idPost, cmElm) => {
 };
 
 const postsView = ((doc) => {
+  const likepost = doc.data().likePost;
+  const countLikes = likepost.length;
   const divElem = document.createElement('div');
   divElem.classList.add('posting');
   const viewPosts = `<div class="more">
@@ -32,7 +38,7 @@ const postsView = ((doc) => {
     </section>
     <section class="btn-posting">
         <section class="btn-total">
-            <p><span>${doc.data().likePost.length}</span> likes</p>
+            <p><span>${countLikes}</span> likes</p>
             <p><span class="countCm"></span> comment</p>
         </section>
         <section class="btn-group">
@@ -65,14 +71,15 @@ const postsView = ((doc) => {
   btnCm.addEventListener('click', () => {
     showCm.classList.toggle('show');
   });
+
   // function no limited by logged in user
   btnLike.addEventListener('click', () => {
-    // redes.textContent = 'thumb_up';
     likePost(doc);
   });
+  countLikesPost(doc, countLikes);
   // get number of likes per doc
   // functions limited by logged in user
-  if (doc.data().uid === firebase.auth().currentUser.uid) {
+  if (doc.data().uid === getUser().uid) {
     elm.addEventListener('click', () => {
       btnList.classList.toggle('hide');
     });
