@@ -1,6 +1,6 @@
 // Iniciar sesion con credenciales creadas
 export const signIn = (email, password) => {
-  firebase.auth().signInWithEmailAndPassword(email, password);
+  return firebase.auth().signInWithEmailAndPassword(email, password);
 };
 
 /* Crea usuario, el documento recibe el nombre del id */
@@ -11,7 +11,7 @@ export const createUser = (id, info) => firebase.firestore()
   });
 // Crear usuario
 export const createUserBD = (email, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password);
+  return firebase.auth().createUserWithEmailAndPassword(email, password);
 };
 
 // Inicia sesión con Google
@@ -33,7 +33,7 @@ export const verifEmail = () => {
   const configuration = {
     url: 'http://localhost:5000/',
   };
-  auth.currentUser.sendEmailVerification(configuration).then(() => {
+  firebase.auth().currentUser.sendEmailVerification(configuration).then(() => {
   // Email sent.
   }).catch((error) => {
     console.log(error);
