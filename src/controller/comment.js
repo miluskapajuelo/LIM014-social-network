@@ -1,7 +1,7 @@
 import { fs } from '../configFirebase.js';
 import { getUser } from './login.js';
 
-const dateP = fs.FieldValue.serverTimestamp();
+const dateP = firebase.firestore.FieldValue.serverTimestamp();
 export const getComment = ((idPost, callback) => {
   fs.collection('comments')
     .where('postId', '==', idPost)
