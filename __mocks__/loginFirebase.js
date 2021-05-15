@@ -1,12 +1,18 @@
-/* eslint-disable no-unused-vars */
-const collection = (nameCollection) => {
+const firestore = () => {
   return {
-    doc: (docId) => {
+    // eslint-disable-next-line no-unused-vars
+    collection: (namecollection) => {
       return {
-        set: () => {
-          return new Promise((res, rej) => {
-            res('la nota fué agregada');
-          });
+        // eslint-disable-next-line no-unused-vars
+        doc: (docId) => {
+          return {
+            set: () => {
+              // eslint-disable-next-line no-unused-vars
+              return new Promise((res, rej) => {
+                res('la nota fué agregada');
+              });
+            },
+          };
         },
       };
     },
@@ -14,8 +20,8 @@ const collection = (nameCollection) => {
 };
 
 // eslint-disable-next-line object-shorthand
-const fs = { collection: collection };
+const firebase = { firestore: firestore };
 
 export default jest.fn(() => {
-  return fs;
+  return firebase;
 });
