@@ -1,33 +1,32 @@
-import { fs, auth } from '../configFirebase.js';
 // Iniciar sesion con credenciales creadas
 export const signIn = (email, password) => {
-  auth.signInWithEmailAndPassword(email, password);
+  firebase.auth().signInWithEmailAndPassword(email, password);
 };
 
 /* Crea usuario, el documento recibe el nombre del id */
-export const createUser = (id, info) => fs
+export const createUser = (id, info) => firebase.firestore()
   .collection('users').doc(id).set({
     id,
     info,
   });
 // Crear usuario
 export const createUserBD = (email, password) => {
-  auth.createUserWithEmailAndPassword(email, password);
+  firebase.auth().createUserWithEmailAndPassword(email, password);
 };
 
 // Inicia sesión con Google
 export const signInWithGoogle = () => {
-  const provider = new auth.GoogleAuthProvider();
-  return auth.signInWithPopup(provider);
+  const provider = new firebase.auth.GoogleAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
 };
 
 // Inicia sesión con Facebook
 export const signInWithFacebook = () => {
-  const provider = new auth.FacebookAuthProvider();
-  return auth.signInWithPopup(provider);
+  const provider = new firebase.auth.FacebookAuthProvider();
+  return firebase.auth().signInWithPopup(provider);
 };
   // Desconectar
-export const signOut = () => auth.signOut();
+export const signOut = () => firebase.auth().signOut();
 
 // Verificar correo
 export const verifEmail = () => {
@@ -40,7 +39,7 @@ export const verifEmail = () => {
     console.log(error);
   });
 };
-export const getUser = () => auth.currentUser;
+export const getUser = () => firebase.auth().currentUser;
 
 export const updateProfile = (username) => {
   getUser().updateProfile({
