@@ -1,7 +1,7 @@
 import MockFirebase from '../__mocks__/loginFirebase.js';
 import { createUser } from '../src/controller/login.js';
 
-global.fs = MockFirebase();
+global.firebase = MockFirebase();
 
 describe('createUser', () => {
   it('debería ser una función', () => {
