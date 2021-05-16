@@ -3,6 +3,10 @@
 import MockFirebase from 'mock-cloud-firestore';
 import { addPost } from '../src/controller/post.js';
 // import mockConfig from '../__mocks__/mocksFire.js';
+import MockFirebaseFake from '../__mocks__/loginFirebase.js';
+import { createUser } from '../src/controller/login.js';
+
+global.firebase = MockFirebaseFake();
 
 const fixtureData = {
   __collection__: {
@@ -28,6 +32,13 @@ describe('my mock config', () => {
   it('debería mockear mi config', () => {
     return addPost().then((omg) => {
       expect(omg).toBe('Hola mundo');
+    });
+  });
+});
+describe('createUser', () => {
+  it('debería ser una función', () => {
+    return createUser('comprar pan').then((data) => {
+      expect(data).toBe('comprar pan');
     });
   });
 });
