@@ -16,7 +16,7 @@ export const getComment = ((idPost, callback) => {
 });
 
 export const addCommentBd = ((id, inputcomment, idUser, dateP, nameDisplay) => {
-  firebase.firestore().collection('comments').add({
+  firebase.firestore().collection('commets').add({
     publication: inputcomment,
     uid: idUser, // firebase.auth().currentUser.uid,
     postId: id,

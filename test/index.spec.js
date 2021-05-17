@@ -1,4 +1,4 @@
-import MockFirebase from '../__mocks__/loginFirebase.js';
+/* import MockFirebase from '../__mocks__/loginFirebase.js';
 import { createUser } from '../src/controller/login.js';
 
 global.firebase = MockFirebase();
@@ -10,3 +10,4 @@ describe('createUser', () => {
     });
   });
 });
+ */

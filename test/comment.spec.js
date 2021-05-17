@@ -1,6 +1,6 @@
 import MockFirebase from 'mock-cloud-firestore';
 
-import { addCommentBd, getComment } from '../src/controller/comment.js';
+import { addCommentBd, getComment /* removeCommentBd */ } from '../src/controller/comment.js';
 
 const fixtureData = {
   __collection__: {
@@ -32,7 +32,7 @@ global.firebase = new MockFirebase(fixtureData, {
 describe('create comments', () => {
   it('Deberia de poder agregar comentarios según post', (done) => addCommentBd('post001', 'Que lindo gatito', 'ID001', '', 'userName 1').then(() => {
     const callback = (publication) => {
-      /*       console.log(publication); */
+      console.log(publication);
       const result = publication.find(
         (element) => element.publication === ('Que lindo gatito'),
       );
@@ -42,3 +42,15 @@ describe('create comments', () => {
     getComment(callback, 'post001');
   }));
 });
+
+/* describe('delete comments', () => {
+  it('Deberia de poder eliminar un comments', (done) => removeCommentBd('comment001').then(() => {
+    const callback = (publication) => {
+      const result = publication.find((element) => element.id === 'comment001');
+      expect(result).toBe(undefined);
+      done();
+    };
+    getComment(callback);
+  }));
+});
+ */
