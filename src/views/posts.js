@@ -1,8 +1,8 @@
 import { countLikesPost } from '../controller/post.js';
-import { updatePost, likePost } from '../model/firebase-post.js';
+import { updatePost, likePost } from '../model/functions_Post_Comment.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
-import { confirmDeletePost } from '../model/modalDelete.js';
+import { confirmDeletePost } from '../model/functionsDelete_Post_Comment.js';
 import { getUser } from '../controller/login.js';
 
 const showComment = (elm, idPost, cmElm) => {
@@ -50,7 +50,7 @@ const postsView = ((doc) => {
     <section class="show-comments show">
         <section class="area-cm">
         <textarea name="" class="input-new-comment" id="" cols="30" rows="10"></textarea>
-        <button type="button" class="btn-add-comment">Post</button>
+        <button type="button" class="btn-add-comment">Comment</button>
         </section>
         <section id="comment-article">
         </section>
@@ -76,8 +76,9 @@ const postsView = ((doc) => {
   btnLike.addEventListener('click', () => {
     likePost(doc);
   });
-  countLikesPost(doc, countLikes);
   // get number of likes per doc
+  countLikesPost(doc, countLikes);
+
   // functions limited by logged in user
   if (doc.data().uid === getUser().uid) {
     elm.addEventListener('click', () => {
