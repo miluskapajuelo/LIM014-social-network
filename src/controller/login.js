@@ -1,9 +1,9 @@
-// Iniciar sesion con credenciales creadas
+// Sign In with credentials created
 export const signIn = (email, password) => {
   return firebase.auth().signInWithEmailAndPassword(email, password);
 };
 
-/* Crea usuario, el documento recibe el nombre del id */
+// Do new user, receives id and info
 export const createUser = (id, info) => {
   return firebase.firestore()
     .collection('users').doc(id).set({
@@ -11,23 +11,24 @@ export const createUser = (id, info) => {
       info,
     });
 };
-// Crear usuario
+// Create user
 export const createUserBD = (email, password) => {
   return firebase.auth().createUserWithEmailAndPassword(email, password);
 };
 
-// Inicia sesión con Google
+// Sign in with Google
 export const signInWithGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase.auth().signInWithPopup(provider);
 };
 
-// Inicia sesión con Facebook
+// Sign in with Facebook
 export const signInWithFacebook = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
   return firebase.auth().signInWithPopup(provider);
 };
-  // Desconectar
+// Sign out
 export const signOut = () => firebase.auth().signOut();
 
+// Get current user
 export const getUser = () => firebase.auth().currentUser;
