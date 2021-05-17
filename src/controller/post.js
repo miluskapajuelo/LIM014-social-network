@@ -42,6 +42,7 @@ export const getPost = ((callback) => {
     });
 });
 
+// Get doc of all post
 export const removePostBd = ((id) => {
   firebase.firestore().collection('post').doc(id).delete()
     .then(() => {
