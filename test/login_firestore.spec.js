@@ -1,6 +1,3 @@
-/* import MockFirebase from '../__mocks__/loginFirebase.js';
-
-global.firebase = MockFirebase(); */
 import MockFirebase from 'mock-cloud-firestore';
 import { createUser } from '../src/controller/login.js';
 
