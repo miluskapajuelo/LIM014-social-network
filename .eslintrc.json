@@ -1,23 +1,24 @@
 {
     "env": {
         "browser": true,
-        "es2021": true,
+        "es6": true,
         "jest/globals": true
     },
     "extends": [
         "airbnb-base"
     ],
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module"
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly",
+        "firebase": "readonly"
     },
     "plugins": [
         "jest"
     ],
-    "globals": {
-        "firestore": "readonly",
-        "fs": "readonly"
-    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },    
     "rules": {
         "linebreak-style": 0,
         "prefer-destructuring": 0,
@@ -33,7 +34,6 @@
         "no-alert": "off",
         "arrow-body-style": "off",
         "no-param-reassign": "off",
-        "import/no-cycle": "off",
-        "no-undef": "off"
+        "import/no-cycle": "off"
     }
 }
