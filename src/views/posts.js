@@ -1,8 +1,8 @@
 import { countLikesPost } from '../controller/post.js';
-import { updatePost, likePost } from '../model/functions_Post_Comment.js';
+import { updatePost, likePost } from '../model/Show_Post_Comment.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
-import { confirmDeletePost } from '../model/functionsDelete_Post_Comment.js';
+import { confirmDeletePost } from '../model/Delete_Post_Comment.js';
 import { getUser } from '../controller/login.js';
 
 const showComment = (elm, idPost, cmElm) => {

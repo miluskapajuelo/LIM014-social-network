@@ -1,5 +1,5 @@
 import { components } from '../components.js';
-import { createPost } from '../../model/firebase-post.js';
+import { createPost } from '../../model/Show_Post_Comment.js';
 
 // eslint-disable-next-line consistent-return
 const changeView = (route) => {
