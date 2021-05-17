@@ -4,11 +4,13 @@ export const signIn = (email, password) => {
 };
 
 /* Crea usuario, el documento recibe el nombre del id */
-export const createUser = (id, info) => firebase.firestore()
-  .collection('users').doc(id).set({
-    id,
-    info,
-  });
+export const createUser = (id, info) => {
+  return firebase.firestore()
+    .collection('users').doc(id).set({
+      id,
+      info,
+    });
+};
 // Crear usuario
 export const createUserBD = (email, password) => {
   return firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -28,24 +30,4 @@ export const signInWithFacebook = () => {
   // Desconectar
 export const signOut = () => firebase.auth().signOut();
 
-// Verificar correo
-export const verifEmail = () => {
-  const configuration = {
-    url: 'http://localhost:5000/',
-  };
-  firebase.auth().currentUser.sendEmailVerification(configuration).then(() => {
-  // Email sent.
-  }).catch((error) => {
-    console.log(error);
-  });
-};
 export const getUser = () => firebase.auth().currentUser;
-
-export const updateProfile = (username) => {
-  getUser().updateProfile({
-    displayName: username,
-  }).then(() => {
-  }).catch((error) => {
-    console.log(error);
-  });
-};
