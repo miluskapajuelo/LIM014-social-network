@@ -1,5 +1,6 @@
 import {
-  createUserBD, signIn, signInWithGoogle, signInWithFacebook, signOut,
+  createUserBD, signIn, signInWithGoogle, signInWithFacebook,
+  signOut, getUser,
 } from '../src/controller/login.js';
 
 const firebaseMock = require('firebase-mock');
@@ -51,6 +52,26 @@ describe('facebook', () => {
 describe('logOut', () => {
   it('Deberia poder ingresar a la app', () => signOut()
     .then((user) => {
-      expect(user).toBe(false);
+      expect(user).toBe(undefined);
     }));
+});
+
+/* getUser */
+describe('getUser', () => {
+  it('Deberia ser una función', () => {
+    expect(typeof getUser).toBe('function');
+  });
+  it('Debería mostrar el usuario ingresado', () => {
+    const userMock = {
+      getUser: {
+        id: 'abc01',
+        displayName: 'miluskapajuelo',
+      },
+    };
+    firebase.auth().onAuthStateChanged().currentUser = userMock.currentUser;
+    const isId = () => {
+      expect(getUser.id).toEqual('abc01');
+    };
+    getUser(isId);
+  });
 });
