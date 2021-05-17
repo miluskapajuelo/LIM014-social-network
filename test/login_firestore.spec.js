@@ -9,7 +9,7 @@ const fixtureData = {
     users: {
       __doc__: {
         user123id: {
-          id: 'id01',
+          id: 'user123id',
           info: 'developer',
         },
       },
@@ -23,7 +23,6 @@ global.firebase = new MockFirebase(fixtureData, {
 
 describe('createUser', () => {
   it('debería ser una función', () => {
-    createUser('user123id', 'developer').then((user) => console.log(user));
-    return expect(createUser('user123id', 'developer')).resolves.toBe('la nota fué agregada');
+    return expect(createUser('user123id', 'developer')).resolves.toBe(undefined);
   });
 });
