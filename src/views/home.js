@@ -64,7 +64,7 @@ const Home = (() => {
         </div>
     </header>
     <section class="best-post">
-        <h3>Best Post</h3>
+        <h3>Popular Post</h3>
         <div class="bestPost">
         </div>
         

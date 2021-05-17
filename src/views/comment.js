@@ -1,6 +1,6 @@
 import { getUser } from '../controller/login.js';
-import { updateComment } from '../model/firebase-post.js';
-import { confirmDeleteComment } from '../model/modalDelete.js';
+import { updateComment } from '../model/functions_Post_Comment.js';
+import { confirmDeleteComment } from '../model/functionsDelete_Post_Comment.js';
 
 export const commentView = ((doc) => {
   const divElem2 = document.createElement('div');
