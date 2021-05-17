@@ -1,5 +1,5 @@
 import {
-  createUserBD, verifEmail, updateProfile, createUser,
+  createUserBD, createUser, getUser,
 } from '../controller/login.js';
 
 const Register = (() => {
@@ -129,13 +129,21 @@ const eventInitRegister = (() => {
     } else {
       createUserBD(email, pass)
         .then((result) => {
-          updateProfile(username);
+          getUser().updateProfile({
+            displayName: username,
+          }).then(() => {
+          }).catch((error) => {
+            console.log(error);
+          });
           createUser(result.user.uid, info);
         })
         .then(() => {
           window.location.hash = '#/login';
           alert('Sending validation message to your email.');
-          verifEmail();
+          const configuration = {
+            url: 'http://localhost:5000/',
+          };
+          getUser().sendEmailVerification(configuration);
         })
         .catch((err) => console.error(err));
     }
