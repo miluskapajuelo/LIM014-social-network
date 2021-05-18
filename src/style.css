@@ -37,6 +37,14 @@ a {
   width: 100px;
   height: 100px;
 }
+.img-login #file_input {
+  position: absolute;
+  opacity: 0;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+}
+
 .container-change > .col {
   display: flex;
   flex-direction: column;
