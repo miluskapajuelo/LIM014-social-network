@@ -451,6 +451,14 @@ form .form > a:hover {
 .posting >.more >div>img{
   margin-right: 15px;
 }
+.more-group{
+  display: flex;
+  flex-direction: column;
+}
+.more-group > .more-date{
+  font-size: 10px;  
+  font-weight: lighter;
+}
 .btn-more{
   padding: 2px 15px;
   font-size: 20px;
