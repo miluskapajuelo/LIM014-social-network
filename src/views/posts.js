@@ -27,7 +27,7 @@ const postsView = ((doc) => {
             <img id="imgUser" style="height: 30px; width: 30px; border-radius: 90px;" src=${doc.data().photoURL} alt="Profile-pic">
             <div class="more-group">
             <p class="more-name">${doc.data().user}</p>
-            <p class="more-date">publicado el ${doc.data().datePost}</p>
+            <p class="more-date">posted on ${doc.data().datePost}</p>
             </div>
         </div>
         <button class="btn-more" type="button">...</button>
@@ -47,13 +47,13 @@ const postsView = ((doc) => {
         <section class="btn-group">
             <button id="btn-like" class="btn-like omg" type="button">
                 <span class="material-icons">thumb_up_off_alt</span> Like</button>
-            <button type="button" class="btn-cm omg"><span class="material-icons">chat_bubble_outline</span> Comments</button>
+            <button type="button" class="btn-cm omg"><span class="material-icons">chat_bubble_outline</span>Comments</button>
         </section>
     </section>
     <section class="show-comments show">
         <section class="area-cm">
         <textarea name="" class="input-new-comment" id="" cols="30" rows="10"></textarea>
-        <button type="button" class="btn-add-comment">Comment</button>
+        <button type="button" class="btn-add-comment"><span class="material-icons">arrow_forward_ios</span></button>
         </section>
         <section id="comment-article">
         </section>

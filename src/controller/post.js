@@ -16,8 +16,7 @@ export const getInfo = () => new Promise((resolve) => {
 });
 
 // Create post in firebase
-export const addPost = ((post) => {
-  const dateP = firebase.firestore.FieldValue.serverTimestamp();
+export const addPost = ((post, dateP) => {
   firebase.firestore().collection('post').add({
     publication: post,
     email: getUser().email,
