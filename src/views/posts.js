@@ -26,6 +26,7 @@ const postsView = ((doc) => {
         <div class="img-post">
             <img id="imgUser" style="height: 30px; width: 30px; border-radius: 90px;" src=${doc.data().photoURL} alt="Profile-pic">
             <p class="more-name">${doc.data().user}</p>
+            <p class="more-name">${doc.data().datePost}</p>
         </div>
         <button class="btn-more" type="button">...</button>
         <div class="btn-list hide">
