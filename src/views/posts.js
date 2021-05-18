@@ -24,7 +24,7 @@ const postsView = ((doc) => {
   divElem.classList.add('posting');
   const viewPosts = `<div class="more">
         <div class="img-post">
-            <img id="imgUser" style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
+            <img id="imgUser" style="height: 30px; width: 30px; border-radius: 90px;" src=${doc.data().photoURL} alt="Profile-pic">
             <p class="more-name">${doc.data().user}</p>
         </div>
         <button class="btn-more" type="button">...</button>
