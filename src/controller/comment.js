@@ -1,6 +1,3 @@
-import { getUser } from './login.js';
-
-const dateP = firebase.firestore.FieldValue.serverTimestamp();
 export const getComment = ((idPost, callback) => {
   firebase.firestore().collection('comments')
     .where('postId', '==', idPost)
@@ -14,13 +11,13 @@ export const getComment = ((idPost, callback) => {
     });
 });
 
-export const addCommentBd = ((id, inputcomment) => {
+export const addCommentBd = ((id, inputcomment, uidUser, userName, dateP) => {
   firebase.firestore().collection('comments').add({
     publication: inputcomment,
-    uid: getUser().uid,
+    uid: uidUser,
     postId: id,
     datePost: dateP,
-    user: getUser().displayName,
+    user: userName,
   });
 });
 

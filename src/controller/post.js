@@ -1,5 +1,4 @@
 import { removeCommentBd } from './comment.js';
-import { getUser } from './login.js';
 
 // Get info of user logged
 export const getInfo = () => new Promise((resolve) => {
@@ -16,14 +15,13 @@ export const getInfo = () => new Promise((resolve) => {
 });
 
 // Create post in firebase
-export const addPost = ((post) => {
-  const dateP = firebase.firestore.FieldValue.serverTimestamp();
-  firebase.firestore().collection('post').add({
+export const addPost = ((post, dateP, emailUser, userUid, userName) => {
+  return firebase.firestore().collection('post').add({
     publication: post,
-    email: getUser().email,
-    uid: getUser().uid,
+    email: emailUser,
+    uid: userUid,
     datePost: dateP,
-    user: getUser().displayName,
+    user: userName,
     likePost: [],
     countLikes: 0,
   });
@@ -43,12 +41,7 @@ export const getPost = ((callback) => {
 });
 
 export const removePostBd = ((id) => {
-  firebase.firestore().collection('post').doc(id).delete()
-    .then(() => {
-    })
-    .catch((error) => {
-      console.error('Error removing document: ', error);
-    });
+  firebase.firestore().collection('post').doc(id).delete();
   const delateCm = firebase.firestore().collection('comments').where('postId', '==', id).get();
   delateCm.then((omg) => {
     omg.forEach((cm) => {
