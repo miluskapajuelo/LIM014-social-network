@@ -767,6 +767,19 @@ form .typeLog > div > button:hover {
   font-size: 15px;
   color: #2a2e31;
 }
+footer{
+  width: 100%;
+  background-color: #2a2e31;
+  color: white;
+  display: flex;
+  padding: 20px;
+  font-size: 18px;
+  justify-content: center;
+  align-content: space-between;
+}
+footer a{
+  color: white;
+}
 @keyframes modal-animate {
   0% {
     scale: 50%;
