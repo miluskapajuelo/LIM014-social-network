@@ -5,7 +5,7 @@ import {
 } from '../controller/post.js';
 import { updateCommentBd } from '../controller/comment.js';
 import { getUser } from '../controller/login.js';
-
+// Create Post
 export const createPost = () => {
   const dateP = firebase.firestore.FieldValue.serverTimestamp();
   const post = document.getElementById('input-new-note');
@@ -24,7 +24,7 @@ export const createPost = () => {
     });
   });
 };
-
+// Edit Post by Modal
 function showModal(doc) {
   const modalMode = document.getElementById('modal-mode');
   const modalWindow = document.getElementById('modal-window');
@@ -44,7 +44,7 @@ function showModal(doc) {
     modalMode.classList.toggle('hide');
   });
 }
-
+// Edit Post
 export function updatePost(doc) {
   showModal(doc);
   const modalMode = document.getElementById('modal-mode');
@@ -55,6 +55,7 @@ export function updatePost(doc) {
     modalMode.classList.toggle('hide');
   });
 }
+// Edit Comment
 export function updateComment(doc) {
   showModal(doc);
   const modalMode = document.getElementById('modal-mode');
@@ -65,6 +66,7 @@ export function updateComment(doc) {
     modalMode.classList.toggle('hide');
   });
 }
+// Save User in Array
 export function likePost(doc) {
   const array = doc.data().likePost;
   const getName = getUser().displayName;

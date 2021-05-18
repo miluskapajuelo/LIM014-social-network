@@ -1,11 +1,9 @@
 import { countLikesPost } from '../controller/post.js';
-import { updatePost, likePost } from '../model/firebase-post.js';
+import { updatePost, likePost } from '../model/Show_Post_Comment.js';
 import { commentView } from './comment.js';
 import { getComment, addCommentBd } from '../controller/comment.js';
-import { confirmDeletePost } from '../model/modalDelete.js';
+import { confirmDeletePost } from '../model/Delete_Post_Comment.js';
 import { getUser } from '../controller/login.js';
-
-const dateP = firebase.firestore.FieldValue.serverTimestamp();
 
 const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
@@ -24,7 +22,7 @@ const postsView = ((doc) => {
   divElem.classList.add('posting');
   const viewPosts = `<div class="more">
         <div class="img-post">
-            <img id="imgUser" style="height: 30px; width: 30px;" src="./img/undraw_female_avatar_w3jk.svg" alt="Profile-pic">
+            <img id="imgUser" style="height: 30px; width: 30px; border-radius: 90px;" src=${doc.data().photoURL} alt="Profile-pic">
             <p class="more-name">${doc.data().user}</p>
         </div>
         <button class="btn-more" type="button">...</button>
@@ -50,7 +48,7 @@ const postsView = ((doc) => {
     <section class="show-comments show">
         <section class="area-cm">
         <textarea name="" class="input-new-comment" id="" cols="30" rows="10"></textarea>
-        <button type="button" class="btn-add-comment">Post</button>
+        <button type="button" class="btn-add-comment">Comment</button>
         </section>
         <section id="comment-article">
         </section>
@@ -76,8 +74,9 @@ const postsView = ((doc) => {
   btnLike.addEventListener('click', () => {
     likePost(doc);
   });
-  countLikesPost(doc, countLikes);
   // get number of likes per doc
+  countLikesPost(doc, countLikes);
+
   // functions limited by logged in user
   if (doc.data().uid === getUser().uid) {
     elm.addEventListener('click', () => {
@@ -92,10 +91,11 @@ const postsView = ((doc) => {
   }
   btnAddComment.addEventListener('click', () => {
     const commentEdit = divElem.querySelector('.input-new-comment').value;
-    const uidUser = getUser().uid;
-    const userName = getUser().displayName;
+    const idUser = firebase.auth().currentUser.uid;
+    const dateP = firebase.firestore.FieldValue.serverTimestamp();
+    const nameDisplay = getUser().displayName;
     if (commentEdit.length) {
-      addCommentBd(doc.id, commentEdit, uidUser, userName, dateP);
+      addCommentBd(doc.id, commentEdit, idUser, dateP, nameDisplay);
       divElem.querySelector('.input-new-comment').value = '';
     }
   });

@@ -11,27 +11,19 @@ export const getComment = ((idPost, callback) => {
     });
 });
 
-export const addCommentBd = ((id, inputcomment, uidUser, userName, dateP) => {
-  firebase.firestore().collection('comments').add({
+export const addCommentBd = ((id, inputcomment, idUser, dateP, nameDisplay) => {
+  return firebase.firestore().collection('comments').add({
     publication: inputcomment,
-    uid: uidUser,
+    uid: idUser,
     postId: id,
     datePost: dateP,
-    user: userName,
+    user: nameDisplay,
   });
 });
 
-export const removeCommentBd = (id) => {
-  firebase.firestore().collection('comments').doc(id).delete();
-};
+export const removeCommentBd = (id) => firebase.firestore().collection('comments').doc(id).delete();
 
 export const updateCommentBd = (id, changedComment) => firebase.firestore()
   .collection('comments')
   .doc(id)
-  .update({ publication: changedComment })
-  .then(() => {
-    console.log('Document successfully updated!');
-  })
-  .catch((error) => {
-    console.error('Error removing document: ', error);
-  });
+  .update({ publication: changedComment });

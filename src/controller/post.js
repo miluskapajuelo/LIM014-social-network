@@ -24,6 +24,7 @@ export const addPost = ((post, dateP, emailUser, userUid, userName) => {
     user: userName,
     likePost: [],
     countLikes: 0,
+    photoURL: getUser().photoURL,
   });
 });
 
@@ -40,6 +41,7 @@ export const getPost = ((callback) => {
     });
 });
 
+// Get doc of all post
 export const removePostBd = ((id) => {
   firebase.firestore().collection('post').doc(id).delete();
   const delateCm = firebase.firestore().collection('comments').where('postId', '==', id).get();
