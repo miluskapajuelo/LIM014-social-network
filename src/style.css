@@ -33,18 +33,33 @@ a {
   justify-content: center;
   text-align: right;
 }
-.img-login .userPic {
+.img-login{
+  position: relative;
+}
+.img-login span{
+  position: absolute;
+  right: 38%;
+  top: 38%;
+  color: #2b2d2e;
+}
+.img-login .userPic,
+.hoverPhoto {
   width: 100px;
   height: 100px;
+  
 }
 .img-login #file_input {
   position: absolute;
-  opacity: 0;
   width: 100px;
   height: 100px;
   cursor: pointer;
+  opacity: 0;
+  z-index: 55;
 }
-
+.img-login .hoverPhoto{
+  position: absolute;
+  border-radius: 90px;
+}
 .container-change > .col {
   display: flex;
   flex-direction: column;
