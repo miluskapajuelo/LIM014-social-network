@@ -7,13 +7,17 @@ import { updateCommentBd } from '../controller/comment.js';
 import { getUser } from '../controller/login.js';
 
 export const createPost = () => {
+  const dateP = firebase.firestore.FieldValue.serverTimestamp();
   const post = document.getElementById('input-new-note');
+  const email = getUser().email;
+  const userUid = getUser().uid;
+  const userName = getUser().displayName;
   post.addEventListener('keyup', () => {
     const notePost = document.getElementById('btn-add-note');
     notePost.style.background = 'rgba(23, 129, 161, 0.2)';
     notePost.addEventListener('click', () => {
       if (post.value.length) {
-        addPost(post.value);
+        addPost(post.value, dateP, email, userUid, userName);
         document.getElementById('input-new-note').value = '';
         notePost.style.background = '#e7e7e7';
       }

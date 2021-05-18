@@ -5,6 +5,8 @@ import { getComment, addCommentBd } from '../controller/comment.js';
 import { confirmDeletePost } from '../model/modalDelete.js';
 import { getUser } from '../controller/login.js';
 
+const dateP = firebase.firestore.FieldValue.serverTimestamp();
+
 const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
     elm.innerHTML = '';
@@ -90,8 +92,10 @@ const postsView = ((doc) => {
   }
   btnAddComment.addEventListener('click', () => {
     const commentEdit = divElem.querySelector('.input-new-comment').value;
+    const uidUser = getUser().uid;
+    const userName = getUser().displayName;
     if (commentEdit.length) {
-      addCommentBd(doc.id, commentEdit);
+      addCommentBd(doc.id, commentEdit, uidUser, userName, dateP);
       divElem.querySelector('.input-new-comment').value = '';
     }
   });
