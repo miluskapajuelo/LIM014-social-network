@@ -91,7 +91,7 @@ const Home = (() => {
         </div>
     </section>
     </section>
-    `;
+    <footer id="main-footer" class ="footer">Created by <a href="https://github.com/Katherine-fe"> Katherine Serrano</a>, <a href="https://github.com/Eunice17"> Eunice Fiorella </a> y <a href="https://github.com/miluskapajuelo"> Miluska Pajuelo </a></footer>`;
   const home = document.querySelector('.main-login');
   home.innerHTML = '';
   home.innerHTML = viewHome;
