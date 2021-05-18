@@ -56,7 +56,7 @@ const Home = (() => {
     <section class="grid">
     <header class="profile-header">
         <div class="profile">
-            <img style="width: 100px; height: 100px;" src="./img/undraw_female_avatar_w3jk.svg" alt="profile" srcset="">
+            <img style="width: 100px; height: 100px; border-radius: 90px;" src="${getUser().photoURL}" alt="profile" srcset="">
         </div>
         <div class="profile-name">
         <h2 class="className"></h2>

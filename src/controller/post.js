@@ -26,6 +26,7 @@ export const addPost = ((post) => {
     user: getUser().displayName,
     likePost: [],
     countLikes: 0,
+    photoURL: getUser().photoURL,
   });
 });
 
