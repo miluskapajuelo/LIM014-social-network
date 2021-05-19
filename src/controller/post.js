@@ -3,7 +3,7 @@ import { getUser } from './login.js';
 
 // Get info of user logged
 export const getInfo = () => new Promise((resolve) => {
-  const infodefault = 'Frontend developer - def';
+  const infodefault = 'Frontend developer';
   const prueba = firebase.firestore().collection('users').get();
   prueba.then((omg) => {
     omg.forEach((data) => {
