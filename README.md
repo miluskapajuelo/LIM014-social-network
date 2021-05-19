@@ -54,6 +54,7 @@ El producto resuelve la necesidad de encontrar un espacio donde una mujer puede 
   - Sexo: Mujer
   - Edad: 25 años
   - Rol: Estudiante Fron-End Developer
+  
   Comentario:
   Usuaria visualizo el prototipo de alta fidelidad y nos brindo las siguientes indicaciones:
   - Los botones de post deberian tener un color mas amigable.
@@ -67,6 +68,7 @@ El producto resuelve la necesidad de encontrar un espacio donde una mujer puede 
   - Sexo: Mujer
   - Edad: 24 años
   - Rol: Fron-End Developer
+  
   Comentario:
   Usuaria visualizo el prototipo de alta fidelidad y nos brindo las siguientes indicaciones:
   - El campo de publicación deberia visualizarse en la parte superior.
