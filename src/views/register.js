@@ -1,6 +1,7 @@
 import {
-  createUserBD, verifEmail, updateProfile, createUser,
+  createUserBD, createUser, getUser,
 } from '../controller/login.js';
+import { addFileToStorage, getFileFromStorage } from '../controller/storage.js';
 
 const Register = (() => {
   const viewRegister = `<section class="container-change">
@@ -11,7 +12,10 @@ const Register = (() => {
   <form action="" class="col" id="col-form">
     <div class="text-welcome">
     <figure class="img-login">
-      <img class="userPic" src="./img/undraw_female_avatar_w3jk.svg" alt="userPic">
+    <span class="material-icons">add_a_photo</span>
+    <input type="file" id="file_input" />
+    <div class="hoverPhoto"></div>
+    <img id='image_input' class="userPic" style="border-radius: 90px;" src="./img/undraw_female_avatar_w3jk.svg" alt="userPic">
     </figure>
       <H1 class="logo">W__coding</H1>
   </div>
@@ -57,11 +61,28 @@ const Register = (() => {
   const reg = document.getElementById('main-login');
   reg.innerHTML = '';
   reg.innerHTML = viewRegister;
+  // se guarda photo en storage
+  const fileInput = document.querySelector('#file_input');
+  const imageInput = document.querySelector('#image_input');
+  fileInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    const refPath = `profilePhotoFile/${file.name}`;
+    addFileToStorage(refPath, file).then((data) => {
+      getFileFromStorage(data.metadata.fullPath).then((url) => {
+        imageInput.setAttribute('src', url);
+      });
+    });
+  });
 
   return reg;
 });
+// password verified
+// eslint-disable-next-line no-unused-expressions
 const verifPassword = ((pass) => {
-  return pass.search(/(?=.*[a-z])(?=.*[0-9])(?=.*[@$#!?])[a-zA-Z0-9@$#!?]{8,32}/g) !== -1;
+  // eslint-disable-next-line no-unused-expressions
+  pass.search(/(?=.*[a-z])(?=.*[0-9])(?=.*[@$#!?])[a-zA-Z0-9@$#!?]{8,32}/g) !== -1;
 });
 const eventInitRegister = (() => {
   const label = document.querySelectorAll('.flex input');
@@ -93,6 +114,7 @@ const eventInitRegister = (() => {
     const pass = document.querySelector('#password').value;
     const passCheck = document.querySelector('#c-password').value;
     const info = document.querySelector('#info').value;
+    const imageInput = document.querySelector('#image_input');
 
     if (username === '') {
       msgWarning.innerHTML = `<p>Username required
@@ -125,15 +147,26 @@ const eventInitRegister = (() => {
       form[3].classList.add('fail');
       form[4].classList.add('fail');
     } else {
+      // create user BD with displayName and photoURL
       createUserBD(email, pass)
         .then((result) => {
-          updateProfile(username);
+          getUser().updateProfile({
+            displayName: username,
+            photoURL: imageInput.src,
+          }).then(() => {
+          }).catch((error) => {
+            console.log(error);
+          });
+
           createUser(result.user.uid, info);
         })
         .then(() => {
           window.location.hash = '#/login';
           alert('Sending validation message to your email.');
-          verifEmail();
+          const configuration = {
+            url: 'http://localhost:5000/',
+          };
+          getUser().sendEmailVerification(configuration);
         })
         .catch((err) => console.error(err));
     }

@@ -33,9 +33,32 @@ a {
   justify-content: center;
   text-align: right;
 }
-.img-login .userPic {
+.img-login{
+  position: relative;
+}
+.img-login span{
+  position: absolute;
+  right: 38%;
+  top: 38%;
+  color: #2b2d2e;
+}
+.img-login .userPic,
+.hoverPhoto {
   width: 100px;
   height: 100px;
+  
+}
+.img-login #file_input {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 55;
+}
+.img-login .hoverPhoto{
+  position: absolute;
+  border-radius: 90px;
 }
 .container-change > .col {
   display: flex;
@@ -428,6 +451,14 @@ form .form > a:hover {
 .posting >.more >div>img{
   margin-right: 15px;
 }
+.more-group{
+  display: flex;
+  flex-direction: column;
+}
+.more-group > .more-date{
+  font-size: 10px;  
+  font-weight: lighter;
+}
 .btn-more{
   padding: 2px 15px;
   font-size: 20px;
@@ -504,8 +535,11 @@ form .form > a:hover {
 }
 .show-comments > .area-cm{
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 92% 8%;
 }
+
 .area-cm textarea{
   width: 100%;
   padding: 10px 15px;
@@ -681,6 +715,15 @@ form .typeLog > div > button {
   border-bottom: 1px solid #60517c;
   outline: none;
 }
+.show-comments > .area-cm > button{
+  padding: 4px;
+  color: rgba(23, 129, 161, 1);
+  background: rgba(23, 129, 161, 0.2);
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+
 .contentGeneralDelete > .buttonconfirm > button{
   padding: 9px 15px;
   width: 150px;
@@ -743,6 +786,19 @@ form .typeLog > div > button:hover {
   text-transform: uppercase;
   font-size: 15px;
   color: #2a2e31;
+}
+footer{
+  width: 100%;
+  background-color: #2a2e31;
+  color: white;
+  display: flex;
+  padding: 20px;
+  font-size: 18px;
+  justify-content: center;
+  align-content: space-between;
+}
+footer a{
+  color: white;
 }
 @keyframes modal-animate {
   0% {

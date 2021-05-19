@@ -1,7 +1,7 @@
 import { components } from '../components.js';
-import { createPost } from '../../model/firebase-post.js';
-import { auth } from '../../configFirebase.js';
+import { createPost } from '../../model/Show_Post_Comment.js';
 
+// eslint-disable-next-line consistent-return
 const changeView = (route) => {
   switch (route) {
     case '':
@@ -14,7 +14,7 @@ const changeView = (route) => {
       components.register.eventInitRegister();
       break;
     case '#/Home':
-      auth.onAuthStateChanged((user) => {
+      firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           components.home.Home();
           components.home.eventInitHome();

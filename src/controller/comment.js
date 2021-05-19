@@ -1,9 +1,5 @@
-import { fs } from '../configFirebase.js';
-import { getUser } from './login.js';
-
-const dateP = firebase.firestore.FieldValue.serverTimestamp();
 export const getComment = ((idPost, callback) => {
-  fs.collection('comments')
+  firebase.firestore().collection('comments')
     .where('postId', '==', idPost)
     .orderBy('datePost', 'desc')
     .onSnapshot((querySnapshot) => {
@@ -15,28 +11,19 @@ export const getComment = ((idPost, callback) => {
     });
 });
 
-export const addCommentBd = ((id, inputcomment) => {
-  fs.collection('comments').add({
+export const addCommentBd = ((id, inputcomment, idUser, dateP, nameDisplay) => {
+  return firebase.firestore().collection('comments').add({
     publication: inputcomment,
-    uid: firebase.auth().currentUser.uid,
+    uid: idUser,
     postId: id,
     datePost: dateP,
-    user: getUser().displayName,
+    user: nameDisplay,
   });
 });
 
-export const removeCommentBd = (id) => {
-  fs.collection('comments').doc(id).delete();
-};
+export const removeCommentBd = (id) => firebase.firestore().collection('comments').doc(id).delete();
 
-export const updateCommentBd = (id, changedComment) => firebase
-  .firestore()
+export const updateCommentBd = (id, changedComment) => firebase.firestore()
   .collection('comments')
   .doc(id)
-  .update({ publication: changedComment })
-  .then(() => {
-    console.log('Document successfully updated!');
-  })
-  .catch((error) => {
-    console.error('Error removing document: ', error);
-  });
+  .update({ publication: changedComment });

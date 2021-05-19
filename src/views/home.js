@@ -6,6 +6,7 @@ import {
 
 const showPosts = (elm) => {
   getPost((post) => {
+    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
     post.forEach((doc) => {
       elm.appendChild(postsView(doc));
@@ -14,6 +15,7 @@ const showPosts = (elm) => {
 };
 const filterPost = ((value, elm) => {
   getPost((post) => {
+    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
     post.forEach((doc) => {
       if (doc.data().publication.toLowerCase().search(value.toLowerCase()) !== -1) {
@@ -25,6 +27,7 @@ const filterPost = ((value, elm) => {
 
 const showBestPosts = (elm) => {
   getBestPost((post) => {
+    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
     post.forEach((doc) => {
       elm.appendChild(postsView(doc));
@@ -53,7 +56,7 @@ const Home = (() => {
     <section class="grid">
     <header class="profile-header">
         <div class="profile">
-            <img style="width: 100px; height: 100px;" src="./img/undraw_female_avatar_w3jk.svg" alt="profile" srcset="">
+            <img style="width: 100px; height: 100px; border-radius: 90px;" src="${getUser().photoURL}" alt="profile" srcset="">
         </div>
         <div class="profile-name">
         <h2 class="className"></h2>
@@ -61,7 +64,7 @@ const Home = (() => {
         </div>
     </header>
     <section class="best-post">
-        <h3>Best Post</h3>
+        <h3>Popular Post</h3>
         <div class="bestPost">
         </div>
         
@@ -88,7 +91,7 @@ const Home = (() => {
         </div>
     </section>
     </section>
-    `;
+    <footer id="main-footer" class ="footer">Created by <a href="https://github.com/Katherine-fe"> Katherine Serrano</a>, <a href="https://github.com/Eunice17"> Eunice Fiorella </a> y <a href="https://github.com/miluskapajuelo"> Miluska Pajuelo </a></footer>`;
   const home = document.querySelector('.main-login');
   home.innerHTML = '';
   home.innerHTML = viewHome;

@@ -1,5 +1,6 @@
-import { updateComment } from '../model/firebase-post.js';
-import { confirmDeleteComment } from '../model/modalDelete.js';
+import { getUser } from '../controller/login.js';
+import { updateComment } from '../model/Show_Post_Comment.js';
+import { confirmDeleteComment } from '../model/Delete_Post_Comment.js';
 
 export const commentView = ((doc) => {
   const divElem2 = document.createElement('div');
@@ -20,7 +21,7 @@ export const commentView = ((doc) => {
   const elm = divElem2.querySelector('.btn-more');
   const btnList = divElem2.querySelector('.btn-list');
 
-  if (doc.data().uid === firebase.auth().currentUser.uid) {
+  if (doc.data().uid === getUser().uid) {
     btnRemoveCm.addEventListener('click', () => {
       confirmDeleteComment(doc);
     });
