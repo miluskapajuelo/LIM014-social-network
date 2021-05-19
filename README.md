@@ -28,9 +28,15 @@ Luego trabajamos en los prototipos de alta fidelidad de las diferentes vistas:
 
 ## 2. Definición del producto
 
-### 1.1 Quiénes son los principales usuarios de producto
+### 1.1 Quiénes son los principales usuarios
+
+Esta Plataforma fue diseñada para que mujeres de todas las edades que trabajen, estudien o tengan interes en tecnologia. Mujeres que se dedican a 
+divulgación de tendencias en el rubro tecnologico.
+
 
 ### 1.2 Qué problema resuelve el producto / para qué le servirá a estos usuarios.
+
+El producto resuelve la necesidad de encontrar un espacio donde una mujer puede conectarse con otras mujeres directamente y hacer consultas especificas sobre tecnologia. Ademas de encontrar en un solo lugar información relevante que impulse el autoaprendizaje.
 
 ### 1.3 Historias de usuario
 ![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/hu.JPG)
@@ -38,18 +44,53 @@ Luego trabajamos en los prototipos de alta fidelidad de las diferentes vistas:
 ### 1.4 Organizacion de las Historias de Usuario
 
 
-
 ## 3. Pruebas unitarias (unit tests)
 
 
 ## 4. Entrevistas con usuarios
 
-* Hacer al menos 2 entrevistas con usuarios.
+* Entrevista 01:
+  Perfil:
+  - Sexo: Mujer
+  - Edad: 25 años
+  - Rol: Estudiante Fron-End Developer
+  Comentario:
+  Usuaria visualizo el prototipo de alta fidelidad y nos brindo las siguientes indicaciones:
+  - Los botones de post deberian tener un color mas amigable.
+  - El registro de un usuario deberia contar con una doble confirmación de contraseña.
+  - El campo de Popular Post deberia ser un poco reducido.
+  - El texto dentro del boton Log In deberia ser de color blanco.
+  - El boton Log Out deberia tener un icono de referencia.
 
-* Hacer sesiones de _testing de usabilidad_ con el producto en HTML.
+* Entrevista 02:
+  Perfil:
+  - Sexo: Mujer
+  - Edad: 24 años
+  - Rol: Fron-End Developer
+  Comentario:
+  Usuaria visualizo el prototipo de alta fidelidad y nos brindo las siguientes indicaciones:
+  - El campo de publicación deberia visualizarse en la parte superior.
+  - En la vista mobile no deberia figurar los Popular Post.
+  - Los post deberían indicarme la fecha en el que fue publicado.
+  - Los Popular Post deberian resaltar y diferenciarse de las publicaciones generales.
 
 
-## 5. Objetivos de aprendizaje
+## 5. Testeos de usabilidad
+
+Se realizó el test de usabilidad en 3 usuarios y el resultado mostró lo siguiente:
+
+- Usuario 01:
+Se mostro confundido ya que no entendia de que se trataba la aplicación y como podía ayudarlo.
+
+- Usuario 02:
+Quedo impresionado con la primera vista ya que noto un mayor orden y los botones eran faciles de identificar. Sin embargo cuando visualizo la segunda vista no entendia que tenia que colocar en el campo "info" al cual se le cambio de nombre a "User Information" para una mejor claridad.
+
+- Usuario 03:
+Al realizar todas las modificaciones anteriores, el quinto usuario al que se aplico el test de usabilidad, afirmo que consideraba que teniamos un diseño amigable y entendía perfectamente para que era cada boton que mostrabamos. Lo cual fue respaldado con el tiempo de respuesta al realizar las tareas encomendadas.
+
+
+
+## 6. Objetivos de aprendizaje
 
 El objetivo principal de aprendizaje de este proyecto es construir una
 [Single-page Application (SPA)](https://es.wikipedia.org/wiki/Single-page_application)
@@ -122,7 +163,7 @@ Event objeto, delegación de eventos)
 * [x] Aplicar los principios de diseño visual (contraste, alineación, jerarquía)
 * [x] Planear y ejecutar tests de usabilidad.
 
-## 6. Tips y Lecturas complementarias
+## 7. Tips y Lecturas complementarias
 
 ### Mobile first
 
