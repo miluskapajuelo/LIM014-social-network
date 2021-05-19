@@ -49,7 +49,8 @@ El producto resuelve la necesidad de encontrar un espacio donde una mujer puede 
 
 ## 4. Entrevistas con usuarios
 
-* Entrevista 01:
+* Entrevista 01
+ 
   Perfil:
   - Sexo: Mujer
   - Edad: 25 años
@@ -63,7 +64,8 @@ El producto resuelve la necesidad de encontrar un espacio donde una mujer puede 
   - El texto dentro del boton Log In deberia ser de color blanco.
   - El boton Log Out deberia tener un icono de referencia.
 
-* Entrevista 02:
+* Entrevista 02
+
   Perfil:
   - Sexo: Mujer
   - Edad: 24 años
