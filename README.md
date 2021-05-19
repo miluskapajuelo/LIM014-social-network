@@ -42,7 +42,7 @@ El producto resuelve la necesidad de encontrar un espacio donde una mujer puede 
 ![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/hu.JPG)
 
 ### 1.4 Organizacion de las Historias de Usuario
-
+![logo](https://raw.githubusercontent.com/Katherine-fe/LIM014-social-network/RamaKatherine/src/img/issus.JPG)
 
 ## 3. Pruebas unitarias (unit tests)
 
