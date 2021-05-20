@@ -12,12 +12,13 @@ export const createPost = () => {
   const email = getUser().email;
   const userUid = getUser().uid;
   const userName = getUser().displayName;
+  const photoUser = getUser().photoURL;
   post.addEventListener('keyup', () => {
     const notePost = document.getElementById('btn-add-note');
     notePost.style.background = 'rgba(23, 129, 161, 0.2)';
     notePost.addEventListener('click', () => {
       if (post.value.length) {
-        addPost(post.value, dateP, email, userUid, userName);
+        addPost(post.value, dateP, email, userUid, userName, photoUser);
         document.getElementById('input-new-note').value = '';
         notePost.style.background = '#e7e7e7';
       }

@@ -2,7 +2,7 @@ import { removeCommentBd } from './comment.js';
 
 // Get info of user logged
 export const getInfo = () => new Promise((resolve) => {
-  const infodefault = 'Frontend developer - def';
+  const infodefault = 'Frontend developer';
   const prueba = firebase.firestore().collection('users').get();
   prueba.then((omg) => {
     omg.forEach((data) => {
@@ -13,9 +13,8 @@ export const getInfo = () => new Promise((resolve) => {
     resolve(infodefault);
   });
 });
-
 // Create post in firebase
-export const addPost = ((post, dateP, emailUser, userUid, userName) => {
+export const addPost = ((post, dateP, emailUser, userUid, userName, photoUser) => {
   return firebase.firestore().collection('post').add({
     publication: post,
     email: emailUser,
@@ -24,7 +23,7 @@ export const addPost = ((post, dateP, emailUser, userUid, userName) => {
     user: userName,
     likePost: [],
     countLikes: 0,
-    photoURL: getUser().photoURL,
+    photoURL: photoUser,
   });
 });
 
@@ -56,12 +55,6 @@ export const removePostBd = ((id) => {
 export const updatePostBd = (id, postEdit) => firebase.firestore().collection('post').doc(id)
   .update({
     publication: postEdit,
-  })
-  .then(() => {
-    console.log('Document successfully updated!');
-  })
-  .catch((error) => {
-    console.error('Error removing document: ', error);
   });
 
 // Update users who liked a post
@@ -69,12 +62,6 @@ export const likePostBd = (doc, likeUser) => {
   firebase.firestore().collection('post').doc(doc.id)
     .update({
       likePost: likeUser,
-    })
-    .then(() => {
-    /*  console.log('Document successfully liked!'); */
-    })
-    .catch((error) => {
-      console.error('Error removing document: ', error);
     });
 };
 // Update number of likes
@@ -82,12 +69,6 @@ export const countLikesPost = (doc, countLikesPost1) => {
   firebase.firestore().collection('post').doc(doc.id)
     .update({
       countLikes: countLikesPost1,
-    })
-    .then(() => {
-      /* console.log('Document successfully counted!'); */
-    })
-    .catch((error) => {
-      console.error('Error removing document: ', error);
     });
 };
 // Get best post top(5)

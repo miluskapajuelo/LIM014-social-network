@@ -51,7 +51,6 @@ describe('create comments', () => {
 describe('delete comment', () => {
   it('Deberia de poder eliminar un comentario', (done) => removeCommentBd('comment001').then(() => getComment('post001', (arrayComment) => {
     const result = arrayComment.find(
-      // eslint-disable-next-line dot-notation
       (element) => element['_id'] === 'comment001',
     );
     expect(result).toBe(undefined);
@@ -62,9 +61,7 @@ describe('delete comment', () => {
 // Test update comment
 describe('update comments', () => {
   it('Deberia de poder actualizar comentarios', (done) => updateCommentBd('comment002', 'eres como Piolin').then(() => getComment('post002', (publication) => {
-    // eslint-disable-next-line dot-notation
     const result = publication.find((element) => element['_id'] === 'comment002');
-    // eslint-disable-next-line dot-notation
     expect(result['_data'].publication).toBe('eres como Piolin');
     done();
   })));
