@@ -78,11 +78,8 @@ const Register = (() => {
 
   return reg;
 });
-// password verified
-// eslint-disable-next-line no-unused-expressions
 const verifPassword = ((pass) => {
-  // eslint-disable-next-line no-unused-expressions
-  pass.search(/(?=.*[a-z])(?=.*[0-9])(?=.*[@$#!?])[a-zA-Z0-9@$#!?]{8,32}/g) !== -1;
+  return pass.search(/(?=.*[a-z])(?=.*[0-9])(?=.*[@$#!?])[a-zA-Z0-9@$#!?]{8,32}/g) !== -1;
 });
 const eventInitRegister = (() => {
   const label = document.querySelectorAll('.flex input');

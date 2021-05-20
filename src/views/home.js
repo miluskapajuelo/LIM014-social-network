@@ -6,7 +6,6 @@ import {
 
 const showPosts = (elm) => {
   getPost((post) => {
-    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
     post.forEach((doc) => {
       elm.appendChild(postsView(doc));
@@ -15,7 +14,6 @@ const showPosts = (elm) => {
 };
 const filterPost = ((value, elm) => {
   getPost((post) => {
-    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
     post.forEach((doc) => {
       if (doc.data().publication.toLowerCase().search(value.toLowerCase()) !== -1) {
@@ -27,7 +25,6 @@ const filterPost = ((value, elm) => {
 
 const showBestPosts = (elm) => {
   getBestPost((post) => {
-    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
     post.forEach((doc) => {
       elm.appendChild(postsView(doc));

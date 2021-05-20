@@ -117,6 +117,11 @@ form .form > .label {
 .form > .label::after {
   right: 0px;
 }
+footer a{
+  color: white;
+  margin-bottom: 3px;
+  font-family: "pacifico", cursive;
+}
 form .form > a {
   font-weight: normal;
   margin-bottom: 30px;
@@ -137,6 +142,7 @@ form .form > .log::after {
 form .form > .log::before {
   right: -50px;
 }
+
 .form > .label.focus::after,
 .form > .label.focus::before {
   width: 50%;
@@ -247,6 +253,9 @@ form .typeLog > div > button > img {
 .nav-list .logo-nav{
   height: 100%;
   padding: 8px 20px;
+}
+footer a:hover{
+  color: #1a85a0;
 }
 .nav-list .logo-nav >a{
   height: 100%;
@@ -796,14 +805,6 @@ footer{
     padding: 19px;
     font-size: 14px;
     align-items: center;
-}
-footer a{
-  color: white;
-  margin-bottom: 3px;
-  font-family: "pacifico", cursive;
-}
-footer a:hover{
-  color: #1a85a0;
 }
 @keyframes modal-animate {
   0% {

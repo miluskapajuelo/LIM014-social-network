@@ -7,9 +7,7 @@ import { getUser } from '../controller/login.js';
 
 const showComment = (elm, idPost, cmElm) => {
   getComment(idPost, (post) => {
-    // eslint-disable-next-line no-param-reassign
     elm.innerHTML = '';
-    // eslint-disable-next-line no-param-reassign
     cmElm.innerHTML = post.length;
     post.forEach((doc) => {
       elm.appendChild(commentView(doc));
