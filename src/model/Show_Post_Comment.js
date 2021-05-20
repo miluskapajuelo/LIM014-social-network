@@ -7,18 +7,21 @@ import { updateCommentBd } from '../controller/comment.js';
 import { getUser } from '../controller/login.js';
 // Create Post
 export const createPost = () => {
-  const dateP = firebase.firestore.FieldValue.serverTimestamp();
   const post = document.getElementById('input-new-note');
   const email = getUser().email;
   const userUid = getUser().uid;
   const userName = getUser().displayName;
   const photoUser = getUser().photoURL;
+  const options = {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric',
+  };
+  const dateTime = new Date().toLocaleDateString('es-AR', options);
   post.addEventListener('keyup', () => {
     const notePost = document.getElementById('btn-add-note');
     notePost.style.background = 'rgba(23, 129, 161, 0.2)';
     notePost.addEventListener('click', () => {
       if (post.value.length) {
-        addPost(post.value, dateP, email, userUid, userName, photoUser);
+        addPost(post.value, dateTime, email, userUid, userName, photoUser);
         document.getElementById('input-new-note').value = '';
         notePost.style.background = '#e7e7e7';
       }
