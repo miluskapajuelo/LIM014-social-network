@@ -117,6 +117,9 @@ form .form > .label {
 .form > .label::after {
   right: 0px;
 }
+footer a{
+  color: white;
+}
 form .form > a {
   font-weight: normal;
   margin-bottom: 30px;
@@ -796,9 +799,6 @@ footer{
   font-size: 18px;
   justify-content: center;
   align-content: space-between;
-}
-footer a{
-  color: white;
 }
 @keyframes modal-animate {
   0% {
