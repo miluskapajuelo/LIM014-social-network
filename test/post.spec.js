@@ -1,17 +1,6 @@
 import MockFirebase from 'mock-cloud-firestore';
 import * as post from '../src/controller/post.js';
 
-const firebasemock = require('firebase-mock');
-
-const mockauth = new firebasemock.MockAuthentication();
-
-mockauth.autoFlush();
-
-global.firebase = firebasemock.MockFirebaseSdk(
-  () => null,
-  () => mockauth,
-);
-
 const fixtureData = {
   __collection__: {
     post: {
@@ -25,6 +14,7 @@ const fixtureData = {
           likePost: [],
           countLikes: 0,
           photoURL: 'www.photoFio.com',
+          dataSer: '12/02/1997 12:21',
         },
         12335: {
           publication: 'Katherine canta muy extraño',
@@ -35,6 +25,7 @@ const fixtureData = {
           likePost: ['Eunice'],
           countLikes: 1,
           photoURL: 'www.habbo.com',
+          dataSer: '12/02/1997 12:23',
         },
         12235: {
           publication: 'Miluska y Katherine son las mejores compañeras de proyectos',
@@ -45,6 +36,7 @@ const fixtureData = {
           likePost: ['Eunice'],
           countLikes: 1,
           photoURL: 'www.habbo.com',
+          dataSer: '12/02/1997 12:25',
         },
         12236: {
           publication: 'Estas son las mañanitas que cantaba el rey David',
@@ -55,6 +47,7 @@ const fixtureData = {
           likePost: ['Eunice', 'Persona Anónima'],
           countLikes: 2,
           photoURL: 'www.hellokitty.com',
+          dataSer: '12/02/1997 12:27',
         },
         12336: {
           publication: 'Soy muchacho provinciano, me levanto muy temprano',
@@ -65,6 +58,7 @@ const fixtureData = {
           likePost: ['Eunice', 'Persona Anónima'],
           countLikes: 2,
           photoURL: 'www.hellokitty.com',
+          dataSer: '12/02/1997 12:20',
         },
         12337: {
           publication: 'Sigue adelante. I was your man!',
@@ -75,6 +69,7 @@ const fixtureData = {
           likePost: ['Lluvia Piura', 'Eunice', 'Persona Anónima', 'Abigail Silva'],
           countLikes: 4,
           photoURL: 'www.hellomami.com',
+          dataSer: '12/02/1997 12:30',
         },
         12347: {
           publication: 'Estoy trabajando en tecnología, es mi primer día de trabajo!!',
@@ -85,6 +80,7 @@ const fixtureData = {
           likePost: ['Lluvia Piura', 'Persona Anónima', 'Abigail Silva'],
           countLikes: 3,
           photoURL: 'www.hellomami.com',
+          dataSer: '12/02/1997 12:31',
         },
         12345: {
           publication: '',
@@ -95,6 +91,7 @@ const fixtureData = {
           likePost: [],
           countLikes: 0,
           photoURL: '',
+          dataSer: '',
         },
       },
     },
@@ -104,7 +101,7 @@ global.firebase = new MockFirebase(fixtureData);
 
 describe('Funciones addPost y getPost', () => {
   it('Debería agregar un post', (done) => {
-    post.addPost('Estoy cansada de lucharle a la vida', '12/02/1997', 'efas@gmail.com', '12345', 'Eunice', 'www.google.com').then(() => {
+    post.addPost('Estoy cansada de lucharle a la vida', '12/02/1997', 'efas@gmail.com', '12345', 'Elisa', 'www.google.com', '12/02/1997 12:20').then(() => {
       const callback = (publication) => {
         const result = publication.find(
           (elm) => elm['_data'].publication === ('Estoy cansada de lucharle a la vida'),

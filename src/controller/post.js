@@ -14,7 +14,7 @@ export const getInfo = () => new Promise((resolve) => {
   });
 });
 // Create post in firebase
-export const addPost = ((post, dateP, emailUser, userUid, userName, photoUser) => {
+export const addPost = ((post, dateP, emailUser, userUid, userName, photoUser, dateServer) => {
   return firebase.firestore().collection('post').add({
     publication: post,
     email: emailUser,
@@ -24,13 +24,14 @@ export const addPost = ((post, dateP, emailUser, userUid, userName, photoUser) =
     likePost: [],
     countLikes: 0,
     photoURL: photoUser,
+    dateSer: dateServer,
   });
 });
 
 // Get doc of all post
 export const getPost = ((callback) => {
   firebase.firestore().collection('post')
-    .orderBy('datePost', 'desc')
+    .orderBy('dateSer', 'desc')
     .onSnapshot((querySnapshot) => {
       const newArray = [];
       querySnapshot.forEach((doc) => {

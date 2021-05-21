@@ -15,13 +15,14 @@ export const createPost = () => {
   const options = {
     weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric',
   };
+  const dateP = firebase.firestore.FieldValue.serverTimestamp();
   const dateTime = new Date().toLocaleDateString('es-AR', options);
   post.addEventListener('keyup', () => {
     const notePost = document.getElementById('btn-add-note');
     notePost.style.background = 'rgba(23, 129, 161, 0.2)';
     notePost.addEventListener('click', () => {
       if (post.value.length) {
-        addPost(post.value, dateTime, email, userUid, userName, photoUser);
+        addPost(post.value, dateTime, email, userUid, userName, photoUser, dateP);
         document.getElementById('input-new-note').value = '';
         notePost.style.background = '#e7e7e7';
       }
