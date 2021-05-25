@@ -1,18 +1,15 @@
 import { removeCommentBd } from './comment.js';
 
 // Get info of user logged
-export const getInfo = () => new Promise((resolve) => {
-  const infodefault = 'Frontend developer';
-  const prueba = firebase.firestore().collection('users').get();
-  prueba.then((omg) => {
-    omg.forEach((data) => {
-      if (data.data().id === firebase.auth().currentUser.uid) {
-        resolve(data.data().info);
-      }
-    });
-    resolve(infodefault);
+export const getInfo = () => firebase.firestore().collection('users').get().then((omg) => {
+  omg.forEach((data) => {
+    if (data.data().id === firebase.auth().currentUser.uid) {
+      return data.data().info;
+    }
   });
+  return 'Frontend developert';
 });
+
 // Create post in firebase
 export const addPost = ((post, dateP, emailUser, userUid, userName, photoUser) => {
   return firebase.firestore().collection('post').add({
