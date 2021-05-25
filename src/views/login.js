@@ -77,20 +77,23 @@ const eventInitLogin = (() => {
   const singupEmail = document.querySelector('#email');
   const rmCheck = document.querySelector('#rememberMe');
 
-  const rememberMeForNextTime = () => {
-    console.log(rmCheck.checked);
-    if (rmCheck.checked) {
-      localStorage.setItem('firstName', singupEmail.value);
-      localStorage.setItem('rememberMe', rmCheck.checked);
-      console.log('lo guardamos');
-    } else {
-      localStorage.removeItem('firstName');
-      localStorage.removeItem('rememberMe');
-      console.log('lo eliminamos');
-    }
-  };
+  rmCheck.addEventListener('change', () => {
+    let email = singupEmail.value;
+    let password = singupPassword.value;
 
-  rmCheck.addEventListener('change', rememberMeForNextTime());
+    localStorage.setItem('email', email);
+    localStorage.setItem('password', password);
+
+    email = '';
+    password = '';
+  });
+
+  if ((localStorage.email !== undefined) && (localStorage.password !== undefined)) {
+    singupEmail.value = localStorage.email;
+    singupPassword.value = localStorage.password;
+    form[0].classList.add('focus');
+    form[1].classList.add('focus');
+  }
 
   singInForm.addEventListener('submit', (e) => {
     e.preventDefault();
