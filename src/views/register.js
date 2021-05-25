@@ -103,16 +103,15 @@ const eventInitRegister = (() => {
       }
     });
   }
+  const imageInput = document.querySelector('#image_input');
 
   singInForm.addEventListener('submit', (e) => {
-    e.preventDefault();
     const username = document.querySelector('#name').value;
     const email = document.querySelector('#email').value;
     const pass = document.querySelector('#password').value;
     const passCheck = document.querySelector('#c-password').value;
     const info = document.querySelector('#info').value;
-    const imageInput = document.querySelector('#image_input');
-
+    e.preventDefault();
     if (username === '') {
       msgWarning.innerHTML = `<p>Username required
       <span class="material-icons">priority_high
