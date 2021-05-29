@@ -1,8 +1,8 @@
 import { removeCommentBd } from './comment.js';
 
 // Get info of user logged
-export const getInfo = () => firebase.firestore().collection('users').get().then((omg) => {
-  omg.forEach((data) => {
+export const getInfo = () => firebase.firestore().collection('users').get().then((element) => {
+  element.forEach((data) => {
     if (data.data().id === firebase.auth().currentUser.uid) {
       return data.data().info;
     }
@@ -11,7 +11,7 @@ export const getInfo = () => firebase.firestore().collection('users').get().then
 });
 
 // Create post in firebase
-export const addPost = ((post, dateP, emailUser, userUid, userName, photoUser) => {
+export const addPost = ((post, dateP, emailUser, userUid, userName, photoUser, dateServer) => {
   return firebase.firestore().collection('post').add({
     publication: post,
     email: emailUser,
@@ -21,13 +21,14 @@ export const addPost = ((post, dateP, emailUser, userUid, userName, photoUser) =
     likePost: [],
     countLikes: 0,
     photoURL: photoUser,
+    dateSer: dateServer,
   });
 });
 
 // Get doc of all post
 export const getPost = ((callback) => {
   firebase.firestore().collection('post')
-    .orderBy('datePost', 'desc')
+    .orderBy('dateSer', 'desc')
     .onSnapshot((querySnapshot) => {
       const newArray = [];
       querySnapshot.forEach((doc) => {
