@@ -79,18 +79,14 @@ const eventInitLogin = (() => {
 
   rmCheck.addEventListener('change', () => {
     let email = singupEmail.value;
-    let password = singupPassword.value;
 
     localStorage.setItem('email', email);
-    localStorage.setItem('password', password);
 
     email = '';
-    password = '';
   });
 
-  if ((localStorage.email !== undefined) && (localStorage.password !== undefined)) {
+  if ((localStorage.email !== undefined)) {
     singupEmail.value = localStorage.email;
-    singupPassword.value = localStorage.password;
     form[0].classList.add('focus');
     form[1].classList.add('focus');
   }
